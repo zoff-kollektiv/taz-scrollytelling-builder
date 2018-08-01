@@ -8,7 +8,7 @@ export default {
     const { data } = props.node;
 
     return (
-      <img src={data.get('src')} alt="" classname={styles.image} />
+      <img src={data.get('src')} alt="" className={styles.image} />
     )
   },
   onClick() {
