@@ -9,5 +9,10 @@ export default {
     <h1 className={styles.title} {...props.attributes}>
       {props.children}
     </h1>
-  )
+  ),
+  serialize(obj, children) {
+    return (
+      <h1>{children}</h1>
+    )
+  }
 };

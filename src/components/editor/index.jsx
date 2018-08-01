@@ -4,6 +4,8 @@ import { Value } from 'slate';
 
 import { findBlockByName } from '../../blocks';
 import data from './data';
+import downloadFile from '../../lib/download-file';
+import { serialize as serializeHTML } from './serialize-html';
 import styles from './styles';
 import Toolbar from './toolbar';
 
@@ -13,8 +15,12 @@ export default class Editor extends Component {
   }
 
   onChange = ({ value }) => {
-    console.log(value.toJSON());
     this.setState({ value });
+  }
+
+  onSave = () => {
+    // download html file which contains the story
+    downloadFile('story.html', serializeHTML(this.state.value));
   }
 
   renderNode = props => {
@@ -31,8 +37,6 @@ export default class Editor extends Component {
   }
 
   insertBlock = (type, context) => {
-    console.log('insert block!', type, context);
-
     const change = this.state.value.change().call((change, text, target) => {
       if (target) {
         change.select(target)
@@ -57,7 +61,7 @@ export default class Editor extends Component {
         </div>
 
         <div className={styles.toolbar}>
-          <Toolbar onBlockAdd={(type, context) => this.insertBlock(type, context)} />
+          <Toolbar onSave={() => this.onSave()} onBlockAdd={(type, context) => this.insertBlock(type, context)} />
         </div>
       </Fragment>
     )

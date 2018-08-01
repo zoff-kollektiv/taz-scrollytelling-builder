@@ -16,6 +16,10 @@ export default class Toolbar extends Component {
     this.props.onBlockAdd(type, context);
   }
 
+  onSave = () => {
+    this.props.onSave();
+  }
+
   render() {
     return (
       <div className={styles.toolbar}>
@@ -24,6 +28,13 @@ export default class Toolbar extends Component {
             <Blocks onBlockAdd={this.onBlockAdd} />
           </div>
         )}
+
+        <button type="button" className={styles.save} onClick={(event => {
+          event.preventDefault();
+          this.onSave();
+        })}>
+          Export
+        </button>
 
         <button type="button" className={styles.toggle} onClick={(event => {
           event.preventDefault();

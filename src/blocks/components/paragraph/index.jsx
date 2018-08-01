@@ -8,5 +8,10 @@ export default {
     <p className={styles.p} {...props.attributes}>
       {props.children}
     </p>
-  )
+  ),
+  serialize: (obj, children) => {
+    return (
+      <p>{children}</p>
+    )
+  }
 };

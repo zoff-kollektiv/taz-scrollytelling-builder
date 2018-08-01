@@ -21,3 +21,18 @@
 .toggle:focus {
   cursor: pointer;
 }
+
+.save {
+  background-color: green;
+  border: 0;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  margin-right: 1rem;
+  padding: 1rem .35rem;
+}
+
+.save:hover,
+.save:focus {
+  cursor: pointer;
+}
