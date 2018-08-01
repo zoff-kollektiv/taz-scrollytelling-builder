@@ -55,6 +55,7 @@ export default class Editor extends Component {
       <Fragment>
         <div className={styles.editor}>
           <SlateEditor
+            spellCheck={false}
             value={this.state.value}
             onChange={this.onChange}
             renderNode={this.renderNode} />
