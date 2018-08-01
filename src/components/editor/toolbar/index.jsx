@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import Blocks from './blocks';
+import DownloadIcon from './download.svg';
+import PlusIcon from './plus.svg';
 import styles from './styles';
 
 export default class Toolbar extends Component {
@@ -25,6 +27,7 @@ export default class Toolbar extends Component {
     return (
       <div className="toolbar">
         <style jsx>{styles}</style>
+
         {this.state.blocksOpen && (
           <div className="toolbar__blocks">
             <Blocks onBlockAdd={this.onBlockAdd} />
@@ -39,7 +42,7 @@ export default class Toolbar extends Component {
             this.onSave();
           }}
         >
-          Export
+          <DownloadIcon style={{ height: '1rem', width: '1rem' }} />
         </button>
 
         <button
@@ -50,7 +53,7 @@ export default class Toolbar extends Component {
             this.toggleBlocks();
           }}
         >
-          + Add Block
+          <PlusIcon style={{ height: '1rem', width: '1rem' }} />
         </button>
       </div>
     );

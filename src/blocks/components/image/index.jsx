@@ -1,9 +1,11 @@
 import React from 'react';
 
+import Icon from './image.svg';
 import styles from './styles';
 
 export default {
   name: 'image',
+  Icon,
   styles,
   Component(props) {
     const { data } = props.node;

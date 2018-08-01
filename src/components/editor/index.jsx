@@ -28,7 +28,7 @@ export default class Editor extends Component {
     const styles = assets.folder('styles');
 
     // collect styles
-    const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped)
+    const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
 
     styles.file('styles.css', blockStypes.join('\n'));
     zip.file('story.html', serializeHTML(value));

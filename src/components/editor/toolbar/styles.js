@@ -12,31 +12,35 @@ export default css`
   }
 
   .toolbar__toggle {
-    background-color: red;
+    background-color: #444444;
     border: 0;
     border-radius: 50%;
     color: white;
     font-weight: bold;
-    padding: 2rem .5rem;
+    padding: 1.5rem;
   }
 
   .toolbar__toggle:hover,
   .toolbar__toggle:focus {
+    background-color: #151515;
     cursor: pointer;
+    outline: none;
   }
 
   .toolbar__save {
-    background-color: green;
+    background-color: #444444;
     border: 0;
     border-radius: 50%;
     color: white;
     font-weight: bold;
     margin-right: 1rem;
-    padding: 1rem .35rem;
+    padding: 1rem;
   }
 
   .toolbar__save:hover,
   .toolbar__save:focus {
+    background-color: #151515;
     cursor: pointer;
+    outline: none;
   }
 `;

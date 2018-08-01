@@ -12,7 +12,7 @@ export default class Block extends Component {
     return (
       <ul className="blocks">
         <style jsx>{styles}</style>
-        {blocks.map(({ name, defaultContent = '', onClick }) => (
+        {blocks.map(({ name, defaultContent = '', onClick, Icon }) => (
           <li key={name}>
             <button
               type="button"
@@ -29,7 +29,8 @@ export default class Block extends Component {
                 }
               }}
             >
-              {name}
+              <span className="blocks__block-label">{name}</span>
+              {Icon && (<Icon style={{ height: '1rem', verticalAlign: 'middle', width: '1rem' }} />)}
             </button>
           </li>
         ))}
