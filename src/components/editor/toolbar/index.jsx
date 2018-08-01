@@ -9,6 +9,7 @@ export default class Toolbar extends Component {
   };
 
   onBlockAdd = (type, context) => {
+    this.setState({ blocksOpen: false });
     this.props.onBlockAdd(type, context);
   };
 
@@ -52,6 +53,6 @@ export default class Toolbar extends Component {
           + Add Block
         </button>
       </div>
-    )
+    );
   }
-};
+}
