@@ -4,10 +4,10 @@ import { Editor as SlateEditor } from 'slate-react';
 import { saveAs } from 'file-saver/FileSaver';
 import { Value } from 'slate';
 
-import { findBlockByName } from '../../blocks';
+import { blocks, findBlockByName } from '../../blocks';
 import initialData from './data';
 import { serialize as serializeHTML } from './serialize-html';
-import styles from './styles.css';
+import styles from './styles';
 import Toolbar from './toolbar';
 
 export default class Editor extends Component {
@@ -22,11 +22,15 @@ export default class Editor extends Component {
   onSave = () => {
     const { value } = this.state;
     const zip = new JSZip();
-    const assets = zip.folder('assets');
 
+    const assets = zip.folder('assets');
     const images = assets.folder('images');
     const styles = assets.folder('styles');
 
+    // collect styles
+    const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped)
+
+    styles.file('styles.css', blockStypes.join('\n'));
     zip.file('story.html', serializeHTML(value));
     zip.file('story.json', JSON.stringify(value));
 
@@ -69,7 +73,9 @@ export default class Editor extends Component {
   render() {
     return (
       <Fragment>
-        <div className={styles.editor}>
+        <style jsx>{styles}</style>
+
+        <div className="editor">
           <SlateEditor
             spellCheck={false}
             value={this.state.value}
@@ -78,7 +84,7 @@ export default class Editor extends Component {
           />
         </div>
 
-        <div className={styles.toolbar}>
+        <div className="editor__toolbar">
           <Toolbar
             onSave={() => this.onSave()}
             onBlockAdd={(type, context) => this.insertBlock(type, context)}

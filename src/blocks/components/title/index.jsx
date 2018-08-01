@@ -4,15 +4,21 @@ import styles from './styles';
 
 export default {
   name: 'title',
+  styles,
   defaultContent: 'Insert title ...',
-  Component: (props) => (
-    <h1 className={styles.title} {...props.attributes}>
+  Component: props => (
+    <h1 className="title" {...props.attributes}>
+      <style jsx>{styles}</style>
       {props.children}
     </h1>
   ),
+
   serialize(obj, children) {
     return (
-      <h1>{children}</h1>
-    )
+      <h1 className="title">
+        <style jsx>{styles}</style>
+        {children}
+      </h1>
+    );
   }
 };

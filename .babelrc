@@ -1,5 +1,6 @@
 {
   "plugins": [
+    "styled-jsx/babel",
     "transform-class-properties",
     "transform-object-rest-spread"
   ],

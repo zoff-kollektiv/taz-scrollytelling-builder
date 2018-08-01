@@ -4,12 +4,13 @@ import styles from './styles';
 
 export default {
   name: 'image',
+  styles,
   Component(props) {
     const { data } = props.node;
 
     return (
-      <img src={data.get('src')} alt="" className={styles.image} />
-    )
+      <img src={data.get('src')} alt={data.get('alt')} className="image" />
+    );
   },
   onClick() {
     return new Promise((resolve, reject) => {
