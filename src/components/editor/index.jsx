@@ -1,10 +1,11 @@
+import JSZip from 'jszip';
 import React, { Component, Fragment } from 'react';
 import { Editor as SlateEditor } from 'slate-react';
+import { saveAs } from 'file-saver/FileSaver';
 import { Value } from 'slate';
 
 import { findBlockByName } from '../../blocks';
 import initialData from './data';
-import downloadFile from '../../lib/download-file';
 import { serialize as serializeHTML } from './serialize-html';
 import styles from './styles.css';
 import Toolbar from './toolbar';
@@ -19,8 +20,17 @@ export default class Editor extends Component {
   };
 
   onSave = () => {
-    // download html file which contains the story
-    downloadFile('story.html', serializeHTML(this.state.value));
+    const { value } = this.state;
+    const zip = new JSZip();
+    const assets = zip.folder('assets');
+
+    const images = assets.folder('images');
+    const styles = assets.folder('styles');
+
+    zip.file('story.html', serializeHTML(value));
+    zip.file('story.json', JSON.stringify(value));
+
+    zip.generateAsync({ type: 'blob' }).then(file => saveAs(file, 'story.zip'));
   };
 
   insertBlock = (type, data) => {
