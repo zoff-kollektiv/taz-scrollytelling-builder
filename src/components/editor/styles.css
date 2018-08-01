@@ -1,0 +1,10 @@
+.editor {
+  margin: 4rem auto 0 auto;
+  max-width: 600px;
+}
+
+.toolbar {
+  bottom: 1rem;
+  position: fixed;
+  right: 1rem;
+}

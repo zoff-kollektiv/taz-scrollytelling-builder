@@ -1,0 +1,23 @@
+.toolbar {
+  position: relative;
+}
+
+.blocks {
+  bottom: 5rem;
+  position: absolute;
+  right: 0;
+}
+
+.toggle {
+  background-color: red;
+  border: 0;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  padding: 2rem .5rem;
+}
+
+.toggle:hover,
+.toggle:focus {
+  cursor: pointer;
+}
