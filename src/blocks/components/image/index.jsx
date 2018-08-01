@@ -1,12 +1,14 @@
 import React from 'react';
 
+import styles from './styles';
+
 export default {
   name: 'image',
   Component(props) {
     const { data } = props.node;
 
     return (
-      <img src={data.get('src')} alt="" />
+      <img src={data.get('src')} alt="" classname={styles.image} />
     )
   },
   onClick() {

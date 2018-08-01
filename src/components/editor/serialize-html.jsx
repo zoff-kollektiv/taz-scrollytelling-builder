@@ -1,14 +1,14 @@
 import Html from 'slate-html-serializer';
 import React from 'react';
 
-import { findBlockByName } from '../../blocks/';
+import { findBlockByName } from '../../blocks';
 
 const rules = [
   {
     deserialize() {
       // no-op for now
     },
-  
+
     serialize(obj, children) {
       const { type } = obj;
 
@@ -22,9 +22,9 @@ const rules = [
       if (!serialize) {
         // for all blocks, which don't have their own serializer function
         return <div>{children}</div>;
-      } else {
-        return serialize(obj, children);
       }
+
+      return serialize(obj, children);
     }
   }
 ];

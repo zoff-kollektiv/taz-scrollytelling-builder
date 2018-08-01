@@ -5,14 +5,7 @@ import image from './components/image';
 import paragraph from './components/paragraph';
 import title from './components/title';
 
-const blocks = [
-  blockquote,
-  headline2,
-  headline3,
-  image,
-  paragraph,
-  title,
-];
+const blocks = [blockquote, headline2, headline3, image, paragraph, title];
 
 export { blocks };
 

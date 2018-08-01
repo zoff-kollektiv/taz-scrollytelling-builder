@@ -1,4 +1,4 @@
-export default (filename, content, options = {type: 'text/html'}) => {
+export default (filename, content, options = { type: 'text/html' }) => {
   const link = window.document.createElement('a');
   const blob = new Blob([content], options);
 
@@ -9,4 +9,4 @@ export default (filename, content, options = {type: 'text/html'}) => {
   link.click();
 
   document.body.removeChild(link);
-}
+};
