@@ -11,11 +11,19 @@ export default class Block extends Component {
   render() {
     return (
       <ul className={styles.blocks}>
-        {blocks.map(({ name, defaultContent = '' }, key) => (
+        {blocks.map(({ name, defaultContent = '', onClick }, key) => (
           <li key={key}>
             <button type="button" className={styles.block} onClick={event => {
               event.preventDefault();
-              this.onBlockAdd(name, { defaultContent });
+
+              if (onClick) {
+                onClick()
+                  .then(context => {
+                    this.onBlockAdd(name, { ...context, defaultContent });
+                  });
+              } else {
+                this.onBlockAdd(name, { defaultContent });
+              }
             }}>{name}</button>
           </li>
         ))}

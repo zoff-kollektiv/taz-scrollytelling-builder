@@ -36,16 +36,24 @@ export default class Editor extends Component {
     )
   }
 
-  insertBlock = (type, context) => {
-    const change = this.state.value.change().call((change, text, target) => {
+  insertBlock = (type, data) => {
+    const change = this.state.value.change().call((change, target) => {
       if (target) {
         change.select(target)
       }
     
-      change
-        .call(() => { change.insertBlock(type) })
-        .insertText(context.defaultContent);
-    }, context);
+      change.call(() => { change.insertBlock({
+        type,
+        data,
+        })
+      });
+
+      // apply defined default content
+      if (data.defaultContent) {
+        change.insertText(data.defaultContent);
+      }
+
+    }, data);
 
     this.onChange(change);
   }
