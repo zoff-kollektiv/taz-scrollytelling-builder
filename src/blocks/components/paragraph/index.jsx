@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Icon from './paragraph.svg';
+import layoutConstraint from '../layout-constraint';
 import styles from './styles';
 
 export default {
@@ -8,10 +9,12 @@ export default {
   Icon,
   styles,
   Component: props => (
-    <p className="paragraph" {...props.attributes}>
-      <style jsx>{styles}</style>
-      {props.children}
-    </p>
+    <layoutConstraint.Component attributes={{}}>
+      <p className="paragraph" {...props.attributes}>
+        <style jsx>{styles}</style>
+        {props.children}
+      </p>
+    </layoutConstraint.Component>
   ),
   serialize(obj, children) {
     return (

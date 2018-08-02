@@ -3,19 +3,45 @@ export default {
     nodes: [
       {
         object: 'block',
-        type: 'title',
+        type: 'intro',
         nodes: [
           {
-            object: 'text',
-            leaves: [
+            object: 'block',
+            type: 'layout-constraint',
+            nodes: [
               {
-                text: '300 rechte Helfer im Bundestag'
+                object: 'block',
+                type: 'title',
+                nodes: [
+                  {
+                    object: 'text',
+                    leaves: [
+                      {
+                        text: '300 rechte Helfer im Bundestag'
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                object: 'block',
+                type: 'paragraph',
+                nodes: [
+                  {
+                    object: 'text',
+                    leaves: [
+                      {
+                        text:
+                          'Mehr als 300 Mitarbeiter hat die AfD eingestellt. Neonazis und Bürgerliche arbeiten gemeinsam in den Büros der Fraktion.'
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
         ]
       },
-
       {
         object: 'block',
         type: 'paragraph',

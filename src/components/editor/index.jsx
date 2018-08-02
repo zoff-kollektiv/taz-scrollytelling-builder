@@ -86,6 +86,7 @@ export default class Editor extends Component {
 
         <div className="editor__toolbar">
           <Toolbar
+            AST={this.state.value.toJSON()}
             onSave={() => this.onSave()}
             onBlockAdd={(type, context) => this.insertBlock(type, context)}
           />

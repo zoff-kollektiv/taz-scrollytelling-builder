@@ -1,39 +1,30 @@
 import React, { Component } from 'react';
 
+import Block from './block';
 import { blocks } from '../../../../blocks';
 import styles from './styles';
 
-export default class Block extends Component {
+export default class extends Component {
   onBlockAdd = (type, context) => {
     this.props.onBlockAdd(type, context);
   };
 
   render() {
+    const { AST } = this.props;
+
     return (
       <ul className="blocks">
         <style jsx>{styles}</style>
-        {blocks.map(({ name, defaultContent = '', onClick, Icon }) => (
-          <li key={name}>
-            <button
-              type="button"
-              className="blocks__block"
-              onClick={event => {
-                event.preventDefault();
-
-                if (onClick) {
-                  onClick().then(context => {
-                    this.onBlockAdd(name, { ...context, defaultContent });
-                  });
-                } else {
-                  this.onBlockAdd(name, { defaultContent });
-                }
-              }}
-            >
-              <span className="blocks__block-label">{name}</span>
-              {Icon && (<Icon style={{ height: '1rem', verticalAlign: 'middle', width: '1rem' }} />)}
-            </button>
-          </li>
-        ))}
+        {blocks
+          // only allow selection of public blocks
+          .filter(_ => _.private !== true)
+          // only show not enabled blocks
+          .filter(_ => !_.disabled || !(_.disabled && _.disabled(AST)))
+          .map(_ => (
+            <li key={_.name}>
+              <Block {..._} onBlockAdd={this.onBlockAdd} />
+            </li>
+          ))}
       </ul>
     );
   }

@@ -4,6 +4,7 @@ import styles from './styles';
 
 export default {
   name: 'title',
+  private: true,
   styles,
   defaultContent: 'Insert title ...',
   Component: props => (

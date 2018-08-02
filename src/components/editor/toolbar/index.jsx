@@ -24,13 +24,15 @@ export default class Toolbar extends Component {
   };
 
   render() {
+    const { AST } = this.props;
+
     return (
       <div className="toolbar">
         <style jsx>{styles}</style>
 
         {this.state.blocksOpen && (
           <div className="toolbar__blocks">
-            <Blocks onBlockAdd={this.onBlockAdd} />
+            <Blocks onBlockAdd={this.onBlockAdd} AST={AST} />
           </div>
         )}
 
