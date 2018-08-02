@@ -9,10 +9,10 @@ export default {
   name: 'intro',
   styles,
   Component: props => (
-    <header className="intro" {...props.attributes}>
+    <section className="intro" {...props.attributes}>
       <style jsx>{styles}</style>
       {props.children}
-    </header>
+    </section>
   ),
   disabled(ast) {
     // if there is already an intro present, do not allow to add a second one
