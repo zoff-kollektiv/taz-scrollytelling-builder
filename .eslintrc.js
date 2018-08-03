@@ -28,4 +28,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/destructuring-assignment': 'off',
   },
+  globals: {
+    "FormData": true,
+  }
 };

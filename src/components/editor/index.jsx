@@ -23,10 +23,6 @@ export default class Editor extends Component {
     const { value } = this.state;
     const zip = new JSZip();
 
-    const assets = zip.folder('assets');
-    const images = assets.folder('images');
-    const styles = assets.folder('styles');
-
     // collect styles
     const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
 

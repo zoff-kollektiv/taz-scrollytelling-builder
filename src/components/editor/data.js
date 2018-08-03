@@ -66,7 +66,7 @@ export default {
               }
             ]
           },
-    
+
           {
             object: 'block',
             type: 'paragraph',
@@ -82,7 +82,7 @@ export default {
               }
             ]
           },
-    
+
           {
             object: 'block',
             type: 'paragraph',
@@ -98,7 +98,7 @@ export default {
               }
             ]
           },
-    
+
           {
             object: 'block',
             type: 'paragraph',
@@ -114,7 +114,7 @@ export default {
               }
             ]
           },
-    
+
           {
             object: 'block',
             type: 'paragraph',
