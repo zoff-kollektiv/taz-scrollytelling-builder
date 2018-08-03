@@ -20,11 +20,28 @@ export default {
       className: 'image'
     };
 
-  return (
+    return (
       <layoutConstraint.Component attributes={{}}>
         <style jsx>{styles}</style>
+        {/* eslint-disable-next-lint jsx-a11y/alt-text */}
         <img {...attrs} />
       </layoutConstraint.Component>
+    );
+  },
+
+  serialize({ data }) {
+    const alt = data.get('alt');
+    const file = data.get('image');
+    const attrs = {
+      alt,
+      src: file.preview,
+      className: 'image'
+    };
+
+    return (
+      <Fragment>
+        <img {...attrs} />
+      </Fragment>
     );
   },
 

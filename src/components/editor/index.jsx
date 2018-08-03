@@ -4,7 +4,7 @@ import { Editor as SlateEditor } from 'slate-react';
 import { saveAs } from 'file-saver/FileSaver';
 import { Value } from 'slate';
 
-import { blocks, findBlockByName } from '../../blocks';
+import { findBlockByName } from '../../blocks';
 import initialData from './data';
 import { serialize as serializeHTML } from './serialize-html';
 import styles from './styles';
@@ -24,9 +24,9 @@ export default class Editor extends Component {
     const zip = new JSZip();
 
     // collect styles
-    const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
+    // const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
 
-    styles.file('styles.css', blockStypes.join('\n'));
+    // styles.file('styles.css', blockStypes.join('\n'));
     zip.file('story.html', serializeHTML(value));
     zip.file('story.json', JSON.stringify(value));
 
