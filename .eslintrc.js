@@ -29,6 +29,7 @@ module.exports = {
     'react/destructuring-assignment': 'off',
   },
   globals: {
+    "document": true,
     "FormData": true,
   }
 };
