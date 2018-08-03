@@ -13,6 +13,8 @@ export default {
   Component(props) {
     const { data } = props.node;
     const alt = data.get('alt');
+    const author = data.get('author');
+    const caption = data.get('caption');
     const file = data.get('image');
     const attrs = {
       alt,
@@ -22,9 +24,21 @@ export default {
 
     return (
       <layoutConstraint.Component attributes={{}}>
-        <style jsx>{styles}</style>
-        {/* eslint-disable-next-lint jsx-a11y/alt-text */}
-        <img {...attrs} />
+        <figure>
+          <style jsx>{styles}</style>
+          {/* eslint-disable-next-lint jsx-a11y/alt-text */}
+          <img {...attrs} />
+
+          {(caption || author) && (
+            <figcaption>
+              {caption}
+
+              {author && (
+                <small>{author}</small>
+              )}
+            </figcaption>
+          )}
+        </figure>
       </layoutConstraint.Component>
     );
   },
@@ -47,7 +61,12 @@ export default {
 
   onSelect() {
     return {
-      fields: [<InputImage name="image" />, <Input name="alt" label="Alt" />]
+      fields: [
+        <InputImage name="image" />,
+        <Input name="caption" label="Caption" />,
+        <Input name="author" label="Author" />,
+        <Input name="alt" label="Alt" />
+      ]
     };
   }
 };
