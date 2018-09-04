@@ -4,11 +4,29 @@ import { Editor as SlateEditor } from 'slate-react';
 import { saveAs } from 'file-saver/FileSaver';
 import { Value } from 'slate';
 
-import { findBlockByName } from '../../blocks';
+import { blocks, findBlockByName } from '../../blocks';
 import initialData from './data';
 import { serialize as serializeHTML } from './serialize-html';
 import styles from './styles';
 import Toolbar from './toolbar';
+
+const ALLOWED_MARKS = [
+  {
+    label: 'Bold',
+    name: 'bold',
+    Mark: ({ props, children }) => (
+      <strong {...props}>{children}</strong>
+    ),
+  },
+
+  {
+    label: 'Underlined',
+    name: 'underlined',
+    Mark: ({ props, children }) => (
+      <u {...props}>{children}</u>
+    ),
+  }
+];
 
 export default class Editor extends Component {
   state = {
@@ -22,12 +40,15 @@ export default class Editor extends Component {
   onSave = () => {
     const { value } = this.state;
     const zip = new JSZip();
+    let html = serializeHTML(value);
 
     // collect styles
-    // const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
+    const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
 
-    // styles.file('styles.css', blockStypes.join('\n'));
-    zip.file('story.html', serializeHTML(value));
+    // replace [styles] placeholder with actual styles
+    html = html.replace('[styles]', blockStypes.join(''));
+
+    zip.file('story.html', html);
     zip.file('story.json', JSON.stringify(value));
 
     zip.generateAsync({ type: 'blob' }).then(file => saveAs(file, 'story.zip'));
@@ -66,17 +87,41 @@ export default class Editor extends Component {
     return <Component {...props} />;
   };
 
+  renderMark = props => {
+    const { children, mark, attributes } = props;
+    const { Mark } = ALLOWED_MARKS.find(_ => _.name === mark.type);
+
+    return <Mark {...attributes}>{children}</Mark>;
+  };
+
   render() {
     return (
       <Fragment>
         <style jsx>{styles}</style>
 
         <div className="editor">
+          <div className="editor__toolbar-marks">
+            {ALLOWED_MARKS.map(({ label, name }) => (
+              <button
+                key={name}
+                onClick={() => {
+                  const { value } = this.state;
+                  const change = value.change().toggleMark(name);
+                  this.onChange(change);
+                }}
+                type="button"
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+
           <SlateEditor
             spellCheck={false}
             value={this.state.value}
             onChange={this.onChange}
             renderNode={this.renderNode}
+            renderMark={this.renderMark}
           />
         </div>
 

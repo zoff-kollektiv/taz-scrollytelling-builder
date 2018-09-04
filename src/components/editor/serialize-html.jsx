@@ -21,7 +21,7 @@ const rules = [
 
       if (!serialize) {
         // for all blocks, which don't have their own serializer function
-        return <div>{children}</div>;
+        return <span>{children}</span>;
       }
 
       return serialize(obj, children);
