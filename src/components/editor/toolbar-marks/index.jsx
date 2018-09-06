@@ -3,9 +3,8 @@ import React from 'react';
 export default ({ marks, onClick }) => (
   <ul>
     {marks.map(({ label, name }) => (
-      <li>
+      <li key={name}>
         <button
-          key={name}
           type="button"
           onClick={onClick}
         >
