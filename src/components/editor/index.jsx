@@ -6,27 +6,11 @@ import { Value } from 'slate';
 
 import { blocks, findBlockByName } from '../../blocks';
 import initialData from './data';
+import { marks } from '../../marks';
 import { serialize as serializeHTML } from './serialize-html';
 import styles from './styles';
 import Toolbar from './toolbar';
-
-const ALLOWED_MARKS = [
-  {
-    label: 'Bold',
-    name: 'bold',
-    Mark: ({ props, children }) => (
-      <strong {...props}>{children}</strong>
-    ),
-  },
-
-  {
-    label: 'Underlined',
-    name: 'underlined',
-    Mark: ({ props, children }) => (
-      <u {...props}>{children}</u>
-    ),
-  }
-];
+import ToolbarMarks from './toolbar-marks';
 
 export default class Editor extends Component {
   state = {
@@ -89,7 +73,7 @@ export default class Editor extends Component {
 
   renderMark = props => {
     const { children, mark, attributes } = props;
-    const { Mark } = ALLOWED_MARKS.find(_ => _.name === mark.type);
+    const { Mark } = marks.find(_ => _.name === mark.type);
 
     return <Mark {...attributes}>{children}</Mark>;
   };
@@ -101,19 +85,14 @@ export default class Editor extends Component {
 
         <div className="editor">
           <div className="editor__toolbar-marks">
-            {ALLOWED_MARKS.map(({ label, name }) => (
-              <button
-                key={name}
-                onClick={() => {
-                  const { value } = this.state;
-                  const change = value.change().toggleMark(name);
-                  this.onChange(change);
-                }}
-                type="button"
-              >
-                {label}
-              </button>
-            ))}
+            <ToolbarMarks
+              marks={marks}
+              onClick={() => {
+                const { value } = this.state;
+                const change = value.change().toggleMark('bold');
+                this.onChange(change);
+              }}
+            />
           </div>
 
           <SlateEditor
