@@ -40,14 +40,14 @@
     "file-saver": "^1.3.8",
     "immutable": "^3.8.2",
     "jszip": "^3.1.5",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
     "react-dropzone": "^4.2.13",
     "react-helmet": "^5.2.0",
     "react-modal": "^3.5.1",
-    "slate": "^0.36.0",
-    "slate-html-serializer": "^0.6.16",
-    "slate-react": "^0.14.1",
+    "slate": "^0.40.2",
+    "slate-html-serializer": "^0.7.2",
+    "slate-react": "^0.18.5",
     "styled-jsx": "^2.2.7"
   }
 }
