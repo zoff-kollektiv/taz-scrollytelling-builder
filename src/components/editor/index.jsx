@@ -12,8 +12,6 @@ import styles from './styles';
 import Toolbar from './toolbar';
 import ToolbarMarks from './toolbar-marks';
 
-let editorRef;
-
 export default class Editor extends Component {
   state = {
     value: Value.fromJSON(initialData)
@@ -81,35 +79,40 @@ export default class Editor extends Component {
   };
 
   render() {
-    return (
-      <Fragment>
-        <style jsx>{styles}</style>
+    const { value } = this.state;
 
-        <div className="editor">
-          <div className="editor__toolbar-marks">
-            <ToolbarMarks editor={editorRef} marks={marks} />
+    return (
+      value && (
+        <Fragment>
+          <style jsx>{styles}</style>
+
+          <div className="editor">
+            <div className="editor__toolbar-marks">
+              <ToolbarMarks
+                update={this.onChange}
+                state={value}
+                marks={marks}
+              />
+            </div>
+
+            <SlateEditor
+              spellCheck={false}
+              value={this.state.value}
+              onChange={this.onChange}
+              renderNode={this.renderNode}
+              renderMark={this.renderMark}
+            />
           </div>
 
-          <SlateEditor
-            ref={node => {
-              editorRef = node;
-            }}
-            spellCheck={false}
-            value={this.state.value}
-            onChange={this.onChange}
-            renderNode={this.renderNode}
-            renderMark={this.renderMark}
-          />
-        </div>
-
-        <div className="editor__toolbar">
-          <Toolbar
-            AST={this.state.value.toJSON()}
-            onSave={() => this.onSave()}
-            onBlockAdd={(type, context) => this.insertBlock(type, context)}
-          />
-        </div>
-      </Fragment>
+          <div className="editor__toolbar">
+            <Toolbar
+              AST={this.state.value.toJSON()}
+              onSave={() => this.onSave()}
+              onBlockAdd={(type, context) => this.insertBlock(type, context)}
+            />
+          </div>
+        </Fragment>
+      )
     );
   }
 }

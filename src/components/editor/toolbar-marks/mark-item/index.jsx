@@ -1,20 +1,18 @@
 import React from 'react';
 
-const selectionHasMark = (editor, name) => {
-  const { value } = editor;
-  return value.inlines.some(_ => _.type === name);
-};
+const selectionHasMark = (state, name) =>
+  state.inlines.some(_ => _.type === name);
 
-export default ({ editor, name, label }) => (
+export default ({ update, state, name, label, Icon }) => (
   <button
-    disabled={selectionHasMark(editor, name)}
+    disabled={selectionHasMark(state, name)}
     type="button"
     onClick={() => {
-      const { value } = editor;
-      const change = value.change().toggleMark(name);
-      editor.onChange(change);
+      const change = state.change().toggleMark(name);
+      update(change);
     }}
   >
+    <Icon style={{ height: '1rem', width: '1rem' }} />
     {label}
   </button>
 );
