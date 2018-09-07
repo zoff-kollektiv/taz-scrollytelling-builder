@@ -4,15 +4,29 @@ import { Editor as SlateEditor } from 'slate-react';
 import { saveAs } from 'file-saver/FileSaver';
 import { Value } from 'slate';
 
-import { findBlockByName } from '../../blocks';
+import { blocks, findBlockByName } from '../../blocks';
 import initialData from './data';
+import { marks } from '../../marks';
 import { serialize as serializeHTML } from './serialize-html';
 import styles from './styles';
 import Toolbar from './toolbar';
+import ToolbarMarks from './toolbar-marks';
 
 export default class Editor extends Component {
+  elRefs = {
+    toolbarMarkRef: React.createRef()
+  };
+
   state = {
     value: Value.fromJSON(initialData)
+  };
+
+  componentDidMount = () => {
+    this.updateMenuPosition();
+  };
+
+  componentDidUpdate = () => {
+    this.updateMenuPosition();
   };
 
   onChange = ({ value }) => {
@@ -22,15 +36,50 @@ export default class Editor extends Component {
   onSave = () => {
     const { value } = this.state;
     const zip = new JSZip();
+    let html = serializeHTML(value);
 
     // collect styles
-    // const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
+    /* eslint-disable-next-line no-underscore-dangle */
+    const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
 
-    // styles.file('styles.css', blockStypes.join('\n'));
-    zip.file('story.html', serializeHTML(value));
+    // replace [styles] placeholder with actual styles
+    html = html.replace('[styles]', blockStypes.join(''));
+
+    zip.file('story.html', html);
     zip.file('story.json', JSON.stringify(value));
 
     zip.generateAsync({ type: 'blob' }).then(file => saveAs(file, 'story.zip'));
+  };
+
+  updateMenuPosition = () => {
+    const { current } = this.elRefs.toolbarMarkRef;
+
+    if (!current) {
+      return;
+    }
+
+    const { value } = this.state;
+    const { fragment, selection } = value;
+
+    if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
+      current.style.opacity = 0;
+      return;
+    }
+
+    const windowSelection = window.getSelection();
+    const range = windowSelection.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+
+    const { top, left, width } = rect;
+    const { pageYOffset, pageXOffset } = window;
+    const { offsetHeight, offsetWidth } = current;
+
+    current.style.opacity = 1;
+    current.style.top = `${top + pageYOffset - offsetHeight}px`;
+    current.style.left = `${left +
+      pageXOffset -
+      offsetWidth / 2 +
+      width / 2}px`;
   };
 
   insertBlock = (type, data) => {
@@ -57,6 +106,7 @@ export default class Editor extends Component {
 
   renderNode = props => {
     const { type } = props.node;
+    /* eslint-disable-next-line no-shadow */
     const { Component } = findBlockByName(type);
 
     if (!Component) {
@@ -66,23 +116,40 @@ export default class Editor extends Component {
     return <Component {...props} />;
   };
 
+  renderMark = props => {
+    const { children, mark, attributes } = props;
+    const { Mark } = marks.find(_ => _.name === mark.type);
+
+    return <Mark {...attributes}>{children}</Mark>;
+  };
+
   render() {
+    const { value } = this.state;
+
     return (
       <Fragment>
         <style jsx>{styles}</style>
 
         <div className="editor">
+          <div
+            className="editor__toolbar-marks"
+            ref={this.elRefs.toolbarMarkRef}
+          >
+            <ToolbarMarks update={this.onChange} state={value} marks={marks} />
+          </div>
+
           <SlateEditor
             spellCheck={false}
-            value={this.state.value}
+            value={value}
             onChange={this.onChange}
             renderNode={this.renderNode}
+            renderMark={this.renderMark}
           />
         </div>
 
         <div className="editor__toolbar">
           <Toolbar
-            AST={this.state.value.toJSON()}
+            AST={value.toJSON()}
             onSave={() => this.onSave()}
             onBlockAdd={(type, context) => this.insertBlock(type, context)}
           />

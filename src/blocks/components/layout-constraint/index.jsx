@@ -11,5 +11,14 @@ export default {
       <style jsx>{styles}</style>
       {props.children}
     </div>
-  )
+  ),
+
+  serialize(data, children) {
+    return (
+      <div className="layout-constraint">
+        <style jsx>{styles}</style>
+        {children}
+      </div>
+    );
+  }
 };

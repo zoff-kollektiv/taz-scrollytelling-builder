@@ -33,9 +33,7 @@ export default {
             <figcaption>
               {caption}
 
-              {author && (
-                <small>{author}</small>
-              )}
+              {author && <small>{author}</small>}
             </figcaption>
           )}
         </figure>

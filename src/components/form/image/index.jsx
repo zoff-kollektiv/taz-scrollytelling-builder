@@ -1,5 +1,5 @@
 import Dropzone from 'react-dropzone';
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 
 import styles from './styles';
 import stylesDropzone from './styles-dropzone';
@@ -19,7 +19,9 @@ export default class Field extends Component {
     return (
       <div className="input-image">
         <style jsx>{styles}</style>
-        <style jsx global>{stylesDropzone}</style>
+        <style jsx global>
+          {stylesDropzone}
+        </style>
         <Dropzone
           accept="image/jpeg, image/png"
           onDrop={this.onDrop}
@@ -29,7 +31,10 @@ export default class Field extends Component {
         >
           <button type="button">Select image</button>
           <div className="input-image__meta">
-            <p>Try dropping some files here. Only *.jpeg and *.png images will be accepted.</p>
+            <p>
+              Try dropping some files here. Only *.jpeg and *.png images will be
+              accepted.
+            </p>
           </div>
         </Dropzone>
 
@@ -40,7 +45,6 @@ export default class Field extends Component {
               {this.state.files.map(_ => (
                 <li key={_.name}>
                   {_.name} - {_.size} bytes
-
                   {_.preview && (
                     <img
                       src={_.preview}

@@ -1,7 +1,29 @@
 import Html from 'slate-html-serializer';
 import React from 'react';
 
+import { marks } from '../../marks';
 import { findBlockByName } from '../../blocks';
+
+const serializeMark = (mark, children) => {
+  const { serialize } = mark;
+
+  if (!serialize) {
+    return <span>{children}</span>;
+  }
+
+  return serialize(mark, children);
+};
+
+const serializeBlock = (block, children) => {
+  const { type } = block;
+  const { serialize } = findBlockByName(type);
+
+  if (!serialize) {
+    return <span>{children}</span>;
+  }
+
+  return serialize(block, children);
+};
 
 const rules = [
   {
@@ -17,14 +39,13 @@ const rules = [
         return;
       }
 
-      const { serialize } = findBlockByName(type);
+      const mark = marks.find(_ => _.name === type);
 
-      if (!serialize) {
-        // for all blocks, which don't have their own serializer function
-        return <div>{children}</div>;
+      if (mark) {
+        return serializeMark(mark, children);
       }
 
-      return serialize(obj, children);
+      return serializeBlock(obj, children);
     }
   }
 ];
