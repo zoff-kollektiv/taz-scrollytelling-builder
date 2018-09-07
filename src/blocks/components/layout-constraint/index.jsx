@@ -19,6 +19,6 @@ export default {
         <style jsx>{styles}</style>
         {children}
       </div>
-    )
+    );
   }
 };

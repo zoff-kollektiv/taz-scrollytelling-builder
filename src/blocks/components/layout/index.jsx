@@ -8,7 +8,9 @@ export default {
   styles,
   Component: props => (
     <Fragment>
-      <style jsx global>{styles}</style>
+      <style jsx global>
+        {styles}
+      </style>
       {props.children}
     </Fragment>
   ),
@@ -19,9 +21,7 @@ export default {
         <head>
           <meta charSet="utf-8" />
           <title>My Title</title>
-          <style type="text/css">
-            {'[styles]'}
-          </style>
+          <style type="text/css">[styles]</style>
         </head>
 
         <body>

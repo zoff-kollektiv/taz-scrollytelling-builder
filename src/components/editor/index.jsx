@@ -13,8 +13,20 @@ import Toolbar from './toolbar';
 import ToolbarMarks from './toolbar-marks';
 
 export default class Editor extends Component {
+  elRefs = {
+    toolbarMarkRef: React.createRef()
+  };
+
   state = {
     value: Value.fromJSON(initialData)
+  };
+
+  componentDidMount = () => {
+    this.updateMenuPosition();
+  };
+
+  componentDidUpdate = () => {
+    this.updateMenuPosition();
   };
 
   onChange = ({ value }) => {
@@ -37,6 +49,37 @@ export default class Editor extends Component {
     zip.file('story.json', JSON.stringify(value));
 
     zip.generateAsync({ type: 'blob' }).then(file => saveAs(file, 'story.zip'));
+  };
+
+  updateMenuPosition = () => {
+    const { current } = this.elRefs.toolbarMarkRef;
+
+    if (!current) {
+      return;
+    }
+
+    const { value } = this.state;
+    const { fragment, selection } = value;
+
+    if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
+      current.style.opacity = 0;
+      return;
+    }
+
+    const windowSelection = window.getSelection();
+    const range = windowSelection.getRangeAt(0);
+    const rect = range.getBoundingClientRect();
+
+    const { top, left, width } = rect;
+    const { pageYOffset, pageXOffset } = window;
+    const { offsetHeight, offsetWidth } = current;
+
+    current.style.opacity = 1;
+    current.style.top = `${top + pageYOffset - offsetHeight}px`;
+    current.style.left = `${left +
+      pageXOffset -
+      offsetWidth / 2 +
+      width / 2}px`;
   };
 
   insertBlock = (type, data) => {
@@ -84,37 +127,34 @@ export default class Editor extends Component {
     const { value } = this.state;
 
     return (
-      value && (
-        <Fragment>
-          <style jsx>{styles}</style>
+      <Fragment>
+        <style jsx>{styles}</style>
 
-          <div className="editor">
-            <div className="editor__toolbar-marks">
-              <ToolbarMarks
-                update={this.onChange}
-                state={value}
-                marks={marks}
-              />
-            </div>
-
-            <SlateEditor
-              spellCheck={false}
-              value={this.state.value}
-              onChange={this.onChange}
-              renderNode={this.renderNode}
-              renderMark={this.renderMark}
-            />
+        <div className="editor">
+          <div
+            className="editor__toolbar-marks"
+            ref={this.elRefs.toolbarMarkRef}
+          >
+            <ToolbarMarks update={this.onChange} state={value} marks={marks} />
           </div>
 
-          <div className="editor__toolbar">
-            <Toolbar
-              AST={this.state.value.toJSON()}
-              onSave={() => this.onSave()}
-              onBlockAdd={(type, context) => this.insertBlock(type, context)}
-            />
-          </div>
-        </Fragment>
-      )
+          <SlateEditor
+            spellCheck={false}
+            value={value}
+            onChange={this.onChange}
+            renderNode={this.renderNode}
+            renderMark={this.renderMark}
+          />
+        </div>
+
+        <div className="editor__toolbar">
+          <Toolbar
+            AST={value.toJSON()}
+            onSave={() => this.onSave()}
+            onBlockAdd={(type, context) => this.insertBlock(type, context)}
+          />
+        </div>
+      </Fragment>
     );
   }
 }
