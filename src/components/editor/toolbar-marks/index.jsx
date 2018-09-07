@@ -1,16 +1,19 @@
 import React from 'react';
 
-export default ({ marks, onClick }) => (
-  <ul>
-    {marks.map(({ label, name }) => (
-      <li key={name}>
-        <button
-          type="button"
-          onClick={onClick}
-        >
-          {label}
-        </button>
-      </li>
-    ))}
-  </ul>
-);
+import MarkItem from './mark-item';
+
+export default ({ editor, marks }) => {
+  if (!editor) {
+    return null;
+  }
+
+  return (
+    <ul>
+      {marks.map(_ => (
+        <li key={_.name}>
+          <MarkItem {..._} editor={editor} />
+        </li>
+      ))}
+    </ul>
+  );
+};

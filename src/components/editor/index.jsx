@@ -12,6 +12,8 @@ import styles from './styles';
 import Toolbar from './toolbar';
 import ToolbarMarks from './toolbar-marks';
 
+let editorRef;
+
 export default class Editor extends Component {
   state = {
     value: Value.fromJSON(initialData)
@@ -85,17 +87,13 @@ export default class Editor extends Component {
 
         <div className="editor">
           <div className="editor__toolbar-marks">
-            <ToolbarMarks
-              marks={marks}
-              onClick={() => {
-                const { value } = this.state;
-                const change = value.change().toggleMark('bold');
-                this.onChange(change);
-              }}
-            />
+            <ToolbarMarks editor={editorRef} marks={marks} />
           </div>
 
           <SlateEditor
+            ref={node => {
+              editorRef = node;
+            }}
             spellCheck={false}
             value={this.state.value}
             onChange={this.onChange}
