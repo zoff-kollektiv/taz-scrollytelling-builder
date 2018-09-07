@@ -1,11 +1,12 @@
+import classnames from 'classnames';
 import React from 'react';
 
 const selectionHasMark = (state, name) =>
-  state.inlines.some(_ => _.type === name);
+  state.activeMarks.some(_ => _.type === name);
 
 export default ({ update, state, name, label, Icon }) => (
   <button
-    disabled={selectionHasMark(state, name)}
+    className={classnames('mark-item', { 'mark-item--is-active': selectionHasMark(state, name)})}
     type="button"
     onClick={() => {
       const change = state.change().toggleMark(name);

@@ -17,7 +17,7 @@ export default {
     return (
       <html lang="de">
         <head>
-          <meta charset="utf-8" />
+          <meta charSet="utf-8" />
           <title>My Title</title>
           <style type="text/css">
             {'[styles]'}

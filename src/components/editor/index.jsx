@@ -27,6 +27,7 @@ export default class Editor extends Component {
     let html = serializeHTML(value);
 
     // collect styles
+    /* eslint-disable-next-line no-underscore-dangle */
     const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
 
     // replace [styles] placeholder with actual styles
@@ -62,6 +63,7 @@ export default class Editor extends Component {
 
   renderNode = props => {
     const { type } = props.node;
+    /* eslint-disable-next-line no-shadow */
     const { Component } = findBlockByName(type);
 
     if (!Component) {
