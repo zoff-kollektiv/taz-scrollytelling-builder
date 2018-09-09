@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React, { Component } from 'react';
 
 import Blocks from './blocks';
@@ -48,7 +49,9 @@ export default class Toolbar extends Component {
 
         <button
           type="button"
-          className="toolbar__toggle"
+          className={classnames('toolbar__toggle', {
+            'toolbar__toggle--is-open': this.state.blocksOpen
+          })}
           onClick={event => {
             event.preventDefault();
             this.toggleBlocks();

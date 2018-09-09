@@ -18,6 +18,7 @@ export default css`
     color: white;
     font-weight: bold;
     padding: 1.5rem;
+    transition: transform 30ms ease-in;
   }
 
   .toolbar__toggle:hover,
@@ -25,6 +26,10 @@ export default css`
     background-color: #151515;
     cursor: pointer;
     outline: none;
+  }
+
+  .toolbar__toggle--is-open {
+    transform: rotate(45deg);
   }
 
   .toolbar__save {
