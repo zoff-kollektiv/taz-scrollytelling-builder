@@ -49,6 +49,7 @@
     "slate": "^0.40.2",
     "slate-html-serializer": "^0.7.2",
     "slate-react": "^0.18.5",
+    "slugify": "^1.3.1",
     "styled-jsx": "^2.2.7"
   }
 }

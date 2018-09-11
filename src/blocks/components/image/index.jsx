@@ -57,6 +57,17 @@ export default {
     );
   },
 
+  extract({ data }) {
+    const file = data.get('image');
+    const { name } = file;
+
+    return {
+      name,
+      file,
+      type: 'image'
+    };
+  },
+
   onSelect() {
     return {
       fields: [

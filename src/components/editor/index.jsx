@@ -2,9 +2,11 @@ import JSZip from 'jszip';
 import React, { Component, Fragment } from 'react';
 import { Editor as SlateEditor } from 'slate-react';
 import { saveAs } from 'file-saver/FileSaver';
+import slugify from 'slugify';
 import { Value } from 'slate';
 
 import { blocks, findBlockByName } from '../../blocks';
+import { serialize as extractAssets } from './extract-assets';
 import initialData from './data';
 import { marks } from '../../marks';
 import { serialize as serializeHTML } from './serialize-html';
@@ -36,7 +38,21 @@ export default class Editor extends Component {
   onSave = () => {
     const { value } = this.state;
     const zip = new JSZip();
+    const assetsFolder = zip.folder('assets');
+
     let html = serializeHTML(value);
+    const assets = extractAssets(value);
+
+    // TODO: why is that?
+    assets[0].forEach(({ name, file, type, options = {} }) => {
+      const folders = {};
+
+      if (!folders[type]) {
+        folders[type] = assetsFolder.folder(`${type}s`);
+      }
+
+      folders[type].file(slugify(name), file, options);
+    });
 
     // collect styles
     /* eslint-disable-next-line no-underscore-dangle */
