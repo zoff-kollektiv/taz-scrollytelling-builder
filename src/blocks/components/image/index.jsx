@@ -26,7 +26,7 @@ export default {
       <layoutConstraint.Component attributes={{}}>
         <figure>
           <style jsx>{styles}</style>
-          {/* eslint-disable-next-lint jsx-a11y/alt-text */}
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <img {...attrs} />
 
           {(caption || author) && (
@@ -52,6 +52,7 @@ export default {
 
     return (
       <Fragment>
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <img {...attrs} />
       </Fragment>
     );
