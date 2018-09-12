@@ -15,10 +15,10 @@ export default {
     const alt = data.get('alt');
     const author = data.get('author');
     const caption = data.get('caption');
-    const file = data.get('image');
+    const file = data.get('image_base64');
     const attrs = {
       alt,
-      src: file.preview,
+      src: file,
       className: 'image'
     };
 
@@ -43,10 +43,10 @@ export default {
 
   serialize({ data }) {
     const alt = data.get('alt');
-    const file = data.get('image');
+    const file = data.get('image_base64');
     const attrs = {
       alt,
-      src: file.preview,
+      src: file,
       className: 'image'
     };
 
@@ -59,8 +59,8 @@ export default {
   },
 
   extract({ data }) {
-    const file = data.get('image');
-    const { name } = file;
+    const file = data.get('image_base64');
+    const name = 'whatever';
 
     return {
       name,

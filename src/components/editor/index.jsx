@@ -64,7 +64,9 @@ export default class Editor extends Component {
     zip.file('story.html', html);
     zip.file('story.json', JSON.stringify(value));
 
-    zip.generateAsync({ type: 'blob' }).then(file => saveAs(file, 'story.zip'));
+    console.log(JSON.stringify(value));
+
+    // zip.generateAsync({ type: 'blob' }).then(file => saveAs(file, 'story.zip'));
   };
 
   updateMenuPosition = () => {

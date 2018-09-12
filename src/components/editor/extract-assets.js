@@ -18,13 +18,17 @@ const extractAssets = node => {
 const serialize = value => {
   const { document } = value;
 
-  return createArray(document.nodes).map(node => {
-    if (node && node.nodes) {
-      return createArray(node.nodes).map(extractAssets).filter(Boolean);
-    }
+  return createArray(document.nodes)
+    .map(node => {
+      if (node && node.nodes) {
+        return createArray(node.nodes)
+          .map(extractAssets)
+          .filter(Boolean);
+      }
 
-    return extractAssets(node);
-  }).filter(Boolean);
+      return extractAssets(node);
+    })
+    .filter(Boolean);
 };
 
 export { serialize };
