@@ -27,6 +27,7 @@ class Form extends Component {
           formData.delete(index);
           formData.set(`${index}_origFile`, value);
           formData.set(`${index}_base64`, base64);
+          formData.set(`${index}_name`, value.name);
         });
 
         filePromises.push(promise);

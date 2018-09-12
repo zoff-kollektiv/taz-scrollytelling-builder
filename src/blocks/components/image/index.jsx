@@ -42,7 +42,7 @@ export default {
   },
 
   serialize({ data }) {
-    const alt = data.get('alt');
+    const alt = data.get('alt') || '';
     const file = data.get('image_base64');
     const attrs = {
       alt,
@@ -60,7 +60,7 @@ export default {
 
   extract({ data }) {
     const file = data.get('image_base64');
-    const name = 'whatever';
+    const name = data.get('image_name');
 
     return {
       name,
