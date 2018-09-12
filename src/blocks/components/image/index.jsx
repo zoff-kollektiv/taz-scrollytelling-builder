@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 
+import filename from '../../../lib/filename';
 import Input from '../../../components/form/input';
 import InputImage from '../../../components/form/image';
 import Icon from './image.svg';
@@ -15,7 +16,7 @@ export default {
     const alt = data.get('alt');
     const author = data.get('author');
     const caption = data.get('caption');
-    const file = data.get('image_base64');
+    const file = data.get('image');
     const attrs = {
       alt,
       src: file,
@@ -43,10 +44,11 @@ export default {
 
   serialize({ data }) {
     const alt = data.get('alt') || '';
-    const file = data.get('image_base64');
+    const name = data.get('image_name');
+    const src = `./assets/images/${filename(name)}`;
     const attrs = {
       alt,
-      src: file,
+      src,
       className: 'image'
     };
 
@@ -59,7 +61,7 @@ export default {
   },
 
   extract({ data }) {
-    const file = data.get('image_base64');
+    const file = data.get('image');
     const name = data.get('image_name');
 
     return {

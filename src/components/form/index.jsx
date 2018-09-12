@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Group from './group';
 
-const fileToBase64 = file =>
+const fileToDataURL = file =>
   new Promise(resolve => {
     const reader = new window.FileReader();
 
@@ -23,10 +23,12 @@ class Form extends Component {
       const [index, value] = pair;
 
       if (value instanceof File) {
-        const promise = fileToBase64(value).then(base64 => {
+        const promise = fileToDataURL(value).then(dataURL => {
+          // we can't keep the original object, because after a re-import of
+          // the json this data wouldn't be available
           formData.delete(index);
-          formData.set(`${index}_origFile`, value);
-          formData.set(`${index}_base64`, base64);
+
+          formData.set(index, dataURL);
           formData.set(`${index}_name`, value.name);
         });
 
