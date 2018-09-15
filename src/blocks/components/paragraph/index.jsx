@@ -18,10 +18,12 @@ export default {
   ),
   serialize(obj, children) {
     return (
-      <p className="paragraph">
-        <style jsx>{styles}</style>
-        {children}
-      </p>
+      <layoutConstraint.Component>
+        <p className="paragraph">
+          <style jsx>{styles}</style>
+          {children}
+        </p>
+      </layoutConstraint.Component>
     );
   }
 };

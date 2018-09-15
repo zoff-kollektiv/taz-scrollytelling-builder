@@ -6,10 +6,10 @@ export default {
   name: 'layout-constraint',
   private: true,
   styles,
-  Component: props => (
-    <div className="layout-constraint" {...props.attributes}>
+  Component: ({ children }) => (
+    <div className="layout-constraint">
       <style jsx>{styles}</style>
-      {props.children}
+      {children}
     </div>
   ),
 
