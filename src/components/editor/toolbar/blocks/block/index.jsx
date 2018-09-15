@@ -36,7 +36,6 @@ export default class Block extends Component {
             context[_[0]] = _[1];
           }
 
-          console.log('context', context);
           this.onBlockAdd(name, { ...context });
           this.hideModal();
         };

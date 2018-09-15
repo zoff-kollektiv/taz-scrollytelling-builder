@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 
+import filename from '../../../lib/filename';
 import Input from '../../../components/form/input';
 import InputImage from '../../../components/form/image';
 import Icon from './image.svg';
@@ -18,7 +19,7 @@ export default {
     const file = data.get('image');
     const attrs = {
       alt,
-      src: file.preview,
+      src: file,
       className: 'image'
     };
 
@@ -26,7 +27,7 @@ export default {
       <layoutConstraint.Component attributes={{}}>
         <figure>
           <style jsx>{styles}</style>
-          {/* eslint-disable-next-lint jsx-a11y/alt-text */}
+          {/* eslint-disable-next-line jsx-a11y/alt-text */}
           <img {...attrs} />
 
           {(caption || author) && (
@@ -42,19 +43,32 @@ export default {
   },
 
   serialize({ data }) {
-    const alt = data.get('alt');
-    const file = data.get('image');
+    const alt = data.get('alt') || '';
+    const name = data.get('image_name');
+    const src = `./assets/images/${filename(name)}`;
     const attrs = {
       alt,
-      src: file.preview,
+      src,
       className: 'image'
     };
 
     return (
       <Fragment>
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <img {...attrs} />
       </Fragment>
     );
+  },
+
+  extract({ data }) {
+    const file = data.get('image');
+    const name = data.get('image_name');
+
+    return {
+      name,
+      file,
+      type: 'image'
+    };
   },
 
   onSelect() {

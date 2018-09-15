@@ -5,12 +5,28 @@ import { saveAs } from 'file-saver/FileSaver';
 import { Value } from 'slate';
 
 import { blocks, findBlockByName } from '../../blocks';
+import filename from '../../lib/filename';
+import { serialize as extractAssets } from './extract-assets';
 import initialData from './data';
 import { marks } from '../../marks';
 import { serialize as serializeHTML } from './serialize-html';
 import styles from './styles';
 import Toolbar from './toolbar';
 import ToolbarMarks from './toolbar-marks';
+
+const dataURLtoBlob = dataurl => {
+  const arr = dataurl.split(',');
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+
+  while(n--){
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+
+  return new Blob([u8arr], { type: mime });
+};
 
 export default class Editor extends Component {
   elRefs = {
@@ -36,7 +52,22 @@ export default class Editor extends Component {
   onSave = () => {
     const { value } = this.state;
     const zip = new JSZip();
+    const assetsFolder = zip.folder('assets');
+
     let html = serializeHTML(value);
+    const assets = extractAssets(value);
+
+    // TODO: why is that?
+    assets[0].forEach(({ name, file, type, options = {} }) => {
+      const folders = {};
+      const fileBlob = dataURLtoBlob(file);
+
+      if (!folders[type]) {
+        folders[type] = assetsFolder.folder(`${type}s`);
+      }
+
+      folders[type].file(filename(name), fileBlob, options);
+    });
 
     // collect styles
     /* eslint-disable-next-line no-underscore-dangle */
