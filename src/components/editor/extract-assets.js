@@ -1,29 +1,38 @@
 import { findBlockByName } from '../../blocks';
 
-// document.nodes is an immutable.js List, so I have to convert into a
-// standard array first
-const createArray = list => list.toArray();
+const hasExtract = node => {
+  const { type } = node;
+  const block = findBlockByName(type);
+
+  return block && block.extract;
+};
 
 const extractAssets = node => {
   const { type } = node;
   const block = findBlockByName(type);
 
-  const { nodes } = node;
+  return block.extract(node);
+};
 
-  if (nodes) {
-    createArray(nodes).map(extractAssets);
-  }
+const traverse = (nodes, callback) => {
+  nodes.forEach(node => {
+    if (hasExtract(node)) {
+      callback(node);
+    }
 
-  if (block && block.extract) {
-    return block.extract(node);
-  }
-
-  return Promise.resolve();
+    if (node.nodes) {
+      traverse(node.nodes, callback);
+    }
+  });
 };
 
 const serialize = value => {
   const { document } = value;
-  return createArray(document.nodes).map(extractAssets);
+  const extractionNodes = [];
+
+  traverse(document.nodes, node => extractionNodes.push(node));
+
+  return extractionNodes.map(extractAssets);
 };
 
 export { serialize };

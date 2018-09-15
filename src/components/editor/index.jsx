@@ -57,10 +57,11 @@ export default class Editor extends Component {
     let html = serializeHTML(value);
     const assets = extractAssets(value);
 
-    // TODO: why is that?
     Promise.all(assets)
+      // each block could return several files
+      .then(_ => _.flat())
       .then(files => {
-        files[0].forEach(({ name, file, type, options = {} }) => {
+        files.forEach(({ name, file, type, options = {} }) => {
           const folders = {};
           const fileBlob = file instanceof Blob ? file : dataURLtoBlob(file);
 
@@ -70,8 +71,7 @@ export default class Editor extends Component {
 
           folders[type].file(filename(name), fileBlob, options);
         });
-      })
-      .then(() => {
+
         // collect styles
         /* eslint-disable-next-line no-underscore-dangle */
         const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
