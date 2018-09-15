@@ -183,6 +183,9 @@ export default class Editor extends Component {
             AST={value.toJSON()}
             onSave={() => this.onSave()}
             onBlockAdd={(type, context) => this.insertBlock(type, context)}
+            onUpload={data => {
+              this.setState({ value: Value.fromJSON(data) });
+            }}
           />
         </div>
       </Fragment>
