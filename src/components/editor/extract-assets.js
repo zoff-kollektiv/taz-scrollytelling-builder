@@ -15,7 +15,6 @@ const extractAssets = node => {
   }
 
   if (block && block.extract) {
-    console.log('extract block', type, block);
     return block.extract(node);
   }
 
