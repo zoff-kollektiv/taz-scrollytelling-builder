@@ -8,27 +8,23 @@ const extractAssets = node => {
   const { type } = node;
   const block = findBlockByName(type);
 
+  const { nodes } = node;
+
+  if (nodes) {
+    createArray(nodes).map(extractAssets);
+  }
+
   if (block && block.extract) {
+    console.log('extract block', type, block);
     return block.extract(node);
   }
 
-  return null;
+  return Promise.resolve();
 };
 
 const serialize = value => {
   const { document } = value;
-
-  return createArray(document.nodes)
-    .map(node => {
-      if (node && node.nodes) {
-        return createArray(node.nodes)
-          .map(extractAssets)
-          .filter(Boolean);
-      }
-
-      return extractAssets(node);
-    })
-    .filter(Boolean);
+  return createArray(document.nodes).map(extractAssets);
 };
 
 export { serialize };

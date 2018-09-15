@@ -58,28 +58,34 @@ export default class Editor extends Component {
     const assets = extractAssets(value);
 
     // TODO: why is that?
-    assets[0].forEach(({ name, file, type, options = {} }) => {
-      const folders = {};
-      const fileBlob = dataURLtoBlob(file);
+    Promise.all(assets)
+      .then(files => {
+        files[0].forEach(({ name, file, type, options = {} }) => {
+          const folders = {};
+          const fileBlob = file instanceof Blob ? file : dataURLtoBlob(file);
 
-      if (!folders[type]) {
-        folders[type] = assetsFolder.folder(`${type}s`);
-      }
+          if (!folders[type]) {
+            folders[type] = assetsFolder.folder(`${type}s`);
+          }
 
-      folders[type].file(filename(name), fileBlob, options);
-    });
+          folders[type].file(filename(name), fileBlob, options);
+        });
+      })
+      .then(() => {
+        // collect styles
+        /* eslint-disable-next-line no-underscore-dangle */
+        const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
 
-    // collect styles
-    /* eslint-disable-next-line no-underscore-dangle */
-    const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
+        // replace [styles] placeholder with actual styles
+        html = html.replace('[styles]', blockStypes.join(''));
 
-    // replace [styles] placeholder with actual styles
-    html = html.replace('[styles]', blockStypes.join(''));
+        zip.file('story.html', html);
+        zip.file('story.json', JSON.stringify(value));
 
-    zip.file('story.html', html);
-    zip.file('story.json', JSON.stringify(value));
-
-    zip.generateAsync({ type: 'blob' }).then(file => saveAs(file, 'story.zip'));
+        zip
+          .generateAsync({ type: 'blob' })
+          .then(file => saveAs(file, 'story.zip'));
+      });
   };
 
   updateMenuPosition = () => {
