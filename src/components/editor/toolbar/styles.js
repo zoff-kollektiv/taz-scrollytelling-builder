@@ -32,7 +32,8 @@ export default css`
     transform: rotate(45deg);
   }
 
-  .toolbar__save {
+  .toolbar__save,
+  .toolbar__upload {
     background-color: #444444;
     border: 0;
     border-radius: 50%;
@@ -43,7 +44,9 @@ export default css`
   }
 
   .toolbar__save:hover,
-  .toolbar__save:focus {
+  .toolbar__save:focus,
+  .toolbar__upload:hover,
+  .toolbar__upload:focus {
     background-color: #151515;
     cursor: pointer;
     outline: none;

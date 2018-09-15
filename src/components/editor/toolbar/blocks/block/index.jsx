@@ -11,10 +11,6 @@ export default class Block extends Component {
     showModal: false
   };
 
-  onBlockAdd = (type, context) => {
-    this.props.onBlockAdd(type, context);
-  };
-
   hideModal = () => {
     this.setState({ showModal: false, modal: null });
   };
@@ -24,7 +20,7 @@ export default class Block extends Component {
   };
 
   render() {
-    const { name, defaultContent = '', onSelect, Icon } = this.props;
+    const { name, defaultContent = '', onSelect, Icon, onBlockAdd } = this.props;
     const handleSelect = () => {
       if (onSelect) {
         const { fields } = onSelect();
@@ -36,7 +32,7 @@ export default class Block extends Component {
             context[_[0]] = _[1];
           }
 
-          this.onBlockAdd(name, { ...context });
+          onBlockAdd(name, { ...context });
           this.hideModal();
         };
         this.showModal(

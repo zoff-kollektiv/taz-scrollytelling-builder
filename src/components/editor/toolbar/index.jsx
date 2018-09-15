@@ -4,27 +4,45 @@ import React, { Component } from 'react';
 import Blocks from './blocks';
 import DownloadIcon from './download.svg';
 import PlusIcon from './plus.svg';
+import UploadIcon from './upload.svg';
+
 import styles from './styles';
 
 export default class Toolbar extends Component {
   state = {
-    blocksOpen: false
-  };
-
-  onBlockAdd = (type, context) => {
-    this.props.onBlockAdd(type, context);
+    blocksOpen: false,
+    uploadOpen: false
   };
 
   onSave = () => {
     this.props.onSave();
   };
 
+  onUploadSelect = event => {
+    const { files } = event.target;
+    const reader = new FileReader();
+
+    reader.onload = onLoadEvent => {
+      const data = JSON.parse(onLoadEvent.target.result);
+      const { onUpload } = this.props;
+
+      onUpload(data);
+      this.toggleUpload();
+    };
+
+    reader.readAsText(files[0]);
+  };
+
   toggleBlocks = () => {
     this.setState({ blocksOpen: !this.state.blocksOpen });
   };
 
+  toggleUpload = () => {
+    this.setState({ uploadOpen: !this.state.uploadOpen });
+  };
+
   render() {
-    const { AST } = this.props;
+    const { AST, onBlockAdd } = this.props;
 
     return (
       <div className="toolbar">
@@ -32,9 +50,26 @@ export default class Toolbar extends Component {
 
         {this.state.blocksOpen && (
           <div className="toolbar__blocks">
-            <Blocks onBlockAdd={this.onBlockAdd} AST={AST} />
+            <Blocks onBlockAdd={onBlockAdd} AST={AST} />
           </div>
         )}
+
+        {this.state.uploadOpen && (
+          <input type="file" onChange={event => this.onUploadSelect(event)} />
+        )}
+
+        <button
+          type="button"
+          className="toolbar__upload"
+          onClick={event => {
+            event.preventDefault();
+            this.toggleUpload();
+          }}
+        >
+          <UploadIcon
+            style={{ fill: 'currentColor', height: '1rem', width: '1rem' }}
+          />
+        </button>
 
         <button
           type="button"

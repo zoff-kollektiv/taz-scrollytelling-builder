@@ -21,7 +21,7 @@ const dataURLtoBlob = dataurl => {
   let n = bstr.length;
   const u8arr = new Uint8Array(n);
 
-  while(n--){
+  while (n--) {
     u8arr[n] = bstr.charCodeAt(n);
   }
 
@@ -183,6 +183,9 @@ export default class Editor extends Component {
             AST={value.toJSON()}
             onSave={() => this.onSave()}
             onBlockAdd={(type, context) => this.insertBlock(type, context)}
+            onUpload={data => {
+              this.setState({ value: Value.fromJSON(data) });
+            }}
           />
         </div>
       </Fragment>
