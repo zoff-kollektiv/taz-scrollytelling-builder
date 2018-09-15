@@ -14,10 +14,6 @@ export default class Toolbar extends Component {
     uploadOpen: false
   };
 
-  onBlockAdd = (type, context) => {
-    this.props.onBlockAdd(type, context);
-  };
-
   onSave = () => {
     this.props.onSave();
   };
@@ -46,7 +42,7 @@ export default class Toolbar extends Component {
   };
 
   render() {
-    const { AST } = this.props;
+    const { AST, onBlockAdd } = this.props;
 
     return (
       <div className="toolbar">
@@ -54,7 +50,7 @@ export default class Toolbar extends Component {
 
         {this.state.blocksOpen && (
           <div className="toolbar__blocks">
-            <Blocks onBlockAdd={this.onBlockAdd} AST={AST} />
+            <Blocks onBlockAdd={onBlockAdd} AST={AST} />
           </div>
         )}
 
@@ -70,7 +66,9 @@ export default class Toolbar extends Component {
             this.toggleUpload();
           }}
         >
-          <UploadIcon style={{ fill: 'currentColor', height: '1rem', width: '1rem' }} />
+          <UploadIcon
+            style={{ fill: 'currentColor', height: '1rem', width: '1rem' }}
+          />
         </button>
 
         <button
