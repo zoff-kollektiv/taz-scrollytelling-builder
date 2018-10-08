@@ -1,7 +1,5 @@
 import css from 'styled-jsx/css';
 
-const path = './assets/fonts';
-
 import './poppins.ttf';
 import './poppins.woff';
 import './poppins-bold.ttf';
@@ -10,6 +8,8 @@ import './poppins-italic.ttf';
 import './poppins-italic.woff';
 import './poppins-bold-italic.ttf';
 import './poppins-bold-italic.woff';
+
+const path = './assets/fonts';
 
 export default css`
   @font-face {
