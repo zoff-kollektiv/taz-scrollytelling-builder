@@ -4,7 +4,7 @@ import { Editor as SlateEditor } from 'slate-react';
 import { saveAs } from 'file-saver';
 import { Value } from 'slate';
 
-import { blocks, findBlockByName } from '../../blocks';
+import { blocks, findBlockByName } from '../../../template';
 import filename from '../../lib/filename';
 import { serialize as extractAssets } from './extract-assets';
 import initialData from './data';

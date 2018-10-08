@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { find } from '../../../lib/ast';
+import { find } from '../../../editor/lib/ast';
 import Icon from './heading.svg';
 import layoutConstraint from '../layout-constraint';
 import styles from './styles';

@@ -2,7 +2,7 @@ import Html from 'slate-html-serializer';
 import React from 'react';
 
 import { marks } from '../../marks';
-import { findBlockByName } from '../../blocks';
+import { findBlockByName } from '../../../template';
 
 const serializeMark = (mark, children) => {
   const { serialize } = mark;

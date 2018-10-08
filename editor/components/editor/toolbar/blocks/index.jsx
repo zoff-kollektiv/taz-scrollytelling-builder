@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Block from './block';
-import { blocks } from '../../../../blocks';
+import { blocks } from '../../../../../template';
 import styles from './styles';
 
 export default ({ AST, onBlockAdd }) => (

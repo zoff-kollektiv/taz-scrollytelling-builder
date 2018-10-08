@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { find } from '../../../lib/ast';
+import { find } from '../../../editor/lib/ast';
 import styles from './styles';
 
 const containsHeader = ast => !!find(ast, 'type', 'header');

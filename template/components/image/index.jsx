@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 
-import filename from '../../../lib/filename';
-import Input from '../../../components/form/input';
-import InputImage from '../../../components/form/image';
+import filename from '../../../editor/lib/filename';
+import Input from '../../../editor/components/form/input';
+import InputImage from '../../../editor/components/form/image';
 import Icon from './image.svg';
 import layoutConstraint from '../layout-constraint';
 import styles from './styles';

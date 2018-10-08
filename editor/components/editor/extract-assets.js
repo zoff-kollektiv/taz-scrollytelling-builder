@@ -1,4 +1,4 @@
-import { findBlockByName } from '../../blocks';
+import { findBlockByName } from '../../../template';
 
 const hasExtract = node => {
   const { type } = node;
