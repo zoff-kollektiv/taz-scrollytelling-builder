@@ -6,6 +6,6 @@ export default {
   label: 'Underlined',
   name: 'underlined',
   Icon: UnderlineIcon,
-  Mark: ({ props, children }) => <u {...props}>{children}</u>,
+  Mark: props => <u>{props.children}</u>,
   serialize: (block, children) => <u>{children}</u>
 };

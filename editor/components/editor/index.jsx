@@ -154,10 +154,14 @@ export default class Editor extends Component {
   };
 
   renderMark = props => {
-    const { children, mark, attributes } = props;
+    const { mark } = props;
     const { Mark } = marks.find(_ => _.name === mark.type);
 
-    return <Mark {...attributes}>{children}</Mark>;
+    if (!Mark) {
+      return null;
+    }
+
+    return <Mark {...props} />;
   };
 
   render() {

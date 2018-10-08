@@ -6,6 +6,6 @@ export default {
   label: 'Bold',
   name: 'bold',
   Icon: BoldIcon,
-  Mark: ({ props, children }) => <strong {...props}>{children}</strong>,
+  Mark: props => <strong>{props.children}</strong>,
   serialize: (mark, children) => <strong>{children}</strong>
 };
