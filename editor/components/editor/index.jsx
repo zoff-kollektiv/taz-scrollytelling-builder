@@ -8,7 +8,7 @@ import { blocks, findBlockByName } from '../../../template';
 import filename from '../../lib/filename';
 import { serialize as extractAssets } from './extract-assets';
 import initialData from './data';
-import { marks } from '../../marks';
+import { findMarkByName, marks } from '../../marks';
 import { serialize as serializeHTML } from './serialize-html';
 import styles from './styles';
 import Toolbar from './toolbar';
@@ -143,10 +143,18 @@ export default class Editor extends Component {
 
   renderNode = props => {
     const { type } = props.node;
+
     /* eslint-disable-next-line no-shadow */
     const { Component } = findBlockByName(type);
 
+    // Maybe the mark is an inline and therefore falls under renderNode (e.g. links)
     if (!Component) {
+      const { Mark } = findMarkByName(type);
+
+      if (Mark) {
+        return <Mark {...props} />;
+      }
+
       return null;
     }
 
@@ -154,10 +162,14 @@ export default class Editor extends Component {
   };
 
   renderMark = props => {
-    const { children, mark, attributes } = props;
-    const { Mark } = marks.find(_ => _.name === mark.type);
+    const { mark } = props;
+    const { Mark } = findMarkByName(mark.type);
 
-    return <Mark {...attributes}>{children}</Mark>;
+    if (!Mark) {
+      return null;
+    }
+
+    return <Mark {...props} />;
   };
 
   render() {

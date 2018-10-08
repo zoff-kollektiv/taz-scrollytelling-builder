@@ -6,6 +6,6 @@ export default {
   label: 'Italic',
   name: 'italic',
   Icon: ItalicIcon,
-  Mark: ({ props, children }) => <i {...props}>{children}</i>,
-  serialize: (mark, children) => <i>{children}</i>
+  Mark: props => <i>{props.children}</i>,
+  serialize: (node, children) => <i>{children}</i>
 };

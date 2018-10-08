@@ -1,6 +1,7 @@
 import classnames from 'classnames';
 import React from 'react';
 
+import { findMarkByName } from '../../../../marks';
 import styles from './styles';
 
 const selectionHasMark = (state, name) =>
@@ -13,8 +14,14 @@ export default ({ update, state, name, label, Icon }) => (
     })}
     type="button"
     onClick={() => {
-      const change = state.change().toggleMark(name);
-      update(change);
+      const mark = findMarkByName(name);
+
+      if (mark && mark.onSelect) {
+        mark.onSelect(state, update);
+      } else {
+        const change = state.change().toggleMark(name);
+        update(change);
+      }
     }}
   >
     <style jsx>{styles}</style>
