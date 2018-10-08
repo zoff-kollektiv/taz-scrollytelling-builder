@@ -3,10 +3,14 @@ import React from 'react';
 import LinkIcon from './link.svg';
 
 const wrapLink = (change, href) => {
-  change.wrapInline({
-    type: 'link',
-    data: { href }
-  });
+  const data = { href };
+
+  change
+    .wrapInline({
+      type: 'link',
+      data
+    })
+    .moveToEnd();
 };
 
 const selectionHasLink = state =>
@@ -16,13 +20,13 @@ export default {
   label: 'Link',
   name: 'link',
   Icon: LinkIcon,
-  Mark: props => <a href="test">{props.children}</a>,
+  Mark: props => <a {...props.attributes}>{props.children}</a>,
   serialize: (mark, children) => <a>{children}</a>,
   onSelect(state, update) {
     const change = state.change().toggleMark('link');
 
-    // eslint-disable-next-line no-alert
     if (!selectionHasLink(state)) {
+      // eslint-disable-next-line no-alert
       const href = window.prompt('Enter the URL of the link:');
       change.call(wrapLink, href);
     }
