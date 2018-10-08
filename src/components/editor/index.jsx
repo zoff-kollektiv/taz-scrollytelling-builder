@@ -1,7 +1,7 @@
 import JSZip from 'jszip';
 import React, { Component, Fragment } from 'react';
 import { Editor as SlateEditor } from 'slate-react';
-import { saveAs } from 'file-saver/FileSaver';
+import { saveAs } from 'file-saver';
 import { Value } from 'slate';
 
 import { blocks, findBlockByName } from '../../blocks';
