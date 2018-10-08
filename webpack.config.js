@@ -1,7 +1,7 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './editor/index.jsx',
 
   module: {
     rules: [
@@ -26,13 +26,26 @@ module.exports = {
             }
           }
         ]
+      },
+
+      {
+        test: /\.(woff(2)?|ttf)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/fonts/'
+            }
+          }
+        ]
       }
     ]
   },
 
   plugins: [
     new HtmlWebPackPlugin({
-      template: './src/index.html',
+      template: './editor/index.html',
       filename: './index.html'
     })
   ],

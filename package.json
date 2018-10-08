@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --hot",
     "build": "webpack --mode production",
-    "lint": "eslint --fix src/**/**/*.js src/**/**/*.jsx src/**/**/**/*.jsx src/**/**/**/**/*.jsx"
+    "lint": "eslint --fix --ext .js,.jsx ."
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.10.0",
+    "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "prettier": "^1.14.0",
     "react-svg-loader": "^2.1.0",
@@ -38,17 +39,18 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "file-saver": "^1.3.8",
+    "file-saver": "^2.0.0-rc.3",
     "immutable": "^3.8.2",
     "jszip": "^3.1.5",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
-    "react-dropzone": "^4.2.13",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-dropzone": "^6.0.2",
     "react-helmet": "^5.2.0",
-    "react-modal": "^3.5.1",
-    "slate": "^0.40.2",
-    "slate-html-serializer": "^0.7.2",
-    "slate-react": "^0.18.5",
-    "styled-jsx": "^2.2.7"
+    "react-modal": "^3.6.1",
+    "slate": "^0.41.2",
+    "slate-html-serializer": "^0.7.7",
+    "slate-react": "^0.18.10",
+    "slugify": "^1.3.1",
+    "styled-jsx": "^3.1.0"
   }
 }
