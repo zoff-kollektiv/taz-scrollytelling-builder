@@ -8,9 +8,7 @@ export default {
   styles,
   Component: props => (
     <Fragment>
-      <style jsx>
-        {styles}
-      </style>
+      <style jsx>{styles}</style>
 
       {props.children}
     </Fragment>

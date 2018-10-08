@@ -1,12 +1,15 @@
 import css from 'styled-jsx/css';
 
+import { fonts } from '../../../../../tokens';
+
 export default css`
   .block {
     background-color: #dcdcdc;
     border: 0;
     color: #333;
+    font-family: ${fonts.inter.family};
     font-size: 0.9rem;
-    font-weight: bold;
+    font-weight: ${fonts.inter.weight.bold};
     margin-bottom: 0.2rem;
     padding: 0.65rem 1.5rem 0.65rem 2.5rem;
     text-align: right;
