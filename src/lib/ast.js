@@ -7,7 +7,7 @@ const find = (obj, key, val) => {
     return obj;
   }
 
-  for (var i in obj) {
+  for (const i in obj) {
     if (obj.hasOwnProperty(i)) {
       const found = find(obj[i], key, val);
 

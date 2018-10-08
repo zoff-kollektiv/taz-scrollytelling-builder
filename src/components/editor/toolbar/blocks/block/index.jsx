@@ -20,7 +20,13 @@ export default class Block extends Component {
   };
 
   render() {
-    const { name, defaultContent = '', onSelect, Icon, onBlockAdd } = this.props;
+    const {
+      name,
+      defaultContent = '',
+      onSelect,
+      Icon,
+      onBlockAdd
+    } = this.props;
     const handleSelect = () => {
       if (onSelect) {
         const { fields } = onSelect();
@@ -28,7 +34,7 @@ export default class Block extends Component {
         const onSubmit = formData => {
           const context = {};
 
-          for(const _ of formData.entries()) {
+          for (const _ of formData.entries()) {
             context[_[0]] = _[1];
           }
 
@@ -50,7 +56,7 @@ export default class Block extends Component {
 
     return (
       <Fragment>
-        {this.state.showModal && (<Modal>{this.state.modal}</Modal>)}
+        {this.state.showModal && <Modal>{this.state.modal}</Modal>}
 
         <button
           type="button"
