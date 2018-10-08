@@ -34,6 +34,7 @@ export default class Block extends Component {
         const onSubmit = formData => {
           const context = {};
 
+          // eslint-disable-next-line no-restricted-syntax
           for (const _ of formData.entries()) {
             context[_[0]] = _[1];
           }
@@ -50,7 +51,7 @@ export default class Block extends Component {
           />
         );
       } else {
-        this.onBlockAdd(name, { defaultContent });
+        onBlockAdd(name, { defaultContent });
       }
     };
 
