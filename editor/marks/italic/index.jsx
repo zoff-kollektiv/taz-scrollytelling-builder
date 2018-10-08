@@ -7,5 +7,5 @@ export default {
   name: 'italic',
   Icon: ItalicIcon,
   Mark: props => <i>{props.children}</i>,
-  serialize: (mark, children) => <i>{children}</i>
+  serialize: (node, children) => <i>{children}</i>
 };

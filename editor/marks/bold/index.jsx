@@ -7,5 +7,5 @@ export default {
   name: 'bold',
   Icon: BoldIcon,
   Mark: props => <strong>{props.children}</strong>,
-  serialize: (mark, children) => <strong>{children}</strong>
+  serialize: (node, children) => <strong>{children}</strong>
 };

@@ -1,28 +1,27 @@
 import Html from 'slate-html-serializer';
 import React from 'react';
 
-import { marks } from '../../marks';
+import { findMarkByName } from '../../marks';
 import { findBlockByName } from '../../../template';
 
-const serializeMark = (mark, children) => {
-  const { serialize } = mark;
+const serializeNode = (node, children) => {
+  const { type } = node;
+  const block = findBlockByName(type);
 
-  if (!serialize) {
+  /* if the block doesn't have a serializer, let's try if there is a mark, that
+     we can use (e.g. the link mark is actually an Inline)
+  */
+  if (!block.serialize) {
+    const mark = findMarkByName(type);
+
+    if (mark.serialize) {
+      return mark.serialize(node, children);
+    }
+
     return <span>{children}</span>;
   }
 
-  return serialize(mark, children);
-};
-
-const serializeBlock = (block, children) => {
-  const { type } = block;
-  const { serialize } = findBlockByName(type);
-
-  if (!serialize) {
-    return <span>{children}</span>;
-  }
-
-  return serialize(block, children);
+  return block.serialize(node, children);
 };
 
 const rules = [
@@ -39,13 +38,8 @@ const rules = [
         return;
       }
 
-      const mark = marks.find(_ => _.name === type);
-
-      if (mark) {
-        return serializeMark(mark, children);
-      }
-
-      return serializeBlock(obj, children);
+      // eslint-disable-next-line consistent-return
+      return serializeNode(obj, children);
     }
   }
 ];

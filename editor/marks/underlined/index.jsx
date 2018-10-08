@@ -7,5 +7,5 @@ export default {
   name: 'underlined',
   Icon: UnderlineIcon,
   Mark: props => <u>{props.children}</u>,
-  serialize: (block, children) => <u>{children}</u>
+  serialize: (node, children) => <u>{children}</u>
 };
