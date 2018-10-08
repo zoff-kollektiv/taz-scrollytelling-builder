@@ -7,8 +7,11 @@ export default {
         nodes: [
           {
             object: 'block',
-            type: 'header',
-            nodes: []
+            type: 'fonts'
+          },
+          {
+            object: 'block',
+            type: 'header'
           },
           {
             object: 'block',

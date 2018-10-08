@@ -64,11 +64,13 @@ export default {
     const file = data.get('image');
     const name = data.get('image_name');
 
-    return {
-      name,
-      file,
-      type: 'image'
-    };
+    return Promise.resolve([
+      {
+        name,
+        file,
+        type: 'image'
+      }
+    ]);
   },
 
   onSelect() {

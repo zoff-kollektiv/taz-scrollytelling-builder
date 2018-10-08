@@ -11,6 +11,7 @@ export default {
       <style jsx global>
         {styles}
       </style>
+
       {props.children}
     </Fragment>
   ),
