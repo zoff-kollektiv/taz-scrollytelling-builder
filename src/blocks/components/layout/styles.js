@@ -1,14 +1,14 @@
 import css from 'styled-jsx/css';
 
 export default css`
-  body {
+  :global(body) {
     margin: 0;
     padding: 0;
   }
 
-  *,
-  *::before,
-  *::after {
+  :global(*),
+  :global(*::before),
+  :global(*::after) {
     box-sizing: border-box;
   }
 `;

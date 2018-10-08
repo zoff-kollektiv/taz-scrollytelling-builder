@@ -8,7 +8,7 @@ export default {
   styles,
   Component: props => (
     <Fragment>
-      <style jsx global>
+      <style jsx>
         {styles}
       </style>
 
