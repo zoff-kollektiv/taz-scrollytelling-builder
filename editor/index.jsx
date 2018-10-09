@@ -1,4 +1,5 @@
-import React from 'react';
+import merge from 'deepmerge';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from '@reach/router';
 
@@ -8,23 +9,45 @@ import MetadataPage from './pages/metadata';
 
 import Store from './lib/store';
 
-const Application = () => (
-  <Store.Provider
-    value={{
-      metadata: {
-        title: 'New project ...',
-        og: {
-          locale: 'de_DE'
-        }
+class Application extends Component {
+  state = {
+    editor: {},
+
+    metadata: {
+      title: 'New project ...',
+      og: {
+        locale: 'de_DE'
       }
-    }}
-  >
-    <Router>
-      <HomePage path="/" />
-      <StoryPage path="story" />
-      <MetadataPage path="metadata" />
-    </Router>
-  </Store.Provider>
-);
+    },
+
+    updateMetadata() {}
+  };
+
+  constructor() {
+    super();
+
+    this.state.updateMetadata = this.updateMetadata;
+  }
+
+  updateMetadata = metadata => {
+    this.setState(
+      merge(this.state, {
+        metadata
+      })
+    );
+  };
+
+  render() {
+    return (
+      <Store.Provider value={this.state}>
+        <Router>
+          <HomePage path="/" />
+          <StoryPage path="story" />
+          <MetadataPage path="metadata" />
+        </Router>
+      </Store.Provider>
+    );
+  }
+}
 
 ReactDOM.render(<Application />, document.getElementById('builder'));

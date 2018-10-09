@@ -40,6 +40,7 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "classnames": "^2.2.6",
+    "deepmerge": "^2.2.1",
     "file-saver": "^2.0.0-rc.3",
     "immutable": "^3.8.2",
     "is-url": "^1.2.4",

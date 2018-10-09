@@ -2,18 +2,28 @@ import React from 'react';
 
 import styles from './styles';
 
-const onSubmit = event => {
+const onSubmit = (event, callback) => {
   event.preventDefault();
 
-  const data = new FormData(event.target);
-  console.log('form data', [...data.entries()]);
+  const formData = new FormData(event.target);
+  const formDataEntries = formData.entries();
+
+  const metadata = [...formDataEntries].reduce((acc, [name, value]) => {
+    acc[name] = value;
+    return acc;
+  }, {});
+
+  callback(metadata);
 };
 
-export default ({ title, og }) => (
+export default ({ metadata, updateMetadata }) => (
   <main className="metadata">
     <style jsx>{styles}</style>
 
-    <form className="constraint" onSubmit={event => onSubmit(event)}>
+    <form
+      className="constraint"
+      onSubmit={event => onSubmit(event, updateMetadata)}
+    >
       <h1 className="title">Metadata</h1>
 
       <section className="section">
@@ -22,14 +32,14 @@ export default ({ title, og }) => (
         <div className="section-block">
           <label>
             <span className="label-text">Title</span>
-            <input type="text" name="meta-title" defaultValue={title} />
+            <input type="text" name="title" defaultValue={metadata.title} />
           </label>
         </div>
 
         <div className="section-block">
           <label>
             <span className="label-text">Description</span>
-            <textarea name="meta-description" />
+            <textarea name="description">{metadata.description}</textarea>
           </label>
         </div>
       </section>
@@ -40,7 +50,12 @@ export default ({ title, og }) => (
         <div className="section-block">
           <label>
             <span className="label-text">Title</span>
-            <input type="text" name="og:title" defaultValue={title} />
+            <input
+              type="text"
+              name="og:title"
+              placeholder={metadata.title}
+              defaultValue={metadata['og:title']}
+            />
           </label>
         </div>
 
@@ -61,14 +76,20 @@ export default ({ title, og }) => (
         <div className="section-block">
           <label>
             <span className="label-text">Locale</span>
-            <input type="text" name="og:locale" defaultValue={og.locale} />
+            <input
+              type="text"
+              name="og:locale"
+              defaultValue={metadata['og:locale']}
+            />
           </label>
         </div>
 
         <div className="section-block">
           <label>
             <span className="label-text">Description</span>
-            <textarea name="og:description" />
+            <textarea name="og:description" placeholder={metadata.description}>
+              {metadata['og:description']}
+            </textarea>
           </label>
         </div>
 
@@ -81,14 +102,24 @@ export default ({ title, og }) => (
         <div className="section-block">
           <label>
             <span className="label-text">Title</span>
-            <input type="text" name="twitter:title" />
+            <input
+              type="text"
+              name="twitter:title"
+              placeholder={metadata.title}
+              defaultValue={metadata['twitter:title']}
+            />
           </label>
         </div>
 
         <div className="section-block">
           <label>
             <span className="label-text">Text</span>
-            <textarea name="witter:description" />
+            <textarea
+              name="witter:description"
+              placeholder={metadata.description}
+            >
+              {metadata['twitter:description']}
+            </textarea>
           </label>
         </div>
 
