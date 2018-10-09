@@ -2,16 +2,20 @@ import merge from 'deepmerge';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from '@reach/router';
+import { Value } from 'slate';
 
 import StoryPage from './pages/story';
 import HomePage from './pages/home';
 import MetadataPage from './pages/metadata';
 
+import initialEditorData from './components/editor/data';
 import Store from './lib/store';
 
 class Application extends Component {
   state = {
-    editor: {},
+    editor: {
+      value: Value.fromJSON(initialEditorData)
+    },
 
     metadata: {
       title: 'New project ...',
@@ -20,6 +24,7 @@ class Application extends Component {
       }
     },
 
+    updateEditor() {},
     updateMetadata() {}
   };
 
@@ -27,14 +32,21 @@ class Application extends Component {
     super();
 
     this.state.updateMetadata = this.updateMetadata;
+    this.state.updateEditor = this.updateEditor;
   }
 
+  updateEditor = data => {
+    this.setState(prevState => ({
+      ...prevState,
+      editor: data
+    }));
+  };
+
   updateMetadata = metadata => {
-    this.setState(
-      merge(this.state, {
-        metadata
-      })
-    );
+    this.setState(prevState => ({
+      ...prevState,
+      metadata: merge(prevState.metadata, metadata)
+    }));
   };
 
   render() {
