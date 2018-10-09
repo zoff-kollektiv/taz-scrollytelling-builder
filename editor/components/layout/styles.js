@@ -27,6 +27,17 @@ import '../../assets/fonts/inter-ui-black-italic.woff';
 const path = './assets/fonts';
 
 export default css`
+  :global(body) {
+    margin: 0;
+    padding: 0;
+  }
+
+  :global(*),
+  :global(*::before),
+  :global(*::after) {
+    box-sizing: border-box;
+  }
+
   @font-face {
     font-family: 'Inter UI';
     font-style: normal;

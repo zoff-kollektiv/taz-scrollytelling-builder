@@ -1,28 +1,62 @@
-import { Helmet } from 'react-helmet';
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Router } from '@reach/router';
+import { Value } from 'slate';
 
-import Editor from './components/editor';
-import Layout from './components/layout';
+import StoryPage from './pages/story';
+import HomePage from './pages/home';
+import MetadataPage from './pages/metadata';
 
-const ProjectContext = React.createContext({});
+import initialEditorData from './components/editor/data';
+import Store from './lib/store';
 
-const project = {
-  name: 'taz'
-};
+class Application extends Component {
+  constructor() {
+    super();
 
-const Application = () => (
-  <Layout>
-    <ProjectContext.Provider value={project}>
-      <Helmet>
-        <title>Hello from Application</title>
-      </Helmet>
+    this.state.updateMetadata = this.updateMetadata;
+    this.state.updateEditor = this.updateEditor;
+  }
 
-      <ProjectContext.Consumer>
-        {({ name }) => <Editor />}
-      </ProjectContext.Consumer>
-    </ProjectContext.Provider>
-  </Layout>
-);
+  state = {
+    editor: {
+      value: Value.fromJSON(initialEditorData)
+    },
+
+    metadata: {
+      title: 'New project ...',
+      'og:locale': 'de_DE'
+    },
+
+    updateEditor() {},
+    updateMetadata() {}
+  };
+
+  updateEditor = editor => {
+    this.setState(prevState => ({
+      ...prevState,
+      editor
+    }));
+  };
+
+  updateMetadata = metadata => {
+    this.setState(prevState => ({
+      ...prevState,
+      metadata
+    }));
+  };
+
+  render() {
+    return (
+      <Store.Provider value={this.state}>
+        <Router>
+          <HomePage path="/" />
+          <StoryPage path="story" />
+          <MetadataPage path="metadata" />
+        </Router>
+      </Store.Provider>
+    );
+  }
+}
 
 ReactDOM.render(<Application />, document.getElementById('builder'));

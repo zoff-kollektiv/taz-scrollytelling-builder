@@ -2,12 +2,12 @@ import JSZip from 'jszip';
 import React, { Component, Fragment } from 'react';
 import { Editor as SlateEditor } from 'slate-react';
 import { saveAs } from 'file-saver';
+import slugify from 'slugify';
 import { Value } from 'slate';
 
 import { blocks, findBlockByName } from '../../../template';
 import filename from '../../lib/filename';
 import { serialize as extractAssets } from './extract-assets';
-import initialData from './data';
 import { findMarkByName, marks } from '../../marks';
 import { serialize as serializeHTML } from './serialize-html';
 import styles from './styles';
@@ -33,10 +33,6 @@ export default class Editor extends Component {
     toolbarMarkRef: React.createRef()
   };
 
-  state = {
-    value: Value.fromJSON(initialData)
-  };
-
   componentDidMount = () => {
     this.updateMenuPosition();
   };
@@ -46,16 +42,20 @@ export default class Editor extends Component {
   };
 
   onChange = ({ value }) => {
-    this.setState({ value });
+    this.props.update({ value });
   };
 
   onSave = () => {
-    const { value } = this.state;
+    const { value } = this.props.state;
     const zip = new JSZip();
     const assetsFolder = zip.folder('assets');
 
     let html = serializeHTML(value);
     const assets = extractAssets(value);
+
+    const fileName = slugify(this.props.metadata.title || 'story', {
+      remove: /[*+~.()'"!:@/\\]/g
+    });
 
     Promise.all(assets)
       // each block could return several files
@@ -79,12 +79,12 @@ export default class Editor extends Component {
         // replace [styles] placeholder with actual styles
         html = html.replace('[styles]', blockStypes.join(''));
 
-        zip.file('story.html', html);
-        zip.file('story.json', JSON.stringify(value));
+        zip.file('index.html', html);
+        zip.file('story.json', JSON.stringify(this.props.state));
 
         zip
           .generateAsync({ type: 'blob' })
-          .then(file => saveAs(file, 'story.zip'));
+          .then(file => saveAs(file, `${fileName}.zip`));
       });
   };
 
@@ -95,7 +95,7 @@ export default class Editor extends Component {
       return;
     }
 
-    const { value } = this.state;
+    const { value } = this.props.state;
     const { fragment, selection } = value;
 
     if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
@@ -120,7 +120,7 @@ export default class Editor extends Component {
   };
 
   insertBlock = (type, data) => {
-    const change = this.state.value.change().call((change, target) => {
+    const change = this.props.state.value.change().call((change, target) => {
       if (target) {
         change.select(target);
       }
@@ -173,7 +173,7 @@ export default class Editor extends Component {
   };
 
   render() {
-    const { value } = this.state;
+    const { value } = this.props.state;
 
     return (
       <Fragment>
@@ -202,7 +202,7 @@ export default class Editor extends Component {
             onSave={() => this.onSave()}
             onBlockAdd={(type, context) => this.insertBlock(type, context)}
             onUpload={data => {
-              this.setState({ value: Value.fromJSON(data) });
+              this.props.update({ value: Value.fromJSON(data) });
             }}
           />
         </div>

@@ -30,6 +30,7 @@ module.exports = {
     ],
     'react/react-in-jsx-scope': 'off',
     'react/destructuring-assignment': 'off',
+    'jsx-a11y/label-has-for': 'off',
   },
   globals: {
     "document": true,
