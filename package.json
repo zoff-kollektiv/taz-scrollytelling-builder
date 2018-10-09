@@ -38,6 +38,7 @@
     "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
+    "@reach/router": "^1.2.1",
     "classnames": "^2.2.6",
     "file-saver": "^2.0.0-rc.3",
     "immutable": "^3.8.2",

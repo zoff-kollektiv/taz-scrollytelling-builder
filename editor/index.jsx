@@ -1,27 +1,23 @@
-import { Helmet } from 'react-helmet';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router } from '@reach/router';
 
-import Editor from './components/editor';
 import Layout from './components/layout';
+import Navigation from './components/navigation';
 
-const ProjectContext = React.createContext({});
-
-const project = {
-  name: 'taz'
-};
+import StoryPage from './pages/story';
+import HomePage from './pages/home';
+import MetadataPage from './pages/metadata';
 
 const Application = () => (
   <Layout>
-    <ProjectContext.Provider value={project}>
-      <Helmet>
-        <title>Hello from Application</title>
-      </Helmet>
+    <Navigation items={[['story', 'Story'], ['metadata', 'Metadata']]} />
 
-      <ProjectContext.Consumer>
-        {({ name }) => <Editor />}
-      </ProjectContext.Consumer>
-    </ProjectContext.Provider>
+    <Router>
+      <HomePage path="/" />
+      <StoryPage path="story" />
+      <MetadataPage path="metadata" />
+    </Router>
   </Layout>
 );
 
