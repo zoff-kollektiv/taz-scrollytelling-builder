@@ -34,11 +34,15 @@ export default class Toolbar extends Component {
   };
 
   toggleBlocks = () => {
-    this.setState({ blocksOpen: !this.state.blocksOpen });
+    this.setState(state => ({
+      blocksOpen: !state.blocksOpen
+    }));
   };
 
   toggleUpload = () => {
-    this.setState({ uploadOpen: !this.state.uploadOpen });
+    this.setState(state => ({
+      uploadOpen: !state.uploadOpen
+    }));
   };
 
   render() {
