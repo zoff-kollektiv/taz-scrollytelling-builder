@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet';
 import React from 'react';
 
 import Layout from '../../components/layout';
+import Metadata from '../../components/metadata';
 import Navigation from '../../components/navigation';
 
 import Store from '../../lib/store';
@@ -14,7 +15,8 @@ export default () => (
         <Helmet>
           <title>Metadata - {title}</title>
         </Helmet>
-        Meta-Data
+
+        <Metadata title={title} />
       </Layout>
     )}
   </Store.Consumer>
