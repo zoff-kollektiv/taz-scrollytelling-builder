@@ -11,7 +11,7 @@ import Store from './lib/store';
 const Application = () => (
   <Store.Provider
     value={{
-      name: 'New project ...'
+      title: 'New project ...'
     }}
   >
     <Router>
