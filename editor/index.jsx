@@ -11,7 +11,12 @@ import Store from './lib/store';
 const Application = () => (
   <Store.Provider
     value={{
-      title: 'New project ...'
+      metadata: {
+        title: 'New project ...',
+        og: {
+          locale: 'de_DE'
+        }
+      }
     }}
   >
     <Router>

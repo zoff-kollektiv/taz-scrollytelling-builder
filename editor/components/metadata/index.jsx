@@ -2,11 +2,18 @@ import React from 'react';
 
 import styles from './styles';
 
-export default ({ title }) => (
+const onSubmit = event => {
+  event.preventDefault();
+
+  const data = new FormData(event.target);
+  console.log('form data', [...data.entries()]);
+};
+
+export default ({ title, og }) => (
   <main className="metadata">
     <style jsx>{styles}</style>
 
-    <div className="constraint">
+    <form className="constraint" onSubmit={event => onSubmit(event)}>
       <h1 className="title">Metadata</h1>
 
       <section className="section">
@@ -54,7 +61,7 @@ export default ({ title }) => (
         <div className="section-block">
           <label>
             <span className="label-text">Locale</span>
-            <input type="text" name="og:locale" defaultValue="de_DE" />
+            <input type="text" name="og:locale" defaultValue={og.locale} />
           </label>
         </div>
 
@@ -104,6 +111,8 @@ export default ({ title }) => (
         {/* TODO: this has to be equal to the site */}
         <input type="hidden" name="twitter:creator" />
       </section>
-    </div>
+
+      <button type="submit">Save</button>
+    </form>
   </main>
 );

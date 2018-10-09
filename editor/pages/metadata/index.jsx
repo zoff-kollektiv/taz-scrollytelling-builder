@@ -9,14 +9,14 @@ import Store from '../../lib/store';
 
 export default () => (
   <Store.Consumer>
-    {({ title }) => (
+    {({ metadata }) => (
       <Layout>
         <Navigation items={[['/story', 'Story'], ['/metadata', 'Metadata']]} />
         <Helmet>
-          <title>Metadata - {title}</title>
+          <title>Metadata - {metadata.title}</title>
         </Helmet>
 
-        <Metadata title={title} />
+        <Metadata {...metadata} />
       </Layout>
     )}
   </Store.Consumer>
