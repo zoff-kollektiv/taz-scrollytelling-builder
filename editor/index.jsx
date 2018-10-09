@@ -1,4 +1,3 @@
-import merge from 'deepmerge';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from '@reach/router';
@@ -12,6 +11,13 @@ import initialEditorData from './components/editor/data';
 import Store from './lib/store';
 
 class Application extends Component {
+  constructor() {
+    super();
+
+    this.state.updateMetadata = this.updateMetadata;
+    this.state.updateEditor = this.updateEditor;
+  }
+
   state = {
     editor: {
       value: Value.fromJSON(initialEditorData)
@@ -19,21 +25,12 @@ class Application extends Component {
 
     metadata: {
       title: 'New project ...',
-      og: {
-        locale: 'de_DE'
-      }
+      'og:locale': 'de_DE'
     },
 
     updateEditor() {},
     updateMetadata() {}
   };
-
-  constructor() {
-    super();
-
-    this.state.updateMetadata = this.updateMetadata;
-    this.state.updateEditor = this.updateEditor;
-  }
 
   updateEditor = data => {
     this.setState(prevState => ({
@@ -45,7 +42,10 @@ class Application extends Component {
   updateMetadata = metadata => {
     this.setState(prevState => ({
       ...prevState,
-      metadata: merge(prevState.metadata, metadata)
+      metadata: {
+        ...prevState.metadata,
+        metadata
+      }
     }));
   };
 
