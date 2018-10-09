@@ -39,6 +39,7 @@ export default css`
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Inter UI';
     font-style: normal;
     font-weight: 400;
@@ -47,6 +48,7 @@ export default css`
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Inter UI';
     font-style: italic;
     font-weight: 400;
@@ -55,6 +57,7 @@ export default css`
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Inter UI';
     font-style: normal;
     font-weight: 500;
@@ -63,6 +66,7 @@ export default css`
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Inter UI';
     font-style: italic;
     font-weight: 500;
@@ -71,6 +75,7 @@ export default css`
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Inter UI';
     font-style: normal;
     font-weight: 700;
@@ -79,6 +84,7 @@ export default css`
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Inter UI';
     font-style: italic;
     font-weight: 700;
@@ -87,6 +93,7 @@ export default css`
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Inter UI';
     font-style: normal;
     font-weight: 900;
@@ -95,6 +102,7 @@ export default css`
   }
 
   @font-face {
+    font-display: swap;
     font-family: 'Inter UI';
     font-style: italic;
     font-weight: 900;
