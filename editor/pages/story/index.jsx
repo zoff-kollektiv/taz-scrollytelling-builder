@@ -5,24 +5,19 @@ import Editor from '../../components/editor';
 import Layout from '../../components/layout';
 import Navigation from '../../components/navigation';
 
-const ProjectContext = React.createContext({});
-
-const project = {
-  name: 'taz'
-};
+import Store from '../../lib/store';
 
 export default () => (
-  <Layout>
-    <Navigation items={[['/story', 'Story'], ['/metadata', 'Metadata']]} />
+  <Store.Consumer>
+    {({ name }) => (
+      <Layout>
+        <Navigation items={[['/story', 'Story'], ['/metadata', 'Metadata']]} />
+        <Helmet>
+          <title>Story - {name}</title>
+        </Helmet>
 
-    <ProjectContext.Provider value={project}>
-      <Helmet>
-        <title>Hello from Application</title>
-      </Helmet>
-
-      <ProjectContext.Consumer>
-        {({ name }) => <Editor />}
-      </ProjectContext.Consumer>
-    </ProjectContext.Provider>
-  </Layout>
+        <Editor />
+      </Layout>
+    )}
+  </Store.Consumer>
 );
