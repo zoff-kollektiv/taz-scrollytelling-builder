@@ -74,8 +74,8 @@ export default class Editor extends Component {
         // replace [styles] placeholder with actual styles
         html = html.replace('[styles]', blockStypes.join(''));
 
-        zip.file('story.html', html);
-        zip.file('story.json', JSON.stringify(value));
+        zip.file('index.html', html);
+        zip.file('story.json', JSON.stringify(this.props.state));
 
         zip
           .generateAsync({ type: 'blob' })
