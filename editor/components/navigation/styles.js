@@ -22,7 +22,7 @@ export default css`
 
   :global(.navigation .item:hover),
   :global(.navigation .item:focus) {
-    background-color: red;
+    background-color: #151515;
   }
 
   :global(.navigation .item--is-active) {
