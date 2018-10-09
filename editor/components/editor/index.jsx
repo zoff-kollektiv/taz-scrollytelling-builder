@@ -2,6 +2,7 @@ import JSZip from 'jszip';
 import React, { Component, Fragment } from 'react';
 import { Editor as SlateEditor } from 'slate-react';
 import { saveAs } from 'file-saver';
+import slugify from 'slugify';
 import { Value } from 'slate';
 
 import { blocks, findBlockByName } from '../../../template';
@@ -52,6 +53,10 @@ export default class Editor extends Component {
     let html = serializeHTML(value);
     const assets = extractAssets(value);
 
+    const fileName = slugify(this.props.metadata.title || 'story', {
+      remove: /[*+~.()'"!:@/\\]/g
+    });
+
     Promise.all(assets)
       // each block could return several files
       .then(_ => _.flat())
@@ -79,7 +84,7 @@ export default class Editor extends Component {
 
         zip
           .generateAsync({ type: 'blob' })
-          .then(file => saveAs(file, 'story.zip'));
+          .then(file => saveAs(file, `${fileName}.zip`));
       });
   };
 

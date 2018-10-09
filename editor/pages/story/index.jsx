@@ -15,7 +15,7 @@ export default () => (
         <Helmet>
           <title>Story - {metadata.title}</title>
         </Helmet>
-        <Editor update={updateEditor} state={editor} />
+        <Editor update={updateEditor} state={editor} metadata={metadata} />
       </Layout>
     )}
   </Store.Consumer>

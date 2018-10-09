@@ -32,20 +32,17 @@ class Application extends Component {
     updateMetadata() {}
   };
 
-  updateEditor = data => {
+  updateEditor = editor => {
     this.setState(prevState => ({
       ...prevState,
-      editor: data
+      editor
     }));
   };
 
   updateMetadata = metadata => {
     this.setState(prevState => ({
       ...prevState,
-      metadata: {
-        ...prevState.metadata,
-        metadata
-      }
+      metadata
     }));
   };
 
