@@ -20,12 +20,7 @@ export default class Block extends Component {
   };
 
   render() {
-    const {
-      name,
-      onSelect,
-      Icon,
-      onBlockAdd
-    } = this.props;
+    const { name, onSelect, Icon, onBlockAdd } = this.props;
     const handleSelect = () => {
       if (onSelect) {
         const { fields } = onSelect();
