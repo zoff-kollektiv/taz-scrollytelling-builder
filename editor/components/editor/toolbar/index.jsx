@@ -54,7 +54,13 @@ export default class Toolbar extends Component {
 
         {this.state.blocksOpen && (
           <div className="toolbar__blocks">
-            <Blocks onBlockAdd={onBlockAdd} AST={AST} />
+            <Blocks
+              onBlockAdd={(type, context) => {
+                this.setState({ blocksOpen: false });
+                onBlockAdd(type, context);
+              }}
+              AST={AST}
+            />
           </div>
         )}
 

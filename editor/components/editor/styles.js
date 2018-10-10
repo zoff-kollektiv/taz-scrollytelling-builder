@@ -1,10 +1,6 @@
 import css from 'styled-jsx/css';
 
 export default css`
-  .editor {
-    position: relative;
-  }
-
   .editor__toolbar-marks {
     position: absolute;
     z-index: 100;
@@ -14,5 +10,6 @@ export default css`
     bottom: 1rem;
     position: fixed;
     right: 1rem;
+    z-index: 50;
   }
 `;

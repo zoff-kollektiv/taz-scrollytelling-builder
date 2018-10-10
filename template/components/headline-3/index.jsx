@@ -11,7 +11,6 @@ export default {
   name: 'headline-3',
   Icon,
   styles,
-  defaultContent: 'Headline level 3',
   Component: props => (
     <layoutConstraint.Component attributes={{}}>
       <h3 className="h3" {...props.attributes}>

@@ -20,13 +20,7 @@ export default class Block extends Component {
   };
 
   render() {
-    const {
-      name,
-      defaultContent = '',
-      onSelect,
-      Icon,
-      onBlockAdd
-    } = this.props;
+    const { name, onSelect, Icon, onBlockAdd } = this.props;
     const handleSelect = () => {
       if (onSelect) {
         const { fields } = onSelect();
@@ -51,7 +45,7 @@ export default class Block extends Component {
           />
         );
       } else {
-        onBlockAdd(name, { defaultContent });
+        onBlockAdd(name);
       }
     };
 

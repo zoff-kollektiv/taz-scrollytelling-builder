@@ -9,5 +9,6 @@ export default css`
     margin-bottom: 0;
     margin-top: 0;
     padding-left: 0;
+    z-index: 1;
   }
 `;
