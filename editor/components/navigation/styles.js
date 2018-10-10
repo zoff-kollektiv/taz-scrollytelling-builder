@@ -11,11 +11,14 @@ export default css`
 
   :global(.navigation .item) {
     color: white;
+    cursor: pointer;
     display: block;
+    flex: 1 0 auto;
     font-family: ${fonts.inter.family};
     font-size: 0.9rem;
     font-weight: ${fonts.inter.weight.medium};
-    padding: 0.75rem 4rem;
+    padding: 0.5rem 4rem;
+    text-align: center;
     text-decoration: none;
     text-transform: uppercase;
   }
