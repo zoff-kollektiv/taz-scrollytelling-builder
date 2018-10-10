@@ -34,19 +34,11 @@ export default {
   styles,
   Component: ({ node, ...rest }) => <Intro data={node.data} {...rest} />,
 
-  insert(change, data) {
-    BLOCK_DEFINITION.data = data;
-
-    // if a title was set, already prefill it
-    if (data.title) {
-      BLOCK_DEFINITION.nodes[1].nodes[0].text = data.title;
-    }
-
-    // Always add the intro of the beginning of the document
-    change.insertBlock(BLOCK_DEFINITION);
-  },
-
   serialize(node, children) {
-    return <Intro data={node.data} serialize={true}>{children}</Intro>;
+    return (
+      <Intro data={node.data} serialize>
+        {children}
+      </Intro>
+    );
   }
 };
