@@ -22,7 +22,6 @@ export default class Block extends Component {
   render() {
     const {
       name,
-      defaultContent = '',
       onSelect,
       Icon,
       onBlockAdd
@@ -51,7 +50,7 @@ export default class Block extends Component {
           />
         );
       } else {
-        onBlockAdd(name, { defaultContent });
+        onBlockAdd(name);
       }
     };
 

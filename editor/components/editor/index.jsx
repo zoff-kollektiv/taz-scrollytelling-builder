@@ -130,11 +130,9 @@ export default class Editor extends Component {
         type,
         data
       });
-    }
 
-    // apply defined default content
-    if (data.defaultContent) {
-      change.insertText(data.defaultContent);
+      change.focus();
+      change.moveFocusToStartOfText();
     }
 
     this.onChange(change);

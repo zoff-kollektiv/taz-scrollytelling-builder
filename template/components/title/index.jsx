@@ -6,7 +6,6 @@ export default {
   name: 'title',
   private: true,
   styles,
-  defaultContent: 'Insert title ...',
   Component: props => (
     <h1 className="title" {...props.attributes}>
       <style jsx>{styles}</style>
