@@ -106,24 +106,32 @@ export default class Editor extends Component {
     const { fragment, selection } = value;
 
     if (selection.isBlurred || selection.isCollapsed || fragment.text === '') {
-      current.style.opacity = 0;
+      // the element has to be visible for a couple more milliseconds to receive
+      // the event
+      setTimeout(() => {
+        current.style.display = 'none';
+      }, 50);
       return;
     }
 
-    const windowSelection = window.getSelection();
-    const range = windowSelection.getRangeAt(0);
-    const rect = range.getBoundingClientRect();
+    current.style.display = 'block';
 
-    const { top, left, width } = rect;
-    const { pageYOffset, pageXOffset } = window;
-    const { offsetHeight, offsetWidth } = current;
+    // give the CPU some time to breathe, before the calculations
+    setTimeout(() => {
+      const windowSelection = window.getSelection();
+      const range = windowSelection.getRangeAt(0);
 
-    current.style.opacity = 1;
-    current.style.top = `${top + pageYOffset - offsetHeight}px`;
-    current.style.left = `${left +
-      pageXOffset -
-      offsetWidth / 2 +
-      width / 2}px`;
+      const rect = range.getBoundingClientRect();
+      const { top, left, width } = rect;
+      const { pageYOffset, pageXOffset } = window;
+      const { offsetHeight, offsetWidth } = current;
+
+      current.style.top = `${top + pageYOffset - offsetHeight}px`;
+      current.style.left = `${left +
+        pageXOffset -
+        offsetWidth / 2 +
+        width / 2}px`;
+    }, 10);
   };
 
   insertBlock = (type, data) => {
