@@ -34,7 +34,7 @@ const today = () => {
     dd = `0${dd}`;
   }
 
-  return `${mm}. ${months[dd]} ${yyyy}`;
+  return `${dd}. ${months[mm]} ${yyyy}`;
 };
 
 const BLOCK_DEFINITION = {
