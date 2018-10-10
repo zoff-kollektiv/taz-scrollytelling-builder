@@ -6,7 +6,7 @@ export default css`
   }
 
   .image-container {
-    background-color: #ececec;
+    background-color: #0e0e0e;
     height: 90vh;
     overflow: hidden;
     position: relative;

@@ -108,7 +108,7 @@ const Intro = ({ data, attributes = {}, children, serialize = false }) => {
         <Header />
 
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <img {...imageAttrs} />
+        {imageAttrs.src && <img {...imageAttrs} />}
 
         <div className="content">{children}</div>
       </div>
