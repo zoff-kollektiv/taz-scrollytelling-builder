@@ -9,6 +9,7 @@ import infobox from './components/infobox';
 import layout from './components/layout';
 import layoutConstraint from './components/layout-constraint';
 import paragraph from './components/paragraph';
+import paragraphStandalone from './components/paragraph-standalone';
 import publicationDate from './components/publication-date';
 import standfirst from './components/standfirst';
 import title from './components/title';
@@ -25,6 +26,7 @@ const blocks = [
   layout,
   layoutConstraint,
   paragraph,
+  paragraphStandalone,
   publicationDate,
   standfirst,
   title
