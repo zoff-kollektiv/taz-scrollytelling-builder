@@ -14,6 +14,25 @@ import styles from './styles';
 import Toolbar from './toolbar';
 import ToolbarMarks from './toolbar-marks';
 
+const collectAndInlineStyles = (placeholder, html) => {
+  const blockStyles = blocks
+    .map(_ => _.styles)
+    .filter(Boolean)
+    .join('');
+
+  return html.replace(placeholder, blockStyles);
+};
+
+const downloadFile = (title, zip) => {
+  const fileName = slugify(title, {
+    remove: /[*+~.()'"!:@/\\]/g
+  });
+
+  zip
+    .generateAsync({ type: 'blob' })
+    .then(file => saveAs(file, `${fileName}.zip`));
+};
+
 const dataURLtoBlob = dataurl => {
   const arr = dataurl.split(',');
   const mime = arr[0].match(/:(.*?);/)[1];
@@ -60,10 +79,6 @@ export default class Editor extends Component {
     let html = serializeHTML(value);
     const assets = extractAssets(value);
 
-    const fileName = slugify(this.props.metadata.title || 'story', {
-      remove: /[*+~.()'"!:@/\\]/g
-    });
-
     Promise.all(assets)
       // each block could return several files
       .then(_ => _.flat())
@@ -79,19 +94,12 @@ export default class Editor extends Component {
           folders[type].file(filename(name), fileBlob, options);
         });
 
-        // collect styles
-        /* eslint-disable-next-line no-underscore-dangle */
-        const blockStypes = blocks.map(_ => _.styles && _.styles.__scoped);
-
-        // replace [styles] placeholder with actual styles
-        html = html.replace('[styles]', blockStypes.join(''));
+        html = collectAndInlineStyles('[styles]', html);
 
         zip.file('index.html', html);
         zip.file('story.json', JSON.stringify(this.props.state));
 
-        zip
-          .generateAsync({ type: 'blob' })
-          .then(file => saveAs(file, `${fileName}.zip`));
+        downloadFile(this.props.metadata.title || 'story', zip);
       });
   };
 
