@@ -33,7 +33,7 @@ class Application extends Component {
 
                 {
                   object: 'block',
-                  type: 'paragraph',
+                  type: 'paragraph-standalone',
                   nodes: [
                     {
                       object: 'text',
