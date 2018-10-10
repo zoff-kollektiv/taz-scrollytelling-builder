@@ -1,5 +1,6 @@
 import React from 'react';
 
+import filename from '../../../editor/lib/filename';
 import Header from './header';
 import Input from '../../../editor/components/form/input';
 import InputImage from '../../../editor/components/form/image';
@@ -87,12 +88,17 @@ const BLOCK_DEFINITION = {
   ]
 };
 
-const Intro = ({ data, attributes, children }) => {
-  const backgroundImage = data.get('background-image');
+const Intro = ({ data, attributes = {}, children, serialize = false }) => {
   const imageAttrs = {
-    src: backgroundImage,
     className: 'background-image'
   };
+
+  if (!serialize) {
+    imageAttrs.src = data.get('background-image');
+  } else {
+    const name = data.get('background-image_name');
+    imageAttrs.src = `./assets/images/${filename(name)}`;
+  }
 
   return (
     <section className="intro" {...attributes}>
@@ -139,6 +145,23 @@ export default {
     // Always add the intro of the beginning of the document
     change.moveStartToStartOfDocument();
     change.insertBlock(BLOCK_DEFINITION);
+  },
+
+  extract({ data }) {
+    const file = data.get('background-image');
+    const name = data.get('background-image_name');
+
+    return Promise.resolve([
+      {
+        name,
+        file,
+        type: 'image'
+      }
+    ]);
+  },
+
+  serialize(node, children) {
+    return <Intro data={node.data}>{children}</Intro>;
   },
 
   disabled(ast) {
