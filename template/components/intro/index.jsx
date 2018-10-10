@@ -136,6 +136,8 @@ export default {
       BLOCK_DEFINITION.nodes[1].nodes[0].text = data.title;
     }
 
+    // Always add the intro of the beginning of the document
+    change.moveStartToStartOfDocument();
     change.insertBlock(BLOCK_DEFINITION);
   },
 
