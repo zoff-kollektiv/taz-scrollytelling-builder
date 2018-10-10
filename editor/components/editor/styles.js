@@ -14,5 +14,6 @@ export default css`
     bottom: 1rem;
     position: fixed;
     right: 1rem;
+    z-index: 50;
   }
 `;

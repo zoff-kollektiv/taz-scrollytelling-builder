@@ -7,7 +7,6 @@ import StoryPage from './pages/story';
 import HomePage from './pages/home';
 import MetadataPage from './pages/metadata';
 
-import initialEditorData from './components/editor/data';
 import Store from './lib/store';
 
 class Application extends Component {
@@ -20,7 +19,37 @@ class Application extends Component {
 
   state = {
     editor: {
-      value: Value.fromJSON(initialEditorData)
+      value: Value.fromJSON({
+        document: {
+          nodes: [
+            {
+              object: 'block',
+              type: 'layout',
+              nodes: [
+                {
+                  object: 'block',
+                  type: 'fonts'
+                },
+
+                {
+                  object: 'block',
+                  type: 'paragraph',
+                  nodes: [
+                    {
+                      object: 'text',
+                      leaves: [
+                        {
+                          text: 'Start typing ...'
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      })
     },
 
     metadata: {

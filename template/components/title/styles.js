@@ -2,10 +2,9 @@ import css from 'styled-jsx/css';
 
 export default css`
   .title {
-    color: red;
-    font-family: Poppins;
-    font-size: 3rem;
-    font-weight: bold;
-    line-height: 1.2;
+    font-size: 4rem;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: center;
   }
 `;
