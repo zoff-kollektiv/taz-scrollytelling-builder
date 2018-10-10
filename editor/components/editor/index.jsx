@@ -35,6 +35,13 @@ export default class Editor extends Component {
 
   componentDidMount = () => {
     this.updateMenuPosition();
+
+    const { value } = this.props.state;
+    const change = value.change();
+
+    change.focus();
+
+    this.onChange(change);
   };
 
   componentDidUpdate = () => {
@@ -138,7 +145,7 @@ export default class Editor extends Component {
     this.onChange(change);
   };
 
-  renderNode = props => {
+  renderNode = (props, next) => {
     const { type } = props.node;
 
     /* eslint-disable-next-line no-shadow */
@@ -152,7 +159,7 @@ export default class Editor extends Component {
         return <Mark {...props} />;
       }
 
-      return null;
+      return next();
     }
 
     return <Component {...props} />;
