@@ -1,4 +1,5 @@
 import blockquote from './components/blockquote';
+import blockquoteAuthor from './components/blockquote-author';
 import fonts from './components/fonts';
 import headline2 from './components/headline-2';
 import headline3 from './components/headline-3';
@@ -13,6 +14,7 @@ import title from './components/title';
 
 const blocks = [
   blockquote,
+  blockquoteAuthor,
   fonts,
   headline2,
   headline3,

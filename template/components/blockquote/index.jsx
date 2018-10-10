@@ -4,12 +4,47 @@ import LayoutConstraint from '../layout-constraint';
 import Icon from './quote-right.svg';
 import styles from './styles';
 
+const BLOCK_DEFINITION = {
+  object: 'block',
+  type: 'blockquote',
+  nodes: [
+    {
+      object: 'block',
+      type: 'paragraph',
+      nodes: [
+        {
+          object: 'text',
+          leaves: [
+            {
+              text: ''
+            }
+          ]
+        }
+      ]
+    },
+    {
+      object: 'block',
+      type: 'blockquote-author',
+      nodes: [
+        {
+          object: 'text',
+          leaves: [
+            {
+              text: 'Zitat - AutorIn'
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
 export default {
   name: 'blockquote',
   Icon,
   styles,
-  Component: props => (
-    <blockquote className="blockquote" {...props.attributes}>
+  Component: ({ attributes, children }) => (
+    <blockquote className="blockquote" {...attributes}>
       <style jsx>{styles}</style>
 
       <LayoutConstraint.Component>
@@ -17,10 +52,12 @@ export default {
           <Icon style={{ height: '3rem', width: '3rem' }} />
         </div>
 
-        <p className="text">{props.children}</p>
-
-        <p className="author">Autor*in Nachname</p>
+        {children}
       </LayoutConstraint.Component>
     </blockquote>
-  )
+  ),
+
+  insert(change) {
+    change.insertBlock(BLOCK_DEFINITION);
+  }
 };

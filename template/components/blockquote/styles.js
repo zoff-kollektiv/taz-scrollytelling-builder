@@ -14,15 +14,9 @@ export default css`
     text-align: center;
   }
 
-  .text {
-    font-size: 1.4rem;
+  /* Blockquote text */
+  :global(.blockquote p:not(.author)) {
+    font-size: 2rem;
     font-weight: bold;
-    line-height: 1.4;
-    text-align: center;
-  }
-
-  .author {
-    text-align: center;
-    text-transform: uppercase;
   }
 `;
