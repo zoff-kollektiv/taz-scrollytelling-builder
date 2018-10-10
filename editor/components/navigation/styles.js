@@ -15,9 +15,10 @@ export default css`
     display: block;
     flex: 1 0 auto;
     font-family: ${fonts.inter.family};
-    font-size: 0.9rem;
-    font-weight: ${fonts.inter.weight.medium};
-    padding: 0.5rem 4rem;
+    font-size: 0.7rem;
+    font-weight: ${fonts.inter.weight.black};
+    letter-spacing: 0.05rem;
+    padding: 0.4rem 4rem;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -30,5 +31,9 @@ export default css`
 
   :global(.navigation .item--is-active) {
     background-color: #151515;
+  }
+
+  :global(.navigation .item + .item) {
+    border-left: 1px solid #6b6b6b;
   }
 `;
