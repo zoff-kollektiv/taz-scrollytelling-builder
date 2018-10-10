@@ -5,6 +5,7 @@ import headline2 from './components/headline-2';
 import headline3 from './components/headline-3';
 import image from './components/image';
 import intro from './components/intro';
+import infobox from './components/infobox';
 import layout from './components/layout';
 import layoutConstraint from './components/layout-constraint';
 import paragraph from './components/paragraph';
@@ -20,6 +21,7 @@ const blocks = [
   headline3,
   image,
   intro,
+  infobox,
   layout,
   layoutConstraint,
   paragraph,
