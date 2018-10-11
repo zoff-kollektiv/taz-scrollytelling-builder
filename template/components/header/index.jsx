@@ -28,5 +28,9 @@ export default {
   styles,
   name: 'header',
   private: true,
-  Component: ({ node, ...rest }) => <Header data={node.data} {...rest} />
+  Component: ({ node, ...rest }) => <Header data={node.data} {...rest} />,
+
+  serialize(node, children) {
+    return <Header data={node.data}>{children}</Header>;
+  }
 };
