@@ -1,10 +1,6 @@
 import css from 'styled-jsx/css';
 
 export default css`
-  .intro {
-    margin-bottom: 4rem;
-  }
-
   .image-container {
     background-color: #0e0e0e;
     height: 90vh;
@@ -40,9 +36,5 @@ export default css`
     display: block;
     text-align: center;
     text-decoration: underline;
-  }
-
-  .authors {
-    text-align: center;
   }
 `;

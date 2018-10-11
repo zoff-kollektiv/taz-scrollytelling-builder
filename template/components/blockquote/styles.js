@@ -18,5 +18,6 @@ export default css`
   :global(.blockquote p:not(.author)) {
     font-size: 2rem;
     font-weight: bold;
+    text-align: center;
   }
 `;

@@ -6,15 +6,15 @@ export default {
   name: 'layout',
   private: true,
   styles,
-  Component: props => (
+  Component: ({ children }) => (
     <Fragment>
       <style jsx>{styles}</style>
 
-      {props.children}
+      {children}
     </Fragment>
   ),
 
-  serialize(data, children) {
+  serialize(node, children) {
     return (
       <html lang="de">
         <head>
