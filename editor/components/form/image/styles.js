@@ -1,28 +1,42 @@
 import css from 'styled-jsx/css';
 
+import { fonts } from '../../../tokens';
+
 export default css`
-  .input-image {
-    background-color: #efefef;
-    border: 1px solid #e0e0e0;
-    padding: 0.5rem;
+  .select {
+    background-color: black;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-family: ${fonts.inter.family};
+    font-size: 0.75rem;
+    font-weight: ${fonts.inter.weight.black};
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1.5rem;
   }
 
-  .input-image__meta {
-    font-size: 0.8rem;
-    margin-top: 1rem;
-  }
-
-  .input-image__files-title {
-    font-size: 1.4rem;
-  }
-
-  .input-image__files-list {
+  .file-list {
+    display: flex;
+    flex-direction: row;
     list-style: none;
-    margin: 0;
+    margin: 1rem 0;
     padding: 0;
   }
 
-  .input-image__preview {
-    max-width: 400px;
+  .file-name {
+    display: block;
+    font-family: ${fonts.inter.family};
+    font-size: 0.75rem;
+    font-weight: ${fonts.inter.weight.medium};
+    margin-bottom: 0.35rem;
+  }
+
+  .list-item {
+    max-width: 200px;
+  }
+
+  .file-preview {
+    height: auto;
+    width: 100%;
   }
 `;

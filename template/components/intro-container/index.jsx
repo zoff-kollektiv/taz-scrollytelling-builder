@@ -132,6 +132,8 @@ export default {
   onSelect() {
     return {
       fields: [
+        <InputImage name="background-image" />,
+        <Input name="title" label="Title" />,
         <Input
           name="publisher"
           label="Publisher name"
@@ -145,9 +147,7 @@ export default {
           readOnly
         />,
         <Input name="header-facebook" label="Facebook Link" />,
-        <Input name="header-twitter" label="Twitter Link" />,
-        <Input name="title" label="Title" />,
-        <InputImage name="background-image" />
+        <Input name="header-twitter" label="Twitter Link" />
       ]
     };
   },

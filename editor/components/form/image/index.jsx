@@ -29,33 +29,23 @@ export default class Field extends Component {
           style={{}}
           name={name}
         >
-          <button type="button">Select image</button>
-          <div className="input-image__meta">
-            <p>
-              Try dropping some files here. Only *.jpeg and *.png images will be
-              accepted.
-            </p>
-          </div>
+          <button type="button" className="select">
+            Select image
+          </button>
         </Dropzone>
 
         {this.state.files.length > 0 && (
-          <div className="input-image__files">
-            <h2 className="input-image__files-title">Dropped files</h2>
-            <ul className="input-image__files-list">
-              {this.state.files.map(_ => (
-                <li key={_.name}>
-                  {_.name} - {_.size} bytes
-                  {_.preview && (
-                    <img
-                      src={_.preview}
-                      alt=""
-                      className="input-image__preview"
-                    />
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul className="file-list">
+            {this.state.files.map(_ => (
+              <li key={_.name} className="list-item">
+                <span className="file-name">{_.name}</span>
+
+                {_.preview && (
+                  <img src={_.preview} alt="" className="file-preview" />
+                )}
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     );

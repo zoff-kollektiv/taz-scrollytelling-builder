@@ -53,7 +53,9 @@ class Form extends Component {
           <Group>{_}</Group>
         ))}
 
-        {buttons.map(Button => Button)}
+        {buttons.map(Button => (
+          <Group>{Button}</Group>
+        ))}
       </form>
     );
   }

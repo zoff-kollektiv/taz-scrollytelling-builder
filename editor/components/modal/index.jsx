@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 
+import styles from './styles';
+
 ReactModal.setAppElement('#builder');
 
-export default class Modal extends Component {
-  render() {
-    const { children } = this.props;
-
-    return (
-      <ReactModal
-        isOpen
-        onAfterOpen={this.afterOpenModal}
-        onRequestClose={this.closeModal}
-      >
-        {children}
-      </ReactModal>
-    );
-  }
-}
+export default ({ children }) => (
+  <ReactModal isOpen className="modal" overlayClassName="modal-overlay">
+    <style jsx>{styles}</style>
+    {children}
+  </ReactModal>
+);

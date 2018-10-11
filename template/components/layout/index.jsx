@@ -42,7 +42,7 @@ export default {
           </head>
 
           <body>
-            <div className="app">{children}</div>
+            <article className="app">{children}</article>
           </body>
         </html>
       </Fragment>
