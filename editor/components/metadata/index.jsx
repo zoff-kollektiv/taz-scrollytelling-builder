@@ -92,8 +92,6 @@ export default ({ metadata, updateMetadata }) => (
             </textarea>
           </label>
         </div>
-
-        <input type="hidden" name="og:type" value="website" />
       </section>
 
       <section className="section">
@@ -138,7 +136,6 @@ export default ({ metadata, updateMetadata }) => (
           </label>
         </div>
 
-        <input type="hidden" name="twitter:card" value="summary_large_image" />
         {/* TODO: this has to be equal to the site */}
         <input type="hidden" name="twitter:creator" />
       </section>
