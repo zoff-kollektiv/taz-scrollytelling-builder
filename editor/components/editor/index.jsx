@@ -10,7 +10,7 @@ import filename from '../../lib/filename';
 import { serialize as extractAssets } from './extract-assets';
 import { findMarkByName, marks } from '../../marks';
 import { version } from '../../../package.json';
-import { serialize as serializeHTML } from './serialize-html';
+import serializeHTML from './serialize-html';
 import styles from './styles';
 import Toolbar from './toolbar';
 import ToolbarMarks from './toolbar-marks';
@@ -23,6 +23,9 @@ const collectAndInlineStyles = (placeholder, html) => {
 
   return html.replace(placeholder, blockStyles);
 };
+
+const replaceDoctype = (placeholder, html) =>
+  html.replace(placeholder, '<!doctype html />');
 
 const downloadFile = (title, zip) => {
   const fileName = slugify(title, {
@@ -74,10 +77,11 @@ export default class Editor extends Component {
 
   onSave = () => {
     const { value } = this.props.state;
+    const { metadata } = this.props;
     const zip = new JSZip();
     const assetsFolder = zip.folder('assets');
 
-    let html = serializeHTML(value);
+    let html = serializeHTML(value, { metadata });
     const assets = extractAssets(value);
 
     Promise.all(assets)
@@ -96,6 +100,7 @@ export default class Editor extends Component {
         });
 
         html = collectAndInlineStyles('[styles]', html);
+        html = replaceDoctype('[doctype]', html);
 
         zip.file('index.html', html);
 

@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 
+import OpenGraph from './facebook';
 import styles from './styles';
+import TwitterCard from './twitter';
 
 export default {
   name: 'layout',
@@ -14,19 +16,36 @@ export default {
     </Fragment>
   ),
 
-  serialize(node, children) {
-    return (
-      <html lang="de">
-        <head>
-          <meta charSet="utf-8" />
-          <title>My Title</title>
-          <style type="text/css">[styles]</style>
-        </head>
+  serialize(node, children, data) {
+    const { title } = data.metadata;
+    const locale = data.metadata['og:locale'];
 
-        <body>
-          <div className="app">{children}</div>
-        </body>
-      </html>
+    return (
+      <Fragment>
+        {'[doctype]'}
+
+        <html lang={locale}>
+          <head>
+            <meta charSet="utf-8" />
+
+            <title>{title}</title>
+
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1"
+            />
+
+            <OpenGraph data={data.metadata} />
+            <TwitterCard data={data.metadata} />
+
+            <style type="text/css">[styles]</style>
+          </head>
+
+          <body>
+            <div className="app">{children}</div>
+          </body>
+        </html>
+      </Fragment>
     );
   }
 };

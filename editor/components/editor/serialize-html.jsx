@@ -4,7 +4,7 @@ import React from 'react';
 import { findMarkByName } from '../../marks';
 import { findBlockByName } from '../../../template';
 
-const serializeNode = (node, children) => {
+const serializeNode = (node, children, data) => {
   const { type } = node;
   const block = findBlockByName(type);
 
@@ -15,35 +15,39 @@ const serializeNode = (node, children) => {
     const mark = findMarkByName(type);
 
     if (mark.serialize) {
-      return mark.serialize(node, children);
+      return mark.serialize(node, children, data);
     }
 
     return <span>{children}</span>;
   }
 
-  return block.serialize(node, children);
+  return block.serialize(node, children, data);
 };
 
-const rules = [
-  {
-    deserialize() {
-      // no-op for now
-    },
+const serializeHTML = (value, data = {}) => {
+  const rules = [
+    {
+      deserialize() {
+        // no-op for now
+      },
 
-    serialize(obj, children) {
-      const { type } = obj;
+      serialize(obj, children) {
+        const { type } = obj;
 
-      // text nodes should not be serialized
-      if (!type) {
-        return;
+        // text nodes should not be serialized
+        if (!type) {
+          return;
+        }
+
+        // eslint-disable-next-line consistent-return
+        return serializeNode(obj, children, data);
       }
-
-      // eslint-disable-next-line consistent-return
-      return serializeNode(obj, children);
     }
-  }
-];
+  ];
 
-const { serialize } = new Html({ rules });
+  const { serialize } = new Html({ rules });
 
-export { serialize };
+  return serialize(value);
+};
+
+export default serializeHTML;
