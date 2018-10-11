@@ -9,6 +9,7 @@ import { blocks, findBlockByName } from '../../../template';
 import filename from '../../lib/filename';
 import { serialize as extractAssets } from './extract-assets';
 import { findMarkByName, marks } from '../../marks';
+import { version } from '../../../package.json';
 import { serialize as serializeHTML } from './serialize-html';
 import styles from './styles';
 import Toolbar from './toolbar';
@@ -49,7 +50,7 @@ export default class Editor extends Component {
   };
 
   onChange = ({ value }) => {
-    this.props.update({ value });
+    this.props.updateEditor({ value });
   };
 
   onSave = () => {
@@ -87,7 +88,16 @@ export default class Editor extends Component {
         html = html.replace('[styles]', blockStypes.join(''));
 
         zip.file('index.html', html);
-        zip.file('story.json', JSON.stringify(this.props.state));
+
+        // store the editor, metadata and current version-number of the project
+        zip.file(
+          'story.json',
+          JSON.stringify({
+            version,
+            editor: this.props.state,
+            metadata: this.props.metadata
+          })
+        );
 
         zip
           .generateAsync({ type: 'blob' })
@@ -214,7 +224,12 @@ export default class Editor extends Component {
             onSave={() => this.onSave()}
             onBlockAdd={(type, context) => this.insertBlock(type, context)}
             onUpload={data => {
-              this.props.update({ value: Value.fromJSON(data) });
+              const { editor, metadata } = data;
+              const { updateEditor, updateMetadata } = this.props;
+              const jsonValue = Value.fromJSON(editor.value);
+
+              updateEditor({ value: jsonValue });
+              updateMetadata(metadata);
             }}
           />
         </div>
