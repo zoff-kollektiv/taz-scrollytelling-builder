@@ -26,12 +26,13 @@ export default class Block extends Component {
         const { fields } = onSelect();
         const buttons = [<Button type="submit">Add block</Button>];
         const onSubmit = formData => {
-          const context = {};
-
-          // eslint-disable-next-line no-restricted-syntax
-          for (const _ of formData.entries()) {
-            context[_[0]] = _[1];
-          }
+          const context = [...formData.entries()].reduce(
+            (acc, [key, value]) => {
+              acc[key] = value;
+              return acc;
+            },
+            {}
+          );
 
           onBlockAdd(name, { ...context });
           this.hideModal();
