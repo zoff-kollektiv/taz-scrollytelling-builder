@@ -163,6 +163,8 @@ export default {
     ]);
   },
 
+  serialize: (node, children) => <IntroContainer data={node.data}>{children}</IntroContainer>,
+
   insert(change, data) {
     BLOCK_DEFINITION.data = data;
 

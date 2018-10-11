@@ -25,22 +25,26 @@ const BLOCK_DEFINITION = {
   ]
 };
 
+const InfoBox = ({ attributes = {}, children }) => (
+  <div className="infobox" {...attributes}>
+    <style jsx>{styles}</style>
+
+    <div className="logo-container">
+      <LogoIcon style={{ height: '4rem', width: '4rem' }} />
+    </div>
+
+    <layoutConstraint.Component attributes={{}}>
+      {children}
+    </layoutConstraint.Component>
+  </div>
+);
+
 export default {
   name: 'infobox',
   styles,
-  Component: ({ attributes, children }) => (
-    <div className="infobox" {...attributes}>
-      <style jsx>{styles}</style>
+  Component: ({ node, ...rest }) => <InfoBox data={node.data} {...rest} />,
 
-      <div className="logo-container">
-        <LogoIcon style={{ height: '4rem', width: '4rem' }} />
-      </div>
-
-      <layoutConstraint.Component attributes={{}}>
-        {children}
-      </layoutConstraint.Component>
-    </div>
-  ),
+  serialize: (node, children) => <InfoBox data={node.data}>{children}</InfoBox>,
 
   insert(change) {
     change.insertBlock(BLOCK_DEFINITION);
