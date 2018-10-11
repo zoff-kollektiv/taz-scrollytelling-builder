@@ -52,19 +52,19 @@ const dataURLtoBlob = dataurl => {
 };
 
 export default class Editor extends Component {
-  elRefs = {
-    toolbarMarkRef: React.createRef()
-  };
+  editor = React.createRef();
+
+  toolbarMark = React.createRef();
 
   componentDidMount = () => {
     this.updateMenuPosition();
 
-    const { value } = this.props.state;
-    const change = value.change();
+    const editor = this.editor.current;
 
-    change.focus();
-
-    this.onChange(change);
+    // ensure the focus is set
+    editor.change(change => {
+      change.focus();
+    });
   };
 
   componentDidUpdate = () => {
@@ -119,7 +119,7 @@ export default class Editor extends Component {
   };
 
   updateMenuPosition = () => {
-    const { current } = this.elRefs.toolbarMarkRef;
+    const { current } = this.toolbarMark;
 
     if (!current) {
       return;
@@ -133,7 +133,7 @@ export default class Editor extends Component {
       // the event
       setTimeout(() => {
         current.style.display = 'none';
-      }, 50);
+      }, 100);
       return;
     }
 
@@ -158,22 +158,22 @@ export default class Editor extends Component {
   };
 
   insertBlock = (type, data) => {
-    const change = this.props.state.value.change();
+    const editor = this.editor.current;
     const block = findBlockByName(type);
 
-    if (block && block.insert) {
-      block.insert(change, data);
-    } else {
-      change.insertBlock({
-        type,
-        data
-      });
+    editor.change(change => {
+      if (block && block.insert) {
+        block.insert(change, data);
+      } else {
+        change.insertBlock({
+          type,
+          data
+        });
 
-      change.focus();
-      change.moveFocusToStartOfText();
-    }
-
-    this.onChange(change);
+        change.focus();
+        change.moveFocusToStartOfText();
+      }
+    });
   };
 
   renderNode = (props, next) => {
@@ -215,14 +215,16 @@ export default class Editor extends Component {
         <style jsx>{styles}</style>
 
         <div className="editor">
-          <div
-            className="editor__toolbar-marks"
-            ref={this.elRefs.toolbarMarkRef}
-          >
-            <ToolbarMarks update={this.onChange} state={value} marks={marks} />
+          <div className="editor__toolbar-marks" ref={this.toolbarMark}>
+            <ToolbarMarks
+              editor={this.editor.current}
+              state={value}
+              marks={marks}
+            />
           </div>
 
           <SlateEditor
+            ref={this.editor}
             spellCheck={false}
             value={value}
             onChange={this.onChange}

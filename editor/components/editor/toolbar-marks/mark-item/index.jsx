@@ -5,9 +5,9 @@ import { findMarkByName } from '../../../../marks';
 import styles from './styles';
 
 const selectionHasMark = (state, name) =>
-  state.activeMarks.some(_ => _.type === name);
+  [...state.activeMarks, ...state.inlines].some(_ => _.type === name);
 
-export default ({ update, state, name, label, Icon }) => (
+export default ({ editor, state, name, label, Icon }) => (
   <button
     className={classnames('mark-item', {
       'mark-item--is-active': selectionHasMark(state, name)
@@ -16,12 +16,13 @@ export default ({ update, state, name, label, Icon }) => (
     onClick={() => {
       const mark = findMarkByName(name);
 
-      if (mark && mark.onSelect) {
-        mark.onSelect(state, update);
-      } else {
-        const change = state.change().toggleMark(name);
-        update(change);
-      }
+      editor.change(change => {
+        if (mark && mark.onSelect) {
+          mark.onSelect(state, change);
+        } else {
+          change.toggleMark(name);
+        }
+      });
     }}
   >
     <style jsx>{styles}</style>

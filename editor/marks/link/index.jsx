@@ -14,6 +14,10 @@ const wrapLink = (change, href) => {
     .moveToEnd();
 };
 
+const unwrapLink = change => {
+  change.unwrapInline('link');
+};
+
 const selectionHasLink = state => state.inlines.some(_ => _.type === 'link');
 
 export default {
@@ -37,9 +41,7 @@ export default {
     return <a href={href}>{children}</a>;
   },
 
-  onSelect(state, update) {
-    const change = state.change();
-
+  onSelect(state, change) {
     if (!selectionHasLink(state)) {
       // eslint-disable-next-line no-alert
       const href = window.prompt('Enter the URL of the link:');
@@ -47,8 +49,8 @@ export default {
       if ((href && href.startsWith('#')) || isUrl(href)) {
         change.call(wrapLink, href);
       }
+    } else {
+      change.call(unwrapLink);
     }
-
-    update(change);
   }
 };
