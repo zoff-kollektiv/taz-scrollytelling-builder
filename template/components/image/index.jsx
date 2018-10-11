@@ -7,40 +7,44 @@ import Icon from './image.svg';
 import layoutConstraint from '../layout-constraint';
 import styles from './styles';
 
+const Image = ({ data, attributes = {}, children }) => {
+  const alt = data.get('alt');
+  const author = data.get('author');
+  const caption = data.get('caption');
+  const file = data.get('image');
+  const attrs = {
+    alt,
+    src: file,
+    className: 'image'
+  };
+
+  return (
+    <figure {...attributes}>
+      <style jsx>{styles}</style>
+
+      <layoutConstraint.Component>
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
+        <img {...attrs} />
+
+        {(caption || author) && (
+          <figcaption>
+            {caption}
+
+            {author && <small>{author}</small>}
+          </figcaption>
+        )}
+
+        {children}
+      </layoutConstraint.Component>
+    </figure>
+  );
+};
+
 export default {
   name: 'image',
   Icon,
   styles,
-  Component(props) {
-    const { data } = props.node;
-    const alt = data.get('alt');
-    const author = data.get('author');
-    const caption = data.get('caption');
-    const file = data.get('image');
-    const attrs = {
-      alt,
-      src: file,
-      className: 'image'
-    };
-
-    return (
-      <layoutConstraint.Component>
-        <figure>
-          <style jsx>{styles}</style>
-          {/* eslint-disable-next-line jsx-a11y/alt-text */}
-          <img {...attrs} />
-
-          {(caption || author) && (
-            <figcaption>
-              {caption}
-
-              {author && <small>{author}</small>}
-            </figcaption>
-          )}
-        </figure>
-      </layoutConstraint.Component>
-    );
-  },
+  Component: ({ node, ...rest }) => <Image data={node.data} {...rest} />,
 
   serialize({ data }) {
     const alt = data.get('alt') || '';
