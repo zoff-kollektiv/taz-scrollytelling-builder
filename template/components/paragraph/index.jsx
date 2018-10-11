@@ -15,7 +15,9 @@ export default {
   Icon,
   private: true,
   styles,
-  Component: ({ node, ...rest }) => <ParagraphStandalone data={node.data} {...rest} />,
+  Component: ({ node, ...rest }) => (
+    <ParagraphStandalone data={node.data} {...rest} />
+  ),
 
   serialize: (node, children) => (
     <ParagraphStandalone data={node.data}>{children}</ParagraphStandalone>

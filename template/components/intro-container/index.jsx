@@ -123,6 +123,8 @@ const IntroContainer = ({ attributes, children }) => (
 export default {
   name: 'intro-container',
 
+  styles,
+
   Component: ({ node, ...rest }) => (
     <IntroContainer data={node.data} {...rest} />
   ),
@@ -163,7 +165,9 @@ export default {
     ]);
   },
 
-  serialize: (node, children) => <IntroContainer data={node.data}>{children}</IntroContainer>,
+  serialize: (node, children) => (
+    <IntroContainer data={node.data}>{children}</IntroContainer>
+  ),
 
   insert(change, data) {
     BLOCK_DEFINITION.data = data;

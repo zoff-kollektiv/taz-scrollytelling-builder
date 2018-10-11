@@ -7,6 +7,10 @@ const PublicationDate = ({ attributes = {}, children }) => (
 export default {
   name: 'publication-date',
   private: true,
-  Component: ({ node, ...rest }) => <PublicationDate data={node.data} {...rest} />,
-  serialize: (node, children) => <PublicationDate data={node.data}>{children}</PublicationDate>
+  Component: ({ node, ...rest }) => (
+    <PublicationDate data={node.data} {...rest} />
+  ),
+  serialize: (node, children) => (
+    <PublicationDate data={node.data}>{children}</PublicationDate>
+  )
 };
