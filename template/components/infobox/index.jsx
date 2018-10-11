@@ -33,9 +33,7 @@ const InfoBox = ({ attributes = {}, children }) => (
       <LogoIcon style={{ height: '4rem', width: '4rem' }} />
     </div>
 
-    <layoutConstraint.Component attributes={{}}>
-      {children}
-    </layoutConstraint.Component>
+    <layoutConstraint.Component>{children}</layoutConstraint.Component>
   </div>
 );
 

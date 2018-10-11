@@ -24,7 +24,7 @@ export default {
     };
 
     return (
-      <layoutConstraint.Component attributes={{}}>
+      <layoutConstraint.Component>
         <figure>
           <style jsx>{styles}</style>
           {/* eslint-disable-next-line jsx-a11y/alt-text */}
