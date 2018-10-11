@@ -5,23 +5,17 @@ import filename from '../../../editor/lib/filename';
 import styles from './styles';
 
 const Intro = ({ data, attributes = {}, children, serialize = false }) => {
-  const imageAttrs = {
-    className: 'background-image'
-  };
-
-  if (!serialize) {
-    imageAttrs.src = data.get('background-image');
-  } else {
-    const name = data.get('background-image_name');
-    imageAttrs.src = `./assets/images/${filename(name)}`;
-  }
+  const backgroundUrl = !serialize
+    ? data.get('background-image')
+    : `./assets/images/${filename(data.get('background-image_name'))}`;
 
   return (
-    <div className="image-container" {...attributes}>
+    <div
+      className="image-container"
+      style={{ backgroundImage: `url(${backgroundUrl})` }}
+      {...attributes}
+    >
       <style jsx>{styles}</style>
-
-      {/* eslint-disable-next-line jsx-a11y/alt-text */}
-      {imageAttrs.src && <img {...imageAttrs} />}
 
       <div className="content">{children}</div>
     </div>

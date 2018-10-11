@@ -2,21 +2,14 @@ import css from 'styled-jsx/css';
 
 export default css`
   .image-container {
+    background-attachment: fixed;
     background-color: #0e0e0e;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 90vh;
     overflow: hidden;
     position: relative;
-  }
-
-  .background-image {
-    left: 50%;
-    min-height: 100%;
-    min-width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: auto;
-    z-index: 1;
   }
 
   .content {
