@@ -1,6 +1,10 @@
 import css from 'styled-jsx/css';
 
 export default css`
+  .editor {
+    padding-bottom: 4rem;
+  }
+
   .editor__toolbar-marks {
     position: absolute;
     z-index: 100;

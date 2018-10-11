@@ -19,10 +19,10 @@ const Image = ({ data, attributes = {}, children }) => {
   };
 
   return (
-    <figure {...attributes}>
-      <style jsx>{styles}</style>
+    <layoutConstraint.Component>
+      <figure className="figure" {...attributes}>
+        <style jsx>{styles}</style>
 
-      <layoutConstraint.Component>
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <img {...attrs} />
 
@@ -35,8 +35,8 @@ const Image = ({ data, attributes = {}, children }) => {
         )}
 
         {children}
-      </layoutConstraint.Component>
-    </figure>
+      </figure>
+    </layoutConstraint.Component>
   );
 };
 
