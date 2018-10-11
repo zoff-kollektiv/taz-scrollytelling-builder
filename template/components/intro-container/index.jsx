@@ -113,7 +113,7 @@ const BLOCK_DEFINITION = {
   ]
 };
 
-const IntroContainer = ({ attributes, children }) => (
+const IntroContainer = ({ attributes = {}, children }) => (
   <section className="intro" {...attributes}>
     <style jsx>{styles}</style>
     {children}
@@ -122,6 +122,8 @@ const IntroContainer = ({ attributes, children }) => (
 
 export default {
   name: 'intro-container',
+
+  styles,
 
   Component: ({ node, ...rest }) => (
     <IntroContainer data={node.data} {...rest} />
@@ -162,6 +164,10 @@ export default {
       }
     ]);
   },
+
+  serialize: (node, children) => (
+    <IntroContainer data={node.data}>{children}</IntroContainer>
+  ),
 
   insert(change, data) {
     BLOCK_DEFINITION.data = data;

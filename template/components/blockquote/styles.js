@@ -15,7 +15,7 @@ export default css`
   }
 
   /* Blockquote text */
-  :global(.blockquote p:not(.author)) {
+  :global(.blockquote .paragraph:not(.author)) {
     font-size: 2rem;
     font-weight: bold;
     text-align: center;

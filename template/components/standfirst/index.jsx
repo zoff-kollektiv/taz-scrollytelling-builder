@@ -8,7 +8,7 @@ export default {
   private: true,
   styles,
   Component: props => (
-    <layoutConstraint.Component attributes={{}}>
+    <layoutConstraint.Component>
       <p className="standfirst" {...props.attributes}>
         <style jsx>{styles}</style>
         {props.children}
