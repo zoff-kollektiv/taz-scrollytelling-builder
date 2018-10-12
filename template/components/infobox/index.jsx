@@ -1,7 +1,7 @@
 import React from 'react';
 
 import layoutConstraint from '../layout-constraint';
-import LogoIcon from './logo.svg';
+import LogoIcon from '../../assets/images/logo.svg';
 import styles from './styles';
 
 const BLOCK_DEFINITION = {
@@ -30,7 +30,7 @@ const InfoBox = ({ attributes = {}, children }) => (
     <style jsx>{styles}</style>
 
     <div className="logo-container">
-      <LogoIcon style={{ height: '4rem', width: '4rem' }} />
+      <LogoIcon />
     </div>
 
     <layoutConstraint.Component>{children}</layoutConstraint.Component>

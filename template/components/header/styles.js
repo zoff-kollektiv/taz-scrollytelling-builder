@@ -10,7 +10,7 @@ export default css`
     flex-direction: row;
     flex-wrap: nowrap;
     left: 0;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     position: absolute;
     top: 3rem;
     width: 100%;
@@ -18,9 +18,14 @@ export default css`
   }
 
   .logo-container {
-    left: 5rem;
+    left: 6rem;
     position: absolute;
     top: -0.75rem;
+  }
+
+  :global(.header .logo-container svg) {
+    height: 3.5rem;
+    width: 3.5rem;
   }
 
   .title {

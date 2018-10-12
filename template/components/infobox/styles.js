@@ -15,4 +15,13 @@ export default css`
     top: 0;
     transform: translate(-50%, -50%);
   }
+
+  :global(.infobox .logo-container svg) {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  :global(.infobox .logo-container path) {
+    fill: black;
+  }
 `;
