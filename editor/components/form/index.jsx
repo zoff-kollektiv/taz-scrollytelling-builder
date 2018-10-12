@@ -39,7 +39,7 @@ class Form extends Component {
   };
 
   render() {
-    const { enctype, buttons, fields } = this.props;
+    const { enctype, buttons = [], fields } = this.props;
 
     return (
       <form

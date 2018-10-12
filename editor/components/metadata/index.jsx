@@ -1,6 +1,9 @@
 import React from 'react';
 
+import Form from '../form';
+import Input from '../form/input';
 import styles from './styles';
+import Textarea from '../form/textarea';
 
 const onSubmit = (event, callback) => {
   event.preventDefault();
@@ -20,127 +23,58 @@ export default ({ metadata, updateMetadata }) => (
   <main className="metadata">
     <style jsx>{styles}</style>
 
-    <form
-      className="constraint"
-      onSubmit={event => onSubmit(event, updateMetadata)}
-    >
-      <h1 className="title">Metadata</h1>
+    <h1 className="title">Metadata</h1>
 
-      <section className="section">
-        <h2 className="section-title">Google</h2>
+    <Form
+      fields={[
+        <Input name="title" label="Title" defaultValue={metadata.title} />,
+        <Textarea
+          name="description"
+          label="Description"
+          defaultValue={metadata.description}
+        />,
 
-        <div className="section-block">
-          <label>
-            <span className="label-text">Title</span>
-            <input type="text" name="title" defaultValue={metadata.title} />
-          </label>
-        </div>
+        <Input
+          name="og:title"
+          label="Title"
+          defaultValue={metadata['og:title']}
+          placeholder={metadata.title}
+        />,
+        <Textarea
+          name="og:description"
+          defaultValue={metadata['og:description']}
+          label="Description"
+        />,
+        <Input name="og:site_name" label="Site Name" />,
+        <Input name="og:url" label="URL" />,
+        <Input
+          name="og:locale"
+          label="Locale"
+          defaultValue={metadata['og:locale']}
+        />,
 
-        <div className="section-block">
-          <label>
-            <span className="label-text">Description</span>
-            <textarea name="description">{metadata.description}</textarea>
-          </label>
-        </div>
-      </section>
-
-      <section className="section">
-        <h2 className="section-title">Facebook Open-Graph</h2>
-
-        <div className="section-block">
-          <label>
-            <span className="label-text">Title</span>
-            <input
-              type="text"
-              name="og:title"
-              placeholder={metadata.title}
-              defaultValue={metadata['og:title']}
-            />
-          </label>
-        </div>
-
-        <div className="section-block">
-          <label>
-            <span className="label-text">Site Name</span>
-            <input type="text" name="og:site_name" />
-          </label>
-        </div>
-
-        <div className="section-block">
-          <label>
-            <span className="label-text">URL</span>
-            <input type="text" name="og:url" />
-          </label>
-        </div>
-
-        <div className="section-block">
-          <label>
-            <span className="label-text">Locale</span>
-            <input
-              type="text"
-              name="og:locale"
-              defaultValue={metadata['og:locale']}
-            />
-          </label>
-        </div>
-
-        <div className="section-block">
-          <label>
-            <span className="label-text">Description</span>
-            <textarea name="og:description" placeholder={metadata.description}>
-              {metadata['og:description']}
-            </textarea>
-          </label>
-        </div>
-      </section>
-
-      <section className="section">
-        <h2 className="section-title">Twitter Card</h2>
-
-        <div className="section-block">
-          <label>
-            <span className="label-text">Title</span>
-            <input
-              type="text"
-              name="twitter:title"
-              placeholder={metadata.title}
-              defaultValue={metadata['twitter:title']}
-            />
-          </label>
-        </div>
-
-        <div className="section-block">
-          <label>
-            <span className="label-text">Text</span>
-            <textarea
-              name="witter:description"
-              placeholder={metadata.description}
-            >
-              {metadata['twitter:description']}
-            </textarea>
-          </label>
-        </div>
-
-        <div className="section-block">
-          <label>
-            <span className="label-text">URL</span>
-            {/* TODO: this can be equal to the facebook url */}
-            <input type="text" name="twitter:url" />
-          </label>
-        </div>
-
-        <div className="section-block">
-          <label>
-            <span className="label-text">Site</span>
-            <input type="text" name="twitter:site" />
-          </label>
-        </div>
-
-        {/* TODO: this has to be equal to the site */}
-        <input type="hidden" name="twitter:creator" />
-      </section>
-
-      <button type="submit">Save</button>
-    </form>
+        <Input
+          name="twitter:title"
+          label="Title"
+          defaultValue={metadata['twitter:title']}
+          placeholder={metadata.title}
+        />,
+        <Input
+          name="twitter:site"
+          label="Site Name"
+          defaultValue={metadata['twitter:site']}
+        />,
+        <Input
+          name="twitter:url"
+          label="URL"
+          defaultValue={metadata['twitter:url']}
+        />,
+        <Input
+          name="og:locale"
+          label="Locale"
+          defaultValue={metadata['og:locale']}
+        />
+      ]}
+    />
   </main>
 );
