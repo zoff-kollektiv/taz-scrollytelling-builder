@@ -21,6 +21,11 @@ export default ({ metadata, updateMetadataField }) => (
     <div className="constraint">
       <h1 className="title">Metadata</h1>
 
+      <p className="intro">
+        These are sharing information, which are used by facebook and twitter
+        to show proper previews of the story.
+      </p>
+
       <Form
         fields={[
           <Input
@@ -35,6 +40,8 @@ export default ({ metadata, updateMetadataField }) => (
             defaultValue={metadata.description}
             onChange={event => updateField(event, updateMetadataField)}
           />,
+
+          <h2 className="section-title">Facebook</h2>,
 
           <Input
             name="og:title"
@@ -61,6 +68,8 @@ export default ({ metadata, updateMetadataField }) => (
             defaultValue={metadata['og:locale']}
             onChange={event => updateField(event, updateMetadataField)}
           />,
+
+          <h2 className="section-title">Twitter</h2>,
 
           <Input
             name="twitter:title"

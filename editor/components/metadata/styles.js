@@ -20,7 +20,21 @@ export default css`
   .title {
     font-family: ${fonts.inter.family};
     font-weight: ${fonts.inter.weight.black};
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     margin-top: 0;
+  }
+
+  .intro {
+    font-family: ${fonts.inter.family};
+    font-size: 0.9rem;
+    font-weight: ${fonts.inter.weight.medium};
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-family: ${fonts.inter.family};
+    font-weight: ${fonts.inter.weight.black};
+    margin-bottom: 0.5rem;
+    margin-top: 3.5rem;
   }
 `;
