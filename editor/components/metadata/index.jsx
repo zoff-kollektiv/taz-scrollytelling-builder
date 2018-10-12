@@ -5,21 +5,16 @@ import Input from '../form/input';
 import styles from './styles';
 import Textarea from '../form/textarea';
 
-const onSubmit = (event, callback) => {
+const updateField = (event, callback) => {
   event.preventDefault();
 
-  const formData = new FormData(event.target);
-  const formDataEntries = formData.entries();
+  const { target } = event;
+  const { name, value } = target;
 
-  const metadata = [...formDataEntries].reduce((acc, [name, value]) => {
-    acc[name] = value;
-    return acc;
-  }, {});
-
-  callback(metadata);
+  callback(name, value);
 };
 
-export default ({ metadata, updateMetadata }) => (
+export default ({ metadata, updateMetadataField }) => (
   <main className="metadata">
     <style jsx>{styles}</style>
 
@@ -27,11 +22,17 @@ export default ({ metadata, updateMetadata }) => (
 
     <Form
       fields={[
-        <Input name="title" label="Title" defaultValue={metadata.title} />,
+        <Input
+          name="title"
+          label="Title"
+          defaultValue={metadata.title}
+          onChange={event => updateField(event, updateMetadataField)}
+        />,
         <Textarea
           name="description"
           label="Description"
           defaultValue={metadata.description}
+          onChange={event => updateField(event, updateMetadataField)}
         />,
 
         <Input
@@ -39,18 +40,25 @@ export default ({ metadata, updateMetadata }) => (
           label="Title"
           defaultValue={metadata['og:title']}
           placeholder={metadata.title}
+          onChange={event => updateField(event, updateMetadataField)}
         />,
         <Textarea
           name="og:description"
           defaultValue={metadata['og:description']}
           label="Description"
+          onChange={event => updateField(event, updateMetadataField)}
         />,
-        <Input name="og:site_name" label="Site Name" />,
+        <Input
+          name="og:site_name"
+          label="Site Name"
+          onChange={event => updateField(event, updateMetadataField)}
+        />,
         <Input name="og:url" label="URL" />,
         <Input
           name="og:locale"
           label="Locale"
           defaultValue={metadata['og:locale']}
+          onChange={event => updateField(event, updateMetadataField)}
         />,
 
         <Input
@@ -58,21 +66,25 @@ export default ({ metadata, updateMetadata }) => (
           label="Title"
           defaultValue={metadata['twitter:title']}
           placeholder={metadata.title}
+          onChange={event => updateField(event, updateMetadataField)}
         />,
         <Input
           name="twitter:site"
           label="Site Name"
           defaultValue={metadata['twitter:site']}
+          onChange={event => updateField(event, updateMetadataField)}
         />,
         <Input
           name="twitter:url"
           label="URL"
           defaultValue={metadata['twitter:url']}
+          onChange={event => updateField(event, updateMetadataField)}
         />,
         <Input
           name="og:locale"
           label="Locale"
           defaultValue={metadata['og:locale']}
+          onChange={event => updateField(event, updateMetadataField)}
         />
       ]}
     />
