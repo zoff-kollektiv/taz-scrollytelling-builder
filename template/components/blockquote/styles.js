@@ -1,5 +1,7 @@
 import css from 'styled-jsx/css';
 
+import { fonts } from '../../tokens';
+
 export default css`
   .blockquote {
     align-items: center;
@@ -16,8 +18,12 @@ export default css`
 
   /* Blockquote text */
   :global(.blockquote .paragraph:not(.author)) {
-    font-size: 2rem;
+    font-family: ${fonts.sansSerif.family};
+    font-size: 2.25rem;
+    font-weight: ${fonts.sansSerif.weight.bold};
     font-weight: bold;
+    letter-spacing: 0.05rem;
+    line-height: ${44 / 36};
     text-align: center;
   }
 `;

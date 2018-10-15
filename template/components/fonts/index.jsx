@@ -32,7 +32,16 @@ export default {
       'poppins-italic.ttf',
       'poppins-italic.woff',
       'poppins-bold-italic.ttf',
-      'poppins-bold-italic.woff'
+      'poppins-bold-italic.woff',
+
+      'lora.ttf',
+      'lora.woff',
+      'lora-bold.ttf',
+      'lora-bold.woff',
+      'lora-italic.ttf',
+      'lora-italic.woff',
+      'lora-bold-italic.ttf',
+      'lora-bold-italic.woff'
     ].map(name =>
       fetch(`./assets/fonts/${name}`)
         .then(res => res.blob())

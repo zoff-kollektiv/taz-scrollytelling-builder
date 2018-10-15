@@ -6,9 +6,10 @@ import styles from './styles';
 const Header = ({ data, children, attributes = {} }) => {
   const publisher = data.get('publisher');
   const title = data.get('header-title');
+  const researchType = data.get('header-research-type');
 
   return (
-    <header className="header" {...attributes}>
+    <header className="header" readOnly {...attributes}>
       <style jsx>{styles}</style>
 
       <strong>{publisher}</strong>
@@ -17,7 +18,10 @@ const Header = ({ data, children, attributes = {} }) => {
         <LogoIcon />
       </div>
 
-      <em className="title">{title}</em>
+      <em className="title">
+        {title}
+        <small className="research-network">{researchType}</small>
+      </em>
 
       {children}
     </header>

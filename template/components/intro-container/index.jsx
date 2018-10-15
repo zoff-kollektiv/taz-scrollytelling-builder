@@ -141,13 +141,19 @@ export default {
           readOnly
         />,
         <Input
+          type="hidden"
           name="header-title"
           label="Main title"
-          value="Europe's Far Right"
+          value="Europe's Far Right."
           readOnly
         />,
-        <Input name="header-facebook" label="Facebook Link" />,
-        <Input name="header-twitter" label="Twitter Link" />
+        <Input
+          type="hidden"
+          name="header-research-type"
+          label="Research Type"
+          value="Research Network"
+          readOnly
+        />
       ]
     };
   },

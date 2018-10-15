@@ -21,7 +21,7 @@ export default css`
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
-    width: 100%;
+    width: 620px;
     z-index: 2;
   }
 
