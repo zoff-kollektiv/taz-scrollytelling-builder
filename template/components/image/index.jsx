@@ -83,7 +83,7 @@ export default {
           name="type"
           label="Size"
           choices={[
-            ['constraint', 'As content'],
+            ['constraint', 'Same as content'],
             ['wide', 'Wider as content'],
             ['full', 'Full width']
           ]}
