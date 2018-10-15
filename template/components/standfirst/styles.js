@@ -1,10 +1,14 @@
 import css from 'styled-jsx/css';
 
+import { fonts } from '../../tokens';
+
 export default css`
   .standfirst {
-    font-family: Poppins, Georgia;
-    font-size: 1.3rem;
-    line-height: 1.5;
+    font-family: ${fonts.sansSerif.family};
+    font-size: 1.125rem;
+    font-weight: ${fonts.sansSerif.weight.regular};
+    margin-bottom: 0;
+    margin-top: 0.75rem;
     text-align: center;
   }
 `;

@@ -1,6 +1,6 @@
 import css from 'styled-jsx/css';
 
-import { colors } from '../../tokens';
+import { colors, fonts } from '../../tokens';
 
 export default css`
   .header {
@@ -10,7 +10,7 @@ export default css`
     flex-direction: row;
     flex-wrap: nowrap;
     left: 0;
-    padding: 0.5rem 2rem;
+    padding: 0.4rem 2rem;
     position: absolute;
     top: 3rem;
     width: 100%;
@@ -29,8 +29,18 @@ export default css`
   }
 
   .title {
+    font-family: ${fonts.sansSerif.family};
+    font-size: 0.875rem;
     font-style: normal;
+    font-weight: ${fonts.sansSerif.weight.bold};
+    letter-spacing: 2px;
     margin-left: 6rem;
     text-transform: uppercase;
+  }
+
+  .research-network {
+    font-size: 0.825rem;
+    font-weight: ${fonts.sansSerif.weight.regular};
+    margin-left: 0.5rem;
   }
 `;
