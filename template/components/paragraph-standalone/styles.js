@@ -13,4 +13,12 @@ export default css`
     color: currentColor;
     text-decoration: underline;
   }
+
+  :global(.paragraph em) {
+    background-color: black;
+    color: white;
+    font-style: normal;
+    font-weight: ${fonts.sansSerif.weight.bold};
+    padding: 0.15rem 0.35rem;
+  }
 `;
