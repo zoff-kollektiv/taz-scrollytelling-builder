@@ -31,8 +31,6 @@ export default {
       'poppins-bold.woff',
       'poppins-italic.ttf',
       'poppins-italic.woff',
-      'poppins-bold-italic.ttf',
-      'poppins-bold-italic.woff',
 
       'lora.ttf',
       'lora.woff',

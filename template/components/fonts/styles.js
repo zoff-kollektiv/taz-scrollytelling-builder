@@ -6,8 +6,6 @@ import './poppins-bold.ttf';
 import './poppins-bold.woff';
 import './poppins-italic.ttf';
 import './poppins-italic.woff';
-import './poppins-bold-italic.ttf';
-import './poppins-bold-italic.woff';
 
 import './lora.ttf';
 import './lora.woff';
@@ -60,18 +58,6 @@ export default css`
 
   @font-face {
     font-display: swap;
-    font-family: 'Poppins';
-    font-style: italic;
-    font-weight: 700;
-    src:
-      local('Poppins Bold Italic'),
-      local('Poppins-BoldItalic'),
-      url('${path}/poppins-bold-italic.woff') format('woff'),
-      url('${path}/poppins-bold-italic.ttf') format('truetype');
-  }
-
-  @font-face {
-    font-display: swap;
     font-family: 'Lora';
     font-style: normal;
     font-weight: 400;
@@ -85,12 +71,12 @@ export default css`
   @font-face {
     font-display: swap;
     font-family: 'Lora';
-    font-style: normal;
+    font-style: italic;
     font-weight: 700;
-    src: local('Lora Bold'),
-         local('Lora-Bold'),
-         url(${path}/lora-bold.woff) format('woff'),
-         url(${path}/lora-bold.ttf) format('truetype');
+    src: local('Lora Bold Italic'),
+         local('Lora-BoldItalic'),
+         url(${path}/lora-bold-italic.woff) format('woff'),
+         url(${path}/lora-bold-italic.ttf) format('truetype');
   }
 
   @font-face {
@@ -102,16 +88,5 @@ export default css`
          local('Lora-Italic'),
          url(${path}/lora-italic.woff) format('woff'),
          url(${path}/lora-italic.ttf) format('truetype');
-  }
-
-  @font-face {
-    font-display: swap;
-    font-family: 'Lora';
-    font-style: italic;
-    font-weight: 700;
-    src: local('Lora Bold Italic'),
-         local('Lora-BoldItalic'),
-         url(${path}/lora-bold-italic.woff) format('woff'),
-         url(${path}/lora-bold-italic.ttf) format('truetype');
   }
 `;
