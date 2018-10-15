@@ -71,6 +71,17 @@ export default css`
   @font-face {
     font-display: swap;
     font-family: 'Lora';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Lora Bold'),
+         local('Lora-Bold'),
+         url(${path}/lora-bold.woff) format('woff'),
+         url(${path}/lora-bold.ttf) format('truetype');
+  }
+
+  @font-face {
+    font-display: swap;
+    font-family: 'Lora';
     font-style: italic;
     font-weight: 700;
     src: local('Lora Bold Italic'),
