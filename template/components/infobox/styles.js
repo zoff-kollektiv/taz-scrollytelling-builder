@@ -22,7 +22,7 @@ export default css`
     font-family: ${fonts.sansSerif.family};
     font-size: 1.125rem;
     font-weight: ${fonts.sansSerif.weight.regular};
-    line-height: ${22 / 16};
+    line-height: 1.5;
   }
 
   :global(.infobox .logo-container svg) {
