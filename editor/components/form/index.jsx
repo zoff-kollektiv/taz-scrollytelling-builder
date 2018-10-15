@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Group from './group';
+import styles from './styles';
 
 const fileToDataURL = file =>
   new Promise(resolve => {
@@ -39,7 +40,7 @@ class Form extends Component {
   };
 
   render() {
-    const { enctype, buttons, fields } = this.props;
+    const { enctype, buttons = [], fields } = this.props;
 
     return (
       <form
@@ -49,6 +50,8 @@ class Form extends Component {
           this.onSubmit(event.target);
         }}
       >
+        <style jsx>{styles}</style>
+
         {fields.map(_ => (
           <Group>{_}</Group>
         ))}
