@@ -18,7 +18,7 @@ const Header = ({ data, children, attributes = {} }) => {
         <LogoIcon />
       </div>
 
-      <em className="title">
+      <em className="title" readOnly>
         {title}
         <small className="research-network">{researchType}</small>
       </em>
