@@ -25,10 +25,12 @@ export default css`
   }
 
   .intro {
+    color: #666;
     font-family: ${fonts.inter.family};
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: ${fonts.inter.weight.medium};
     margin-bottom: 4rem;
+    margin-top: 0.5rem;
   }
 
   .section-title {

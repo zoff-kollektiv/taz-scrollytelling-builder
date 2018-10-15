@@ -22,8 +22,8 @@ export default ({ metadata, updateMetadataField }) => (
       <h1 className="title">Metadata</h1>
 
       <p className="intro">
-        These are sharing information, which are used by facebook and twitter
-        to show proper previews of the story.
+        These properties are being used to show proper previews on google,
+        facebook and twitter.
       </p>
 
       <Form
@@ -54,6 +54,7 @@ export default ({ metadata, updateMetadataField }) => (
             name="og:description"
             defaultValue={metadata['og:description']}
             label="Description"
+            placeholder={metadata.description}
             onChange={event => updateField(event, updateMetadataField)}
           />,
           <Input
@@ -61,7 +62,11 @@ export default ({ metadata, updateMetadataField }) => (
             label="Site Name"
             onChange={event => updateField(event, updateMetadataField)}
           />,
-          <Input name="og:url" label="URL" />,
+          <Input
+            name="og:url"
+            label="URL"
+            onChange={event => updateField(event, updateMetadataField)}
+          />,
           <Input
             name="og:locale"
             label="Locale"
@@ -76,6 +81,13 @@ export default ({ metadata, updateMetadataField }) => (
             label="Title"
             defaultValue={metadata['twitter:title']}
             placeholder={metadata.title}
+            onChange={event => updateField(event, updateMetadataField)}
+          />,
+          <Textarea
+            name="twitter:description"
+            defaultValue={metadata['twitter:description']}
+            label="Description"
+            placeholder={metadata.description}
             onChange={event => updateField(event, updateMetadataField)}
           />,
           <Input
