@@ -138,7 +138,7 @@ export default {
     return {
       fields: [
         <InputImage name="background-image" />,
-        <Input name="publisher" label="Publisher name" value="taz.de" />,
+        <Input name="publisher" label="Publisher name" defaultValue="taz.de" />,
         <Input
           type="hidden"
           name="header-title"
