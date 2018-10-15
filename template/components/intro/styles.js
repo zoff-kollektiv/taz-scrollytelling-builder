@@ -12,6 +12,22 @@ export default css`
     position: relative;
   }
 
+  .image-container::after {
+    background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.2),
+      transparent
+    );
+    bottom: 0;
+    content: '';
+    height: 50%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+  }
+
   .content {
     align-items: center;
     bottom: 4rem;
