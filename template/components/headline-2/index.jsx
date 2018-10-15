@@ -15,6 +15,7 @@ const Headline2 = ({ attributes = {}, children }) => (
 
 export default {
   name: 'headline-2',
+  label: 'Headline (Level 2)',
   Icon,
   styles,
   Component: ({ node, ...rest }) => <Headline2 data={node.data} {...rest} />,

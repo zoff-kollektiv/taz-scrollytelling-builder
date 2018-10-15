@@ -15,6 +15,7 @@ const Paragraph = ({ attributes = {}, children }) => (
 
 export default {
   name: 'paragraph-standalone',
+  label: 'Paragraph',
   Icon,
   styles,
   Component: ({ node, ...rest }) => <Paragraph data={node.data} {...rest} />,

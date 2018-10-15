@@ -55,6 +55,7 @@ const Blockquote = ({ attributes = {}, children }) => (
 
 export default {
   name: 'blockquote',
+  label: 'Quote',
   Icon,
   styles,
   Component: ({ node, ...rest }) => <Blockquote data={node.data} {...rest} />,

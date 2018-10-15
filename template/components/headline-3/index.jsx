@@ -18,6 +18,7 @@ const Headline3 = ({ attributes = {}, children }) => (
 
 export default {
   name: 'headline-3',
+  label: 'Headline (Level 3)',
   Icon,
   styles,
 

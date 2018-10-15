@@ -20,7 +20,7 @@ export default class Block extends Component {
   };
 
   render() {
-    const { name, onSelect, Icon, onBlockAdd } = this.props;
+    const { name, label, onSelect, Icon, onBlockAdd } = this.props;
     const handleSelect = () => {
       if (onSelect) {
         const { fields } = onSelect();
@@ -63,7 +63,7 @@ export default class Block extends Component {
           }}
         >
           <style jsx>{styles}</style>
-          <span className="block__label">{name}</span>
+          <span className="block__label">{label || name}</span>
           {Icon && (
             <Icon
               style={{

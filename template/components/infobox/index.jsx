@@ -1,5 +1,6 @@
 import React from 'react';
 
+import InfoIcon from './info.svg';
 import layoutConstraint from '../layout-constraint';
 import LogoIcon from '../../assets/images/logo.svg';
 import styles from './styles';
@@ -39,6 +40,8 @@ const InfoBox = ({ attributes = {}, children }) => (
 
 export default {
   name: 'infobox',
+  label: 'Infobox',
+  Icon: InfoIcon,
   styles,
   Component: ({ node, ...rest }) => <InfoBox data={node.data} {...rest} />,
 

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Icon from './chalkboard-teacher.svg';
 import Input from '../../../editor/components/form/input';
 import InputImage from '../../../editor/components/form/image';
 
@@ -122,6 +123,10 @@ const IntroContainer = ({ attributes = {}, children }) => (
 
 export default {
   name: 'intro-container',
+
+  label: 'Header',
+
+  Icon,
 
   styles,
 

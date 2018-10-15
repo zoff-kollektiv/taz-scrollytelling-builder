@@ -42,6 +42,7 @@ const Image = ({ data, attributes = {}, children }) => {
 
 export default {
   name: 'image',
+  label: 'Image',
   Icon,
   styles,
   Component: ({ node, ...rest }) => <Image data={node.data} {...rest} />,
