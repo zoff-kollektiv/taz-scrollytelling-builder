@@ -8,5 +8,7 @@ export default css`
     font-size: 1.5rem;
     font-weight: ${fonts.sansSerif.weight.bold};
     line-height: ${30 / 24};
+    margin-bottom: 2rem;
+    margin-top: 4.5rem;
   }
 `;
