@@ -1,42 +1,50 @@
-import React, { Fragment } from 'react';
+import classnames from 'classnames';
+import React from 'react';
 
 import filename from '../../../editor/lib/filename';
 import Input from '../../../editor/components/form/input';
 import InputImage from '../../../editor/components/form/image';
 import Icon from './image.svg';
 import layoutConstraint from '../layout-constraint';
+import Radio from '../../../editor/components/form/radio';
 import styles from './styles';
 
-const Image = ({ data, attributes = {}, children }) => {
-  const alt = data.get('alt');
-  const author = data.get('author');
+const Image = ({ data, attributes = {}, children, serialize = false }) => {
+  const alt = data.get('alt') || '';
   const caption = data.get('caption');
-  const file = data.get('image');
+  const type = data.get('type');
+  let src;
+
+  if (!serialize) {
+    src = data.get('image');
+  } else {
+    src = `./assets/images/${filename(data.get('image_name'))}`;
+  }
+
   const attrs = {
     alt,
-    src: file,
+    src,
     className: 'image'
   };
 
   return (
-    <layoutConstraint.Component>
-      <figure className="figure" {...attributes}>
-        <style jsx>{styles}</style>
+    <figure
+      className={classnames('figure', { [`figure--is-${type}`]: true })}
+      {...attributes}
+    >
+      <style jsx>{styles}</style>
 
-        {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <img {...attrs} />
+      {/* eslint-disable-next-line jsx-a11y/alt-text */}
+      <img {...attrs} />
 
-        {(caption || author) && (
-          <figcaption>
-            {caption}
+      {caption && (
+        <layoutConstraint.Component>
+          <figcaption className="caption">{caption}</figcaption>
+        </layoutConstraint.Component>
+      )}
 
-            {author && <small>{author}</small>}
-          </figcaption>
-        )}
-
-        {children}
-      </figure>
-    </layoutConstraint.Component>
+      {children}
+    </figure>
   );
 };
 
@@ -46,23 +54,11 @@ export default {
   styles,
   Component: ({ node, ...rest }) => <Image data={node.data} {...rest} />,
 
-  serialize({ data }) {
-    const alt = data.get('alt') || '';
-    const name = data.get('image_name');
-    const src = `./assets/images/${filename(name)}`;
-    const attrs = {
-      alt,
-      src,
-      className: 'image'
-    };
-
-    return (
-      <Fragment>
-        {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <img {...attrs} />
-      </Fragment>
-    );
-  },
+  serialize: (node, children) => (
+    <Image data={node.data} serialize>
+      {children}
+    </Image>
+  ),
 
   extract({ data }) {
     const file = data.get('image');
@@ -82,8 +78,16 @@ export default {
       fields: [
         <InputImage name="image" />,
         <Input name="caption" label="Caption" />,
-        <Input name="author" label="Author" />,
-        <Input name="alt" label="Alt" />
+        <Input name="alt" label="Alt" />,
+        <Radio
+          name="type"
+          label="Size"
+          choices={[
+            ['constraint', 'As content'],
+            ['wide', 'Wider as content'],
+            ['full', 'Full width']
+          ]}
+        />
       ]
     };
   }
