@@ -4,7 +4,7 @@ import Block from './block';
 import { blocks } from '../../../../../template';
 import styles from './styles';
 
-export default ({ AST, onBlockAdd }) => (
+export default ({ AST, ...rest }) => (
   <ul className="blocks">
     <style jsx>{styles}</style>
     {blocks
@@ -14,7 +14,7 @@ export default ({ AST, onBlockAdd }) => (
       .filter(_ => !_.disabled || !(_.disabled && _.disabled(AST)))
       .map(_ => (
         <li key={_.name}>
-          <Block {..._} onBlockAdd={onBlockAdd} />
+          <Block {..._} {...rest} />
         </li>
       ))}
   </ul>

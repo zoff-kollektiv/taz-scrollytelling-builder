@@ -12,7 +12,10 @@ export default class Modal extends Component {
   };
 
   handleCloseModal = () => {
+    const { onClose = () => {} } = this.props;
+
     this.setState({ showModal: false });
+    onClose();
   };
 
   render() {
