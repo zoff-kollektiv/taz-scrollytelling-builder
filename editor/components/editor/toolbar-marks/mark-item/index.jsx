@@ -27,6 +27,6 @@ export default ({ editor, state, name, label, Icon }) => (
   >
     <style jsx>{styles}</style>
     <Icon style={{ height: '1rem', width: '1rem' }} />
-    {label}
+    <span className="label">{label}</span>
   </button>
 );

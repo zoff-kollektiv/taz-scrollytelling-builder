@@ -7,7 +7,7 @@ export default ({ marks, position, ...rest }) => (
   <ul className="toolbar-marks" style={position}>
     <style jsx>{styles}</style>
     {marks.map(_ => (
-      <li key={_.name}>
+      <li className="item" key={_.name}>
         <MarkItem {..._} {...rest} />
       </li>
     ))}
