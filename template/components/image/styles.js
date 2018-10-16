@@ -6,7 +6,7 @@ export default css`
   .figure {
     font-size: 0;
     line-height: 1;
-    margin: 3rem auto;
+    margin: 3rem 1.5rem;
     text-align: center;
   }
 
