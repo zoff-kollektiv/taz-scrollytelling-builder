@@ -53,7 +53,6 @@ export default class Field extends Component {
             ))}
           </ul>
         )}
-
       </div>
     );
   }
