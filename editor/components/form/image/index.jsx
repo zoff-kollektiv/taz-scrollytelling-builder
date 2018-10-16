@@ -14,7 +14,7 @@ export default class Field extends Component {
   };
 
   render() {
-    const { name } = this.props;
+    const { name, onDropAccepted = () => {} } = this.props;
 
     return (
       <div className="input-image">
@@ -28,6 +28,7 @@ export default class Field extends Component {
           multiple={false}
           style={{}}
           name={name}
+          onDropAccepted={() => onDropAccepted(this.state.files)}
         >
           <button type="button" className="select">
             Select image

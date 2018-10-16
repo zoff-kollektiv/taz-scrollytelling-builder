@@ -82,7 +82,7 @@ export default class Editor extends Component {
     const assetsFolder = zip.folder('assets');
 
     let html = serializeHTML(value, { metadata });
-    const assets = extractAssets(value);
+    const assets = extractAssets(value, { metadata });
 
     Promise.all(assets)
       // each block could return several files

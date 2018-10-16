@@ -7,11 +7,11 @@ const hasExtract = node => {
   return block && block.extract;
 };
 
-const extractAssets = node => {
+const extractAssets = (node, data) => {
   const { type } = node;
   const block = findBlockByName(type);
 
-  return block.extract(node);
+  return block.extract(node, data);
 };
 
 const traverse = (nodes, callback) => {
@@ -26,13 +26,13 @@ const traverse = (nodes, callback) => {
   });
 };
 
-const serialize = value => {
+const serialize = (value, data) => {
   const { document } = value;
   const extractionNodes = [];
 
   traverse(document.nodes, node => extractionNodes.push(node));
 
-  return extractionNodes.map(extractAssets);
+  return extractionNodes.map(node => extractAssets(node, data));
 };
 
 export { serialize };

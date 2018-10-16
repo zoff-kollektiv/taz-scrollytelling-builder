@@ -1,8 +1,13 @@
 import slugify from 'slugify';
 
-const filename = name =>
-  slugify(name, {
+const filename = name => {
+  if (!name) {
+    return false;
+  }
+
+  return slugify(name, {
     lower: true
   });
+};
 
 export default filename;

@@ -2,6 +2,7 @@ import React from 'react';
 
 import Form from '../form';
 import Input from '../form/input';
+import InputImage from '../form/image';
 import styles from './styles';
 import Textarea from '../form/textarea';
 
@@ -13,6 +14,17 @@ const updateField = (event, callback) => {
 
   callback(name, value);
 };
+
+const fileToDataURL = file =>
+  new Promise(resolve => {
+    const reader = new window.FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      resolve(reader.result);
+    };
+  });
 
 export default ({ metadata, updateMetadataField }) => (
   <main className="metadata">
@@ -28,6 +40,12 @@ export default ({ metadata, updateMetadataField }) => (
 
       <Form
         fields={[
+          <Input
+            name="url"
+            label="URL"
+            defaultValue={metadata.url}
+            onChange={event => updateField(event, updateMetadataField)}
+          />,
           <Input
             name="title"
             label="Title"
@@ -62,16 +80,17 @@ export default ({ metadata, updateMetadataField }) => (
             label="Site Name"
             onChange={event => updateField(event, updateMetadataField)}
           />,
-          <Input
-            name="og:url"
-            label="URL"
-            onChange={event => updateField(event, updateMetadataField)}
-          />,
-          <Input
-            name="og:locale"
-            label="Locale"
-            defaultValue={metadata['og:locale']}
-            onChange={event => updateField(event, updateMetadataField)}
+          <InputImage
+            name="og:image"
+            label="Image"
+            onDropAccepted={files => {
+              const file = files[0];
+
+              fileToDataURL(file).then(data => {
+                updateMetadataField('og:image', data);
+                updateMetadataField('_og:image-name', file.name);
+              });
+            }}
           />,
 
           <h2 className="section-title">Twitter</h2>,
@@ -96,17 +115,17 @@ export default ({ metadata, updateMetadataField }) => (
             defaultValue={metadata['twitter:site']}
             onChange={event => updateField(event, updateMetadataField)}
           />,
-          <Input
-            name="twitter:url"
-            label="URL"
-            defaultValue={metadata['twitter:url']}
-            onChange={event => updateField(event, updateMetadataField)}
-          />,
-          <Input
-            name="og:locale"
-            label="Locale"
-            defaultValue={metadata['og:locale']}
-            onChange={event => updateField(event, updateMetadataField)}
+          <InputImage
+            name="twitter:image"
+            label="Image"
+            onDropAccepted={files => {
+              const file = files[0];
+
+              fileToDataURL(file).then(data => {
+                updateMetadataField('twitter:image', data);
+                updateMetadataField('_twitter:image-name', file.name);
+              });
+            }}
           />
         ]}
       />
