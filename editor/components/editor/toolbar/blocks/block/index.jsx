@@ -21,6 +21,7 @@ export default class Block extends Component {
 
   render() {
     const { name, label, onSelect, Icon, onBlockAdd } = this.props;
+
     const handleSelect = () => {
       if (onSelect) {
         const { fields } = onSelect();
@@ -37,6 +38,7 @@ export default class Block extends Component {
           onBlockAdd(name, { ...context });
           this.hideModal();
         };
+
         this.showModal(
           <Form
             enctype="multipart/form-data"
@@ -50,9 +52,15 @@ export default class Block extends Component {
       }
     };
 
+    const onClose = () => {
+      onBlockAdd();
+    };
+
     return (
       <Fragment>
-        {this.state.showModal && <Modal>{this.state.modal}</Modal>}
+        {this.state.showModal && (
+          <Modal onClose={onClose}>{this.state.modal}</Modal>
+        )}
 
         <button
           type="button"
