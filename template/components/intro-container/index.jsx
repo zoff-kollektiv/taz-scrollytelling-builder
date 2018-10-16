@@ -220,5 +220,10 @@ export default {
     // Always add the intro of the beginning of the document
     change.moveStartToStartOfDocument();
     change.insertBlock(BLOCK_DEFINITION);
+  },
+
+  disabled(ast) {
+    // if there is already an intro present, do not allow to add a second one
+    return containsIntro(ast);
   }
 };
