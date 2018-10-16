@@ -14,6 +14,7 @@ class Application extends Component {
     super();
 
     this.state.updateMetadataField = this.updateMetadataField;
+    this.state.updateMetadata = this.updateMetadata;
     this.state.updateEditor = this.updateEditor;
   }
 
@@ -60,6 +61,7 @@ class Application extends Component {
     },
 
     updateEditor() {},
+    updateMetadata() {},
     updateMetadataField() {}
   };
 
@@ -77,6 +79,13 @@ class Application extends Component {
         ...prevState.metadata,
         [name]: value
       }
+    }));
+  };
+
+  updateMetadata = metadata => {
+    this.setState(prevState => ({
+      ...prevState,
+      metadata
     }));
   };
 
