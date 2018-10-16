@@ -3,6 +3,7 @@ import React from 'react';
 import Icon from './chalkboard-teacher.svg';
 import Input from '../../../editor/components/form/input';
 import InputImage from '../../../editor/components/form/image';
+import Radio from '../../../editor/components/form/radio';
 
 import { find } from '../../../editor/lib/ast';
 import styles from './styles';
@@ -147,7 +148,18 @@ export default {
             e.g. use a service like https://tinypng.com.
           "
         />,
-        <Input name="publisher" label="Publisher name" defaultValue="taz.de" />,
+        <Radio
+          name="publisher"
+          label="Publisher"
+          choices={[
+            ['taz', 'taz'],
+            ['gazeta', 'Gazeta'],
+            ['liberation', 'Liberation'],
+            ['falter', 'Falter'],
+            ['internazionale', 'Internazionale'],
+            ['hvg', 'hvg']
+          ]}
+        />,
         <Input
           type="hidden"
           name="header-title"
@@ -169,6 +181,10 @@ export default {
   extract({ data }) {
     const file = data.get('background-image');
     const name = data.get('background-image_name');
+
+    if (!file || !name) {
+      return Promise.resolve(null);
+    }
 
     return Promise.resolve([
       {

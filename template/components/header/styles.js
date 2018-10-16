@@ -4,11 +4,13 @@ import { colors, fonts } from '../../tokens';
 
 export default css`
   .header {
+    align-items: center;
     background-color: ${colors.brand};
     color: white;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    height: 40px;
     left: 0;
     padding: 0.4rem 2rem;
     position: absolute;
@@ -17,15 +19,32 @@ export default css`
     z-index: 2;
   }
 
-  .logo-container {
-    left: 6rem;
-    position: absolute;
-    top: -0.75rem;
-  }
-
   :global(.header .logo-container svg) {
     height: 3.5rem;
+    margin-top: 0.3rem;
     width: 3.5rem;
+  }
+
+  :global(.header .logo-publisher > svg) {
+    height: auto;
+    max-height: 1.7rem;
+    margin-right: 2rem;
+    margin-top: 0.15rem;
+    width: 100%;
+  }
+
+  :global(.header--publisher-falter .logo-publisher > svg) {
+    margin-top: 0.25rem;
+    max-height: 1.2rem;
+  }
+
+  :global(.header--publisher-taz .logo-publisher > svg) {
+    margin-top: 0.1rem;
+    max-height: 1.35rem;
+  }
+
+  :global(.header:not(.header--publisher-hvg) .logo-publisher path) {
+    fill: currentColor;
   }
 
   .title {
@@ -34,7 +53,7 @@ export default css`
     font-style: normal;
     font-weight: ${fonts.sansSerif.weight.bold};
     letter-spacing: 2px;
-    margin-left: 6rem;
+    margin-left: 1rem;
     text-transform: uppercase;
   }
 
