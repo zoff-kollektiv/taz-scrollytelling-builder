@@ -14,7 +14,7 @@ export default class Field extends Component {
   };
 
   render() {
-    const { name, onDropAccepted = () => {} } = this.props;
+    const { label, helpText, name, onDropAccepted = () => {} } = this.props;
 
     return (
       <div className="input-image">
@@ -22,6 +22,11 @@ export default class Field extends Component {
         <style jsx global>
           {stylesDropzone}
         </style>
+
+        {label && <span className="label">{label}</span>}
+
+        {helpText && <p className="help">{helpText}</p>}
+
         <Dropzone
           accept="image/jpeg, image/png"
           onDrop={this.onDrop}
@@ -48,6 +53,7 @@ export default class Field extends Component {
             ))}
           </ul>
         )}
+
       </div>
     );
   }

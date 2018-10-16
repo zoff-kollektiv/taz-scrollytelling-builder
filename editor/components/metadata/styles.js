@@ -34,9 +34,11 @@ export default css`
   }
 
   .section-title {
+    border-top: 5px solid black;
     font-family: ${fonts.inter.family};
     font-weight: ${fonts.inter.weight.black};
     margin-bottom: 0.5rem;
-    margin-top: 3.5rem;
+    margin-top: 1.5rem;
+    padding-top: 2.5rem;
   }
 `;

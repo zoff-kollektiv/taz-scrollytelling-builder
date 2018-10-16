@@ -83,6 +83,13 @@ export default ({ metadata, updateMetadataField }) => (
           <InputImage
             name="og:image"
             label="Image"
+            helpText={`
+              According to facebook: "Use images that are at least 1200 x 630
+              pixels for the best display on high resolution devices. At the
+              minimum, you should use images that are 600 x 315 pixels to
+              display link page posts with larger images. Images can be up to
+              8MB in size.
+            `}
             onDropAccepted={files => {
               const file = files[0];
 
@@ -118,6 +125,15 @@ export default ({ metadata, updateMetadataField }) => (
           <InputImage
             name="twitter:image"
             label="Image"
+            helpText="
+              According to twitter: You should not use a generic image such as
+              your website logo, author photo, or other image that spans
+              multiple pages. Images for this Card support an aspect ratio of
+              2:1 with minimum dimensions of 300x157 or maximum of 4096x4096
+              pixels. Images must be less than 5MB in size. JPG, PNG, WEBP and
+              GIF formats are supported. Only the first frame of an animated
+              GIF will be used. SVG is not supported.
+            "
             onDropAccepted={files => {
               const file = files[0];
 
