@@ -25,7 +25,9 @@ export default class Field extends Component {
 
         {label && <span className="label">{label}</span>}
 
-        {helpText && <p className="help">{helpText}</p>}
+        {helpText && (
+          <p className="help" dangerouslySetInnerHTML={{ __html: helpText }} />
+        )}
 
         <Dropzone
           accept="image/jpeg, image/png"

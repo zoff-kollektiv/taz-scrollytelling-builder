@@ -42,7 +42,7 @@ export default css`
 
   .label {
     font-family: ${fonts.inter.family};
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: ${fonts.inter.weight.black};
     display: block;
   }
@@ -52,7 +52,7 @@ export default css`
     font-family: ${fonts.inter.family};
     font-size: 0.8rem;
     font-weight: ${fonts.inter.weight.regular};
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     margin-top: 0.35rem;
   }
 `;
