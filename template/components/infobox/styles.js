@@ -29,8 +29,4 @@ export default css`
     height: 3rem;
     width: 3rem;
   }
-
-  :global(.infobox .logo-container path) {
-    fill: black;
-  }
 `;
