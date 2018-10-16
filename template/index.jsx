@@ -5,6 +5,7 @@ import fonts from './components/fonts';
 import header from './components/header';
 import headline2 from './components/headline-2';
 import headline3 from './components/headline-3';
+import headline4 from './components/headline-4';
 import image from './components/image';
 import intro from './components/intro';
 import introContainer from './components/intro-container';
@@ -25,6 +26,7 @@ const blocks = [
   header,
   headline2,
   headline3,
+  headline4,
   image,
   intro,
   introContainer,
