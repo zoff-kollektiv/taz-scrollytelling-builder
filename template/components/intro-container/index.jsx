@@ -137,7 +137,16 @@ export default {
   onSelect() {
     return {
       fields: [
-        <InputImage name="background-image" />,
+        <InputImage
+          name="background-image"
+          label="Background image"
+          helpText="
+            This image should be at least 1280px x 800px. JPEG images should have
+            a quality between 80 and 85. In order to load the image fast, filesize
+            is quite important. Please make sure the image is optimized - you can
+            e.g. use a service like https://tinypng.com.
+          "
+        />,
         <Input name="publisher" label="Publisher name" defaultValue="taz.de" />,
         <Input
           type="hidden"

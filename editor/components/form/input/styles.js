@@ -25,7 +25,7 @@ export default css`
 
   .input__label {
     font-family: ${fonts.inter.family};
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     font-weight: ${fonts.inter.weight.black};
     display: block;
   }
