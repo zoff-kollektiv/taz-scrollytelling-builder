@@ -1,3 +1,5 @@
+import { Block } from 'slate';
+
 import authors from './components/authors';
 import blockquote from './components/blockquote';
 import blockquoteAuthor from './components/blockquote-author';
@@ -45,3 +47,22 @@ export { blocks };
 const findBlockByName = name => blocks.find(_ => _.name === name) || {};
 
 export { findBlockByName };
+
+const schema = {
+  document: {
+    last: { type: 'paragraph-standalone' },
+    normalize: (change, { code, node }) => {
+      switch (code) {
+        case 'last_child_type_invalid': {
+          const block = Block.create('paragraph-standalone');
+          return change.insertNodeByKey(node.key, node.nodes.size, block);
+        }
+
+        default:
+          return null;
+      }
+    }
+  }
+};
+
+export { schema };

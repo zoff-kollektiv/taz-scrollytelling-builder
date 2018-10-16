@@ -5,7 +5,7 @@ import { saveAs } from 'file-saver';
 import slugify from 'slugify';
 import { Value } from 'slate';
 
-import { blocks, findBlockByName } from '../../../template';
+import { blocks, findBlockByName, schema } from '../../../template';
 import filename from '../../lib/filename';
 import { serialize as extractAssets } from './extract-assets';
 import { findMarkByName, marks } from '../../marks';
@@ -230,6 +230,7 @@ export default class Editor extends Component {
             onChange={this.onChange}
             renderNode={this.renderNode}
             renderMark={this.renderMark}
+            schema={schema}
           />
         </div>
 
