@@ -5,6 +5,7 @@ import filename from '../../../editor/lib/filename';
 import OpenGraph from './facebook';
 import styles from './styles';
 import TwitterCard from './twitter';
+import Tracking from './tracking';
 
 export default {
   name: 'layout',
@@ -79,6 +80,8 @@ export default {
           <body>
             <article className="app">{children}</article>
           </body>
+
+          <Tracking />
         </html>
       </Fragment>
     );
