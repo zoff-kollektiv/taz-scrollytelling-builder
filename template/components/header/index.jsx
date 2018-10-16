@@ -1,18 +1,42 @@
+import classnames from 'classnames';
 import React from 'react';
 
 import LogoIcon from '../../assets/images/logo.svg';
 import styles from './styles';
 
+import LogoFalter from '../../assets/images/falter-logo.svg';
+import LogoGazeta from '../../assets/images/gazeta-logo.svg';
+import LogoHVG from '../../assets/images/hvg-logo.svg';
+import LogoInternazionale from '../../assets/images/internazionale-logo.svg';
+import LogoLiberation from '../../assets/images/liberation-logo.svg';
+import LogoTaz from '../../assets/images/taz-logo.svg';
+
+const LOGOS = {
+  taz: LogoTaz,
+  gazeta: LogoGazeta,
+  internazionale: LogoInternazionale,
+  liberation: LogoLiberation,
+  falter: LogoFalter,
+  hvg: LogoHVG
+};
+
 const Header = ({ data, children, attributes = {} }) => {
   const publisher = data.get('publisher');
   const title = data.get('header-title');
   const researchType = data.get('header-research-type');
+  const Logo = LOGOS[publisher];
 
   return (
-    <header className="header" readOnly {...attributes}>
+    <header
+      className={classnames('header', {
+        [`header--publisher-${publisher}`]: true
+      })}
+      readOnly
+      {...attributes}
+    >
       <style jsx>{styles}</style>
 
-      <strong>{publisher}</strong>
+      <div className="logo-publisher">{<Logo />}</div>
 
       <div className="logo-container">
         <LogoIcon />
