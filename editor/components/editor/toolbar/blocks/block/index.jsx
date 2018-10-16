@@ -25,7 +25,11 @@ export default class Block extends Component {
     const handleSelect = () => {
       if (onSelect) {
         const { fields } = onSelect();
-        const buttons = [<Button type="submit">Add block</Button>];
+        const buttons = [
+          <Button name="submit" type="submit">
+            Add block
+          </Button>
+        ];
         const onSubmit = formData => {
           const context = [...formData.entries()].reduce(
             (acc, [key, value]) => {

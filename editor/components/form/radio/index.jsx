@@ -10,7 +10,7 @@ export default ({ name, label = '', choices = [], ...rest }) => (
 
     <div className="choices">
       {choices.map(([inputValue, inputLabel], index) => (
-        <label className="input" key={name}>
+        <label className="input" key={`${name}-${inputValue}`}>
           <input
             type="radio"
             name={name}

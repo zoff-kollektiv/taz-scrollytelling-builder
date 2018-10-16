@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import Group from './group';
 import styles from './styles';
@@ -53,10 +53,14 @@ class Form extends Component {
         <style jsx>{styles}</style>
 
         {fields.map(_ => (
-          <Group>{_}</Group>
+          <Group key={_.props.name}>{_}</Group>
         ))}
 
-        <Group>{buttons.map(Button => Button)}</Group>
+        <Group>
+          {buttons.map(Button => (
+            <Fragment key={Button.props.name}>{Button}</Fragment>
+          ))}
+        </Group>
       </form>
     );
   }
