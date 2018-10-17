@@ -47,7 +47,7 @@
     "jszip": "^3.1.5",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-dropzone": "^6.0.3",
+    "react-dropzone": "^6.2.4",
     "react-helmet": "^5.2.0",
     "react-modal": "^3.6.1",
     "slate": "^0.42.2",
