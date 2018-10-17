@@ -7,6 +7,8 @@ export default css`
     font-family: ${fonts.sansSerif.family};
     font-size: 1rem;
     font-weight: ${fonts.sansSerif.weight.regular};
+    letter-spacing: 1px;
+    line-height: 1.35;
     margin-bottom: 0;
     margin-top: 0.75rem;
     text-align: center;
