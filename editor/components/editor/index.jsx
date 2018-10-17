@@ -60,13 +60,6 @@ export default class Editor extends Component {
 
   componentDidMount = () => {
     this.updateMenuPosition();
-
-    const editor = this.editor.current;
-
-    // ensure the focus is set
-    editor.change(change => {
-      change.focus();
-    });
   };
 
   componentDidUpdate = () => {

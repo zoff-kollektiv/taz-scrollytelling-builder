@@ -35,12 +35,6 @@ export default css`
     display: flex;
   }
 
-  .title {
-    letter-spacing: 0.05rem;
-    margin-right: 0.5rem;
-    text-transform: uppercase;
-  }
-
   .button {
     align-items: center;
     background: transparent;

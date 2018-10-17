@@ -25,7 +25,7 @@ export default (block, props) => {
           'toolbar--is-visible': canEdit && isFocused
         })}
       >
-        <span className="title">Actions</span>
+
         {canEdit &&
           isFocused && (
             <button
