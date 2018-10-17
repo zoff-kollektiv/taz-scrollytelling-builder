@@ -41,7 +41,7 @@ export default class Toolbar extends Component {
           }
         });
       } else {
-        onUpload(JSON.parse(onLoadEvent.target.result));
+        onUpload(JSON.parse(result));
       }
     };
 
