@@ -18,6 +18,7 @@ export default css`
 
   :global(.paragraph a) {
     color: currentColor;
+    box-decoration-break: clone;
     text-decoration: underline;
   }
 
@@ -30,6 +31,7 @@ export default css`
 
   :global(.paragraph em) {
     background-color: black;
+    box-decoration-break: clone;
     color: white;
     font-family: ${fonts.sansSerif.family};
     font-style: normal;
