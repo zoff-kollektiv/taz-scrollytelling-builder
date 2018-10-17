@@ -40,7 +40,7 @@ class Application extends Component {
                       object: 'text',
                       leaves: [
                         {
-                          text: ''
+                          text: 'Start typing …'
                         }
                       ]
                     }
