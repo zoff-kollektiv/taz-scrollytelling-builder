@@ -8,7 +8,7 @@ import { Value } from 'slate';
 import { blocks, findBlockByName, schema } from '../../../template';
 import ErrorBoundary from '../error-boundary';
 import filename from '../../lib/filename';
-import { serialize as extractAssets } from './extract-assets';
+import extractAssets from './extract-assets';
 import { findMarkByName, marks } from '../../marks';
 import { version } from '../../../package.json';
 import serializeHTML from './serialize-html';

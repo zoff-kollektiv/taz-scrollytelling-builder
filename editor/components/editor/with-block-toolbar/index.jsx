@@ -25,7 +25,6 @@ export default (block, props) => {
           'toolbar--is-visible': canEdit && isFocused
         })}
       >
-
         {canEdit &&
           isFocused && (
             <button
