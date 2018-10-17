@@ -40,7 +40,7 @@ export default css`
   }
 
   .caption {
-    color: #4a4a4a;
+    color: rgb(159, 159, 159);
     font-family: ${fonts.sansSerif.family};
     font-size: 0.687rem;
     line-height: 1.5;
@@ -48,10 +48,10 @@ export default css`
     text-align: left;
   }
 
-  @media ${mq} {
+  @media ${mq.tablet} {
     .caption {
       font-size: 0.875rem;
-      margin-top: 1rem;
+      margin-top: 1.25rem;
     }
   }
 `;

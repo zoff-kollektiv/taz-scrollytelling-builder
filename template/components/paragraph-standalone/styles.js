@@ -26,6 +26,12 @@ export default css`
     color: white;
     font-style: normal;
     font-weight: ${fonts.sansSerif.weight.bold};
-    padding: 0.15rem 0.35rem;
+    padding: 0 0.2rem;
+  }
+
+  @media ${mq.tablet} {
+    :global(.paragraph em) {
+      padding: 0.15rem 0.35rem;
+    }
   }
 `;
