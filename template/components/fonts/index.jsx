@@ -2,11 +2,13 @@ import React, { Fragment } from 'react';
 
 import styles from './styles';
 
-const Fonts = () => (
+const Fonts = ({ children }) => (
   <Fragment>
     <style jsx global>
       {styles}
     </style>
+
+    {children}
   </Fragment>
 );
 
@@ -14,14 +16,8 @@ export default {
   name: 'fonts',
   private: true,
   styles,
-  Component: props => <Fonts {...props} />,
-
-  serialize: (data, children) => (
-    <Fragment>
-      <Fonts />
-      {children}
-    </Fragment>
-  ),
+  Component: ({ node, ...rest }) => <Fonts data={node.data} {...rest} />,
+  serialize: (node, children) => <Fonts data={node.data}>{children}</Fonts>,
 
   extract() {
     const promises = [
