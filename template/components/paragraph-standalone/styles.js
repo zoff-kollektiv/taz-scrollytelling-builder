@@ -9,6 +9,10 @@ export default css`
     line-height: 1.4;
   }
 
+  .paragraph:empty {
+    display: none;
+  }
+
   @media ${mq.tablet} {
     .paragraph {
       font-size: 1.5rem;
