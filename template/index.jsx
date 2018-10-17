@@ -9,6 +9,7 @@ import headline2 from './components/headline-2';
 import headline3 from './components/headline-3';
 import headline4 from './components/headline-4';
 import image from './components/image';
+import imageCaption from './components/image-caption';
 import intro from './components/intro';
 import introContainer from './components/intro-container';
 import infobox from './components/infobox';
@@ -30,6 +31,7 @@ const blocks = [
   headline3,
   headline4,
   image,
+  imageCaption,
   intro,
   introContainer,
   infobox,

@@ -1,6 +1,6 @@
 import css from 'styled-jsx/css';
 
-import { fonts, mq } from '../../tokens';
+import { mq } from '../../tokens';
 
 export default css`
   .figure {
@@ -50,25 +50,8 @@ export default css`
     width: auto;
   }
 
-  .caption {
-    color: rgb(159, 159, 159);
-    font-family: ${fonts.sansSerif.family};
-    font-size: 0.687rem;
-    letter-spacing: 0.05rem;
-    line-height: 1.5;
-    margin-top: 0.5rem;
-    text-align: left;
-  }
-
-  @media ${mq.tablet} {
-    .caption {
-      font-size: 0.875rem;
-      margin-top: 1.25rem;
-    }
-  }
-
   // Make caption same width as the image https://stackoverflow.com/questions/4979487/image-caption-width-to-same-as-image
-  .figure--dimension-portrait .caption {
+  .figure--dimension-portrait .caption-container {
     caption-side: bottom;
     display: table-caption;
     width: 100%;
