@@ -54,7 +54,8 @@ class Application extends Component {
     },
 
     metadata: {
-      title: 'New project ...',
+      title: '',
+      description: '',
       locale: 'de_DE',
       'og:type': 'website',
       'twitter:card': 'summary_large_image'

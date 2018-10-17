@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
-export default ({ metadata }) => {
-  const { description } = metadata;
+export default ({ data }) => {
+  const { description } = data;
 
   return (
     <Fragment>
