@@ -58,7 +58,9 @@ export default ({ metadata, updateMetadataField }) => (
             name="url"
             label="URL"
             defaultValue={metadata.url}
-            onChange={event => updateField(event, updateMetadataField, normalizeUrl)}
+            onChange={event =>
+              updateField(event, updateMetadataField, normalizeUrl)
+            }
           />,
           <Input
             name="title"
