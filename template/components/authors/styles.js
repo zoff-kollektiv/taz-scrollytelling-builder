@@ -20,4 +20,9 @@ export default css`
       margin-top: 2rem;
     }
   }
+
+  :global(.authors a) {
+    color: currentColor;
+    text-decoration: underline;
+  }
 `;
