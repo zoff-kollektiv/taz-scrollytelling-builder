@@ -80,6 +80,7 @@ export default ({ metadata, updateMetadataField }) => (
           <Input
             name="og:title"
             label="Title"
+            helpText="A clear title without branding or mentioning the domain itself."
             defaultValue={metadata['og:title']}
             placeholder={metadata.title}
             onChange={event => updateField(event, updateMetadataField)}
@@ -88,12 +89,8 @@ export default ({ metadata, updateMetadataField }) => (
             name="og:description"
             defaultValue={metadata['og:description']}
             label="Description"
+            helpText="A clear description, at least two sentences long."
             placeholder={metadata.description}
-            onChange={event => updateField(event, updateMetadataField)}
-          />,
-          <Input
-            name="og:site_name"
-            label="Site Name"
             onChange={event => updateField(event, updateMetadataField)}
           />,
           <InputImage
@@ -121,6 +118,7 @@ export default ({ metadata, updateMetadataField }) => (
           <Input
             name="twitter:title"
             label="Title"
+            helpText="A concise title for the related content. Platform specific behaviors: iOS, Android: Truncated to two lines in timeline and expanded Tweet. Web: Truncated to one line in timeline and expanded Tweet."
             defaultValue={metadata['twitter:title']}
             placeholder={metadata.title}
             onChange={event => updateField(event, updateMetadataField)}
@@ -129,13 +127,8 @@ export default ({ metadata, updateMetadataField }) => (
             name="twitter:description"
             defaultValue={metadata['twitter:description']}
             label="Description"
+            helpText="A description that concisely summarizes the content as appropriate for presentation within a Tweet. You should not re-use the title as the description or use this field to describe the general services provided by the website. Platform specific behaviors: iOS, Android: Not displayed. Web: Truncated to three lines in timeline and expanded Tweet."
             placeholder={metadata.description}
-            onChange={event => updateField(event, updateMetadataField)}
-          />,
-          <Input
-            name="twitter:site"
-            label="Site Name"
-            defaultValue={metadata['twitter:site']}
             onChange={event => updateField(event, updateMetadataField)}
           />,
           <InputImage
@@ -158,6 +151,13 @@ export default ({ metadata, updateMetadataField }) => (
                 updateMetadataField('_twitter:image-name', file.name);
               });
             }}
+          />,
+          <Input
+            name="twitter:image:alt"
+            label="Image Alt"
+            helpText="A text description of the image conveying the essential nature of an image to users who are visually impaired. Maximum 420 characters."
+            defaultValue={metadata['twitter:image:alt']}
+            onChange={event => updateField(event, updateMetadataField)}
           />
         ]}
       />
