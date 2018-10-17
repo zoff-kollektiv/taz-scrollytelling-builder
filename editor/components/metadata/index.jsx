@@ -6,13 +6,27 @@ import InputImage from '../form/image';
 import styles from './styles';
 import Textarea from '../form/textarea';
 
-const updateField = (event, callback) => {
+const normalizeUrl = url => {
+  let normalized = url;
+
+  // make sure we always prepend the protocol
+  if (!normalized.startsWith('https://') && !normalized.startsWith('http://')) {
+    normalized = `https://${normalized}`;
+  }
+
+  // remove trailing slash
+  normalized = normalized.replace(/\/+$/, '');
+
+  return normalized;
+};
+
+const updateField = (event, callback, normalize = () => {}) => {
   event.preventDefault();
 
   const { target } = event;
   const { name, value } = target;
 
-  callback(name, value);
+  callback(name, normalize(value));
 };
 
 const fileToDataURL = file =>
@@ -44,7 +58,7 @@ export default ({ metadata, updateMetadataField }) => (
             name="url"
             label="URL"
             defaultValue={metadata.url}
-            onChange={event => updateField(event, updateMetadataField)}
+            onChange={event => updateField(event, updateMetadataField, normalizeUrl)}
           />,
           <Input
             name="title"
