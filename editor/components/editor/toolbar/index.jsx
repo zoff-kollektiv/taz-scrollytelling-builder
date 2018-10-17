@@ -1,4 +1,5 @@
 import classnames from 'classnames';
+import JSZip from 'jszip';
 import React, { Component } from 'react';
 
 import Blocks from './blocks';
@@ -21,16 +22,36 @@ export default class Toolbar extends Component {
 
   onUploadSelect = event => {
     const { files } = event.target;
+    const { onUpload } = this.props;
+    const upload = files[0];
     const reader = new FileReader();
 
     reader.onload = onLoadEvent => {
-      const data = JSON.parse(onLoadEvent.target.result);
-      const { onUpload } = this.props;
+      const { result } = onLoadEvent.target;
 
-      onUpload(data);
+      // a zip was was uploaded! unpack and read data.json
+      if (result instanceof ArrayBuffer) {
+        new JSZip().loadAsync(result).then(zip => {
+          const file = zip.file('data.json');
+
+          if (file) {
+            file.async('string').then(content => {
+              onUpload(JSON.parse(content));
+            });
+          }
+        });
+      } else {
+        onUpload(JSON.parse(onLoadEvent.target.result));
+      }
     };
 
-    reader.readAsText(files[0]);
+    switch (upload.type) {
+      case 'application/zip':
+        reader.readAsArrayBuffer(upload);
+        break;
+      default:
+        reader.readAsText(upload);
+    }
   };
 
   toggleBlocks = () => {
