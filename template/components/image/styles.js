@@ -43,6 +43,7 @@ export default css`
     color: rgb(159, 159, 159);
     font-family: ${fonts.sansSerif.family};
     font-size: 0.687rem;
+    letter-spacing: 0.05rem;
     line-height: 1.5;
     margin-top: 0.5rem;
     text-align: left;
