@@ -9,9 +9,10 @@ import UploadIcon from './upload.svg';
 import styles from './styles';
 
 export default class Toolbar extends Component {
+  uploadRef = React.createRef();
+
   state = {
-    blocksOpen: false,
-    uploadOpen: false
+    blocksOpen: false
   };
 
   onSave = () => {
@@ -27,7 +28,6 @@ export default class Toolbar extends Component {
       const { onUpload } = this.props;
 
       onUpload(data);
-      this.toggleUpload();
     };
 
     reader.readAsText(files[0]);
@@ -36,12 +36,6 @@ export default class Toolbar extends Component {
   toggleBlocks = () => {
     this.setState(state => ({
       blocksOpen: !state.blocksOpen
-    }));
-  };
-
-  toggleUpload = () => {
-    this.setState(state => ({
-      uploadOpen: !state.uploadOpen
     }));
   };
 
@@ -67,16 +61,20 @@ export default class Toolbar extends Component {
           </div>
         )}
 
-        {this.state.uploadOpen && (
-          <input type="file" onChange={event => this.onUploadSelect(event)} />
-        )}
+        <input
+          type="file"
+          ref={this.uploadRef}
+          hidden
+          onChange={event => this.onUploadSelect(event)}
+        />
 
         <button
           type="button"
           className="toolbar__upload"
           onClick={event => {
             event.preventDefault();
-            this.toggleUpload();
+            // forward the click event to the input field
+            this.uploadRef.current.click();
           }}
         >
           <UploadIcon

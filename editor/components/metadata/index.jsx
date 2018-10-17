@@ -2,17 +2,43 @@ import React from 'react';
 
 import Form from '../form';
 import Input from '../form/input';
+import InputImage from '../form/image';
 import styles from './styles';
 import Textarea from '../form/textarea';
 
-const updateField = (event, callback) => {
+const normalizeUrl = url => {
+  let normalized = url;
+
+  // make sure we always prepend the protocol
+  if (!normalized.startsWith('https://') && !normalized.startsWith('http://')) {
+    normalized = `https://${normalized}`;
+  }
+
+  // remove trailing slash
+  normalized = normalized.replace(/\/+$/, '');
+
+  return normalized;
+};
+
+const updateField = (event, callback, normalize = () => {}) => {
   event.preventDefault();
 
   const { target } = event;
   const { name, value } = target;
 
-  callback(name, value);
+  callback(name, normalize(value));
 };
+
+const fileToDataURL = file =>
+  new Promise(resolve => {
+    const reader = new window.FileReader();
+
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      resolve(reader.result);
+    };
+  });
 
 export default ({ metadata, updateMetadataField }) => (
   <main className="metadata">
@@ -29,6 +55,15 @@ export default ({ metadata, updateMetadataField }) => (
       <Form
         fields={[
           <Input
+            name="url"
+            label="Url"
+            defaultValue={metadata.url}
+            helpText="The address where the story will be published at."
+            onChange={event =>
+              updateField(event, updateMetadataField, normalizeUrl)
+            }
+          />,
+          <Input
             name="title"
             label="Title"
             defaultValue={metadata.title}
@@ -38,6 +73,21 @@ export default ({ metadata, updateMetadataField }) => (
             name="description"
             label="Description"
             defaultValue={metadata.description}
+            helpText="
+              The description should generally inform and interest users with a
+              short, relevant summary of what a particular page is about
+              (50 - 200 characters).
+            "
+            onChange={event => updateField(event, updateMetadataField)}
+          />,
+          <Input
+            name="locale"
+            label="Locale"
+            defaultValue={metadata.locale}
+            helpText="
+              The locale these tags are marked up in. Of the format
+              language_TERRITORY.
+            "
             onChange={event => updateField(event, updateMetadataField)}
           />,
 
@@ -46,6 +96,9 @@ export default ({ metadata, updateMetadataField }) => (
           <Input
             name="og:title"
             label="Title"
+            helpText="
+              A clear title without branding or mentioning the domain itself.
+            "
             defaultValue={metadata['og:title']}
             placeholder={metadata.title}
             onChange={event => updateField(event, updateMetadataField)}
@@ -54,24 +107,28 @@ export default ({ metadata, updateMetadataField }) => (
             name="og:description"
             defaultValue={metadata['og:description']}
             label="Description"
+            helpText="A clear description, at least two sentences long."
             placeholder={metadata.description}
             onChange={event => updateField(event, updateMetadataField)}
           />,
-          <Input
-            name="og:site_name"
-            label="Site Name"
-            onChange={event => updateField(event, updateMetadataField)}
-          />,
-          <Input
-            name="og:url"
-            label="URL"
-            onChange={event => updateField(event, updateMetadataField)}
-          />,
-          <Input
-            name="og:locale"
-            label="Locale"
-            defaultValue={metadata['og:locale']}
-            onChange={event => updateField(event, updateMetadataField)}
+          <InputImage
+            name="og:image"
+            label="Image"
+            helpText={`
+              According to facebook: "Use images that are at least 1200 x 630
+              pixels for the best display on high resolution devices. At the
+              minimum, you should use images that are 600 x 315 pixels to
+              display link page posts with larger images. Images can be up to
+              8MB in size.
+            `}
+            onDropAccepted={files => {
+              const file = files[0];
+
+              fileToDataURL(file).then(data => {
+                updateMetadataField('og:image', data);
+                updateMetadataField('_og:image-name', file.name);
+              });
+            }}
           />,
 
           <h2 className="section-title">Twitter</h2>,
@@ -79,6 +136,12 @@ export default ({ metadata, updateMetadataField }) => (
           <Input
             name="twitter:title"
             label="Title"
+            helpText="
+              A concise title for the related content. Platform specific
+              behaviors: iOS, Android: Truncated to two lines in timeline and
+              expanded Tweet. Web: Truncated to one line in timeline and
+              expanded Tweet.
+            "
             defaultValue={metadata['twitter:title']}
             placeholder={metadata.title}
             onChange={event => updateField(event, updateMetadataField)}
@@ -87,25 +150,47 @@ export default ({ metadata, updateMetadataField }) => (
             name="twitter:description"
             defaultValue={metadata['twitter:description']}
             label="Description"
+            helpText="
+              A description that concisely summarizes the content as appropriate
+              for presentation within a Tweet. You should not re-use the title
+              as the description or use this field to describe the general
+              services provided by the website. Platform specific behaviors:
+              iOS, Android: Not displayed. Web: Truncated to three lines in
+              timeline and expanded Tweet.
+            "
             placeholder={metadata.description}
             onChange={event => updateField(event, updateMetadataField)}
           />,
-          <Input
-            name="twitter:site"
-            label="Site Name"
-            defaultValue={metadata['twitter:site']}
-            onChange={event => updateField(event, updateMetadataField)}
+          <InputImage
+            name="twitter:image"
+            label="Image"
+            helpText="
+              According to twitter: You should not use a generic image such as
+              your website logo, author photo, or other image that spans
+              multiple pages. Images for this Card support an aspect ratio of
+              2:1 with minimum dimensions of 300x157 or maximum of 4096x4096
+              pixels. Images must be less than 5MB in size. JPG, PNG, WEBP and
+              GIF formats are supported. Only the first frame of an animated
+              GIF will be used. SVG is not supported.
+            "
+            onDropAccepted={files => {
+              const file = files[0];
+
+              fileToDataURL(file).then(data => {
+                updateMetadataField('twitter:image', data);
+                updateMetadataField('_twitter:image-name', file.name);
+              });
+            }}
           />,
           <Input
-            name="twitter:url"
-            label="URL"
-            defaultValue={metadata['twitter:url']}
-            onChange={event => updateField(event, updateMetadataField)}
-          />,
-          <Input
-            name="og:locale"
-            label="Locale"
-            defaultValue={metadata['og:locale']}
+            name="twitter:image:alt"
+            label="Image Alt"
+            helpText="
+              A text description of the image conveying the essential nature of
+              an image to users who are visually impaired. Maximum 420
+              characters.
+            "
+            defaultValue={metadata['twitter:image:alt']}
             onChange={event => updateField(event, updateMetadataField)}
           />
         ]}

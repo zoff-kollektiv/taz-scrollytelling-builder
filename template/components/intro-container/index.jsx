@@ -3,6 +3,7 @@ import React from 'react';
 import Icon from './chalkboard-teacher.svg';
 import Input from '../../../editor/components/form/input';
 import InputImage from '../../../editor/components/form/image';
+import Radio from '../../../editor/components/form/radio';
 
 import { find } from '../../../editor/lib/ast';
 import styles from './styles';
@@ -137,8 +138,28 @@ export default {
   onSelect() {
     return {
       fields: [
-        <InputImage name="background-image" />,
-        <Input name="publisher" label="Publisher name" defaultValue="taz.de" />,
+        <InputImage
+          name="background-image"
+          label="Background image"
+          helpText="
+            This image should be at least 1280px x 800px. JPEG images should have
+            a quality between 80 and 85. In order to load the image fast, filesize
+            is quite important. Please make sure the image is optimized - you can
+            e.g. use a service like https://tinypng.com.
+          "
+        />,
+        <Radio
+          name="publisher"
+          label="Publisher"
+          choices={[
+            ['taz', 'taz'],
+            ['gazeta', 'Gazeta'],
+            ['liberation', 'Liberation'],
+            ['falter', 'Falter'],
+            ['internazionale', 'Internazionale'],
+            ['hvg', 'hvg']
+          ]}
+        />,
         <Input
           type="hidden"
           name="header-title"
@@ -160,6 +181,10 @@ export default {
   extract({ data }) {
     const file = data.get('background-image');
     const name = data.get('background-image_name');
+
+    if (!file || !name) {
+      return Promise.resolve(null);
+    }
 
     return Promise.resolve([
       {

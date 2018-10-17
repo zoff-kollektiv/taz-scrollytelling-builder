@@ -77,7 +77,21 @@ export default {
   onSelect() {
     return {
       fields: [
-        <InputImage name="image" />,
+        <InputImage
+          name="image"
+          label="Image"
+          helpText={`
+          The image should have at lease the following width:<br/><br/>
+
+          - Content: 800px<br/>
+          - Wide: 950px<br/>
+          - Full: 1280px<br/><br/>
+
+          In order to load the image fast, filesize
+          is quite important. Please make sure the image is optimized - you can
+          e.g. use a service like https://tinypng.com.
+        `}
+        />,
         <Input name="caption" label="Caption" />,
         <Input name="alt" label="Alt" />,
         <Radio

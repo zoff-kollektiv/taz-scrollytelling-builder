@@ -1,8 +1,12 @@
 import React, { Fragment } from 'react';
 
+import filename from '../../../editor/lib/filename';
+
+import Google from './google';
 import OpenGraph from './facebook';
 import styles from './styles';
 import TwitterCard from './twitter';
+import Tracking from './tracking';
 
 export default {
   name: 'layout',
@@ -16,9 +20,35 @@ export default {
     </Fragment>
   ),
 
+  extract(node, { metadata }) {
+    const res = [];
+
+    const facebookImage = metadata['og:image'];
+    const twitterImage = metadata['twitter:image'];
+
+    if (facebookImage) {
+      res.push({
+        name: metadata['_og:image-name'],
+        file: facebookImage,
+        type: 'image'
+      });
+    }
+
+    if (twitterImage) {
+      res.push({
+        name: metadata['_twitter:image-name'],
+        file: twitterImage,
+        type: 'image'
+      });
+    }
+
+    return Promise.resolve(res);
+  },
+
   serialize(node, children, data) {
-    const { title } = data.metadata;
-    const locale = data.metadata['og:locale'];
+    const { metadata } = data;
+    const { locale, title, url } = metadata;
+    const src = `${url || '.'}/assets/images/`;
 
     return (
       <Fragment>
@@ -35,8 +65,19 @@ export default {
               content="width=device-width, initial-scale=1"
             />
 
-            <OpenGraph data={data.metadata} />
-            <TwitterCard data={data.metadata} />
+            <Google data={metadata} />
+
+            <OpenGraph
+              data={metadata}
+              imageFileName={filename(metadata['_og:image-name'])}
+              src={src}
+            />
+
+            <TwitterCard
+              data={metadata}
+              imageFileName={filename(metadata['_twitter:image-name'])}
+              src={src}
+            />
 
             <style type="text/css">[styles]</style>
           </head>
@@ -44,6 +85,8 @@ export default {
           <body>
             <article className="app">{children}</article>
           </body>
+
+          <Tracking />
         </html>
       </Fragment>
     );

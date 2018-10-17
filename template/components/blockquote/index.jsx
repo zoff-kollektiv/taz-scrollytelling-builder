@@ -16,7 +16,7 @@ const BLOCK_DEFINITION = {
           object: 'text',
           leaves: [
             {
-              text: ''
+              text: 'Quote'
             }
           ]
         }
@@ -30,7 +30,7 @@ const BLOCK_DEFINITION = {
           object: 'text',
           leaves: [
             {
-              text: 'Zitat - AutorIn'
+              text: 'Author'
             }
           ]
         }
@@ -45,7 +45,7 @@ const Blockquote = ({ attributes = {}, children }) => (
 
     <LayoutConstraint.Component>
       <div className="icon-container">
-        <Icon style={{ height: '3rem', width: '3rem' }} />
+        <Icon style={{ height: '3.5rem', width: '3.5rem' }} />
       </div>
 
       {children}

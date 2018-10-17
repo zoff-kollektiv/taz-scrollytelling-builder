@@ -1,17 +1,29 @@
 import css from 'styled-jsx/css';
 
-import { fonts } from '../../tokens';
+import { fonts, mq } from '../../tokens';
 
 export default css`
   .figure {
     font-size: 0;
     line-height: 1;
-    margin: 5rem auto;
+    margin: 3rem 1.5rem;
     text-align: center;
   }
 
+  @media ${mq.tablet} {
+    .figure {
+      margin: 5rem auto;
+    }
+  }
+
   .figure--is-full {
-    margin: 7rem 0;
+    margin: 5rem 0;
+  }
+
+  @media ${mq.tablet} {
+    .figure--is-full {
+      margin: 7rem 0;
+    }
   }
 
   .figure--is-wide {
@@ -28,11 +40,19 @@ export default css`
   }
 
   .caption {
-    color: #4a4a4a;
+    color: rgb(159, 159, 159);
     font-family: ${fonts.sansSerif.family};
-    font-size: 0.875rem;
+    font-size: 0.687rem;
+    letter-spacing: 0.05rem;
     line-height: 1.5;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     text-align: left;
+  }
+
+  @media ${mq.tablet} {
+    .caption {
+      font-size: 0.875rem;
+      margin-top: 1.25rem;
+    }
   }
 `;

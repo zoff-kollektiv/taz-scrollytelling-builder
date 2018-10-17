@@ -25,12 +25,21 @@ export default css`
 
   .input__label {
     font-family: ${fonts.inter.family};
-    font-size: 0.8rem;
+    font-size: 1.15rem;
     font-weight: ${fonts.inter.weight.black};
     display: block;
   }
 
   .input__label + input {
     margin-top: 0.35rem;
+  }
+
+  .help {
+    color: #666;
+    font-family: ${fonts.inter.family};
+    font-size: 0.8rem;
+    font-weight: ${fonts.inter.weight.regular};
+    margin-bottom: 1rem;
+    margin-top: 0.2rem;
   }
 `;

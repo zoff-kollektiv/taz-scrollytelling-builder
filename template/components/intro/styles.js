@@ -1,5 +1,7 @@
 import css from 'styled-jsx/css';
 
+import { mq } from '../../tokens';
+
 export default css`
   .image-container {
     background-attachment: fixed;
@@ -37,8 +39,14 @@ export default css`
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
-    width: 620px;
+    width: 100%;
     z-index: 2;
+  }
+
+  @media ${mq.tablet} {
+    .content {
+      width: 620px;
+    }
   }
 
   .publication-date {

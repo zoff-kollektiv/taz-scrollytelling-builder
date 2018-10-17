@@ -9,10 +9,11 @@ const containsHeadline3 = ast => !!find(ast, 'type', 'headline-3');
 
 const Headline3 = ({ attributes = {}, children }) => (
   <layoutConstraint.Component>
-    <h4 className="h4" {...attributes}>
-      <style jsx>{styles}</style>
-      {children}
-    </h4>
+    <style jsx>{styles}</style>
+
+    <div className="h4-container" {...attributes}>
+      <h4 className="h4">{children}</h4>
+    </div>
   </layoutConstraint.Component>
 );
 

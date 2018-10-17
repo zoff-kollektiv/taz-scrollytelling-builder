@@ -6,6 +6,7 @@ import slugify from 'slugify';
 import { Value } from 'slate';
 
 import { blocks, findBlockByName, schema } from '../../../template';
+import ErrorBoundary from '../error-boundary';
 import filename from '../../lib/filename';
 import { serialize as extractAssets } from './extract-assets';
 import { findMarkByName, marks } from '../../marks';
@@ -82,22 +83,25 @@ export default class Editor extends Component {
     const assetsFolder = zip.folder('assets');
 
     let html = serializeHTML(value, { metadata });
-    const assets = extractAssets(value);
+    const assets = extractAssets(value, { metadata });
 
     Promise.all(assets)
       // each block could return several files
       .then(_ => _.flat())
       .then(files => {
-        files.forEach(({ name, file, type, options = {} }) => {
-          const folders = {};
-          const fileBlob = file instanceof Blob ? file : dataURLtoBlob(file);
+        files
+          // filter out the ones which don't return anything
+          .filter(_ => _ !== null)
+          .forEach(({ name, file, type, options = {} }) => {
+            const folders = {};
+            const fileBlob = file instanceof Blob ? file : dataURLtoBlob(file);
 
-          if (!folders[type]) {
-            folders[type] = assetsFolder.folder(`${type}s`);
-          }
+            if (!folders[type]) {
+              folders[type] = assetsFolder.folder(`${type}s`);
+            }
 
-          folders[type].file(filename(name), fileBlob, options);
-        });
+            folders[type].file(filename(name), fileBlob, options);
+          });
 
         html = collectAndInlineStyles('[styles]', html);
         html = replaceDoctype('[doctype]', html);
@@ -223,15 +227,17 @@ export default class Editor extends Component {
             />
           </div>
 
-          <SlateEditor
-            ref={this.editor}
-            spellCheck={false}
-            value={value}
-            onChange={this.onChange}
-            renderNode={this.renderNode}
-            renderMark={this.renderMark}
-            schema={schema}
-          />
+          <ErrorBoundary>
+            <SlateEditor
+              ref={this.editor}
+              spellCheck={false}
+              value={value}
+              onChange={this.onChange}
+              renderNode={this.renderNode}
+              renderMark={this.renderMark}
+              schema={schema}
+            />
+          </ErrorBoundary>
         </div>
 
         <div className="editor__toolbar">
