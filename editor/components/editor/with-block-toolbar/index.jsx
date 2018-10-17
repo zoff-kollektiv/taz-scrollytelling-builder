@@ -2,6 +2,7 @@ import classnames from 'classnames';
 import React from 'react';
 
 import editBlockStyles from './styles-edit-block';
+import TrashIcon from './trash.svg';
 
 const removeBlock = (editor, key) =>
   editor.change(change => change.removeNodeByKey(key));
@@ -24,7 +25,7 @@ export default (block, props) => {
           'toolbar--is-visible': canEdit && isFocused
         })}
       >
-        Actions:
+        <span className="title">Actions</span>
         {canEdit &&
           isFocused && (
             <button
@@ -35,7 +36,8 @@ export default (block, props) => {
                 removeBlock(editor, node.key);
               }}
             >
-              Delete
+              <TrashIcon />
+              <span>Delete</span>
             </button>
           )}
       </div>
