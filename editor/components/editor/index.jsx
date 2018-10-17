@@ -6,6 +6,7 @@ import slugify from 'slugify';
 import { Value } from 'slate';
 
 import { blocks, findBlockByName, schema } from '../../../template';
+import ErrorBoundary from '../error-boundary';
 import filename from '../../lib/filename';
 import { serialize as extractAssets } from './extract-assets';
 import { findMarkByName, marks } from '../../marks';
@@ -226,15 +227,17 @@ export default class Editor extends Component {
             />
           </div>
 
-          <SlateEditor
-            ref={this.editor}
-            spellCheck={false}
-            value={value}
-            onChange={this.onChange}
-            renderNode={this.renderNode}
-            renderMark={this.renderMark}
-            schema={schema}
-          />
+          <ErrorBoundary>
+            <SlateEditor
+              ref={this.editor}
+              spellCheck={false}
+              value={value}
+              onChange={this.onChange}
+              renderNode={this.renderNode}
+              renderMark={this.renderMark}
+              schema={schema}
+            />
+          </ErrorBoundary>
         </div>
 
         <div className="editor__toolbar">
