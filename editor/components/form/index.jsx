@@ -20,14 +20,38 @@ class Form extends Component {
     const filePromises = [...formData.entries()]
       .map(([index, value]) => {
         if (value instanceof File) {
-          return fileToDataURL(value).then(dataURL => {
-            // we can't keep the original object, because after a re-import of
-            // the json this data wouldn't be available
-            formData.delete(index);
+          return (
+            fileToDataURL(value)
+              .then(dataURL => {
+                // we can't keep the original object, because after a re-import of
+                // the json this data wouldn't be available
+                formData.delete(index);
 
-            formData.set(index, dataURL);
-            formData.set(`${index}_name`, value.name);
-          });
+                formData.set(index, dataURL);
+                formData.set(`${index}_name`, value.name);
+              })
+
+              // store the image width and height
+              .then(
+                () =>
+                  new Promise(resolve => {
+                    const image = new Image();
+
+                    try {
+                      image.src = formData.get(index);
+
+                      image.onload = () => {
+                        formData.set(`${index}_height`, image.height);
+                        formData.set(`${index}_width`, image.width);
+
+                        resolve();
+                      };
+                    } catch (err) {
+                      resolve();
+                    }
+                  })
+              )
+          );
         }
 
         return null;
