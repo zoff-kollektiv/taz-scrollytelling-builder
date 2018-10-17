@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './styles';
 
-const PublicationDate = ({ attributes = {}, children }) => (
-  <small className="publication-date" {...attributes}>
+const PublicationDate = ({ children }) => (
+  <small className="publication-date">
     <style jsx>{styles}</style>
     {children}
   </small>

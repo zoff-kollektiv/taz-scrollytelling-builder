@@ -4,7 +4,7 @@ import filename from '../../../editor/lib/filename';
 
 import styles from './styles';
 
-const Intro = ({ data, attributes = {}, children, serialize = false }) => {
+const Intro = ({ data, children, serialize = false }) => {
   const backgroundUrl = !serialize
     ? data.get('background-image')
     : `./assets/images/${filename(data.get('background-image_name'))}`;
@@ -13,7 +13,6 @@ const Intro = ({ data, attributes = {}, children, serialize = false }) => {
     <div
       className="image-container"
       style={{ backgroundImage: `url(${backgroundUrl})` }}
-      {...attributes}
     >
       <style jsx>{styles}</style>
 

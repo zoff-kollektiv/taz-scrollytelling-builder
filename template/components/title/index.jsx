@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './styles';
 
-const Title = ({ attributes = {}, children }) => (
-  <h1 className="title" {...attributes}>
+const Title = ({ children }) => (
+  <h1 className="title">
     <style jsx>{styles}</style>
     {children}
   </h1>

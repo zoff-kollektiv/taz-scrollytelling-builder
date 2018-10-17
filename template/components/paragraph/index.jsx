@@ -1,10 +1,6 @@
 import React from 'react';
 
-const Paragraph = ({ attributes = {}, children }) => (
-  <p className="paragraph" {...attributes}>
-    {children}
-  </p>
-);
+const Paragraph = ({ children }) => <p className="paragraph">{children}</p>;
 
 export default {
   name: 'paragraph',

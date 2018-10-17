@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './styles';
 
-const Constraint = ({ attributes = {}, children }) => (
-  <div className="layout-constraint" {...attributes}>
+const Constraint = ({ children }) => (
+  <div className="layout-constraint">
     <style jsx>{styles}</style>
     {children}
   </div>

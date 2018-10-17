@@ -30,7 +30,7 @@ const BLOCK_DEFINITION = {
   ]
 };
 
-const Image = ({ data, attributes = {}, children, serialize = false }) => {
+const Image = ({ data, children, serialize = false }) => {
   const alt = data.get('alt') || '';
   const type = data.get('type');
   const width = data.get('image_width');
@@ -59,7 +59,6 @@ const Image = ({ data, attributes = {}, children, serialize = false }) => {
         { [`figure--dimension-landscape`]: !isPortraitSize },
         { [`figure--dimension-portrait`]: isPortraitSize }
       )}
-      {...attributes}
     >
       <style jsx>{styles}</style>
 

@@ -15,6 +15,7 @@ import serializeHTML from './serialize-html';
 import styles from './styles';
 import Toolbar from './toolbar';
 import ToolbarMarks from './toolbar-marks';
+import withBlockToolbar from './with-block-toolbar';
 
 const collectAndInlineStyles = (placeholder, html) => {
   const blockStyles = blocks
@@ -184,10 +185,10 @@ export default class Editor extends Component {
     const { type } = props.node;
 
     /* eslint-disable-next-line no-shadow */
-    const { Component } = findBlockByName(type);
+    const block = findBlockByName(type);
 
     // Maybe the mark is an inline and therefore falls under renderNode (e.g. links)
-    if (!Component) {
+    if (!block) {
       const { Mark } = findMarkByName(type);
 
       if (Mark) {
@@ -197,7 +198,7 @@ export default class Editor extends Component {
       return next();
     }
 
-    return <Component {...props} />;
+    return withBlockToolbar(block, props);
   };
 
   renderMark = props => {

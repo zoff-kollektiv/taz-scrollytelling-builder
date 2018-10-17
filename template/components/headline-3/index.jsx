@@ -7,9 +7,9 @@ import styles from './styles';
 
 const containsHeadline2 = ast => !!find(ast, 'type', 'headline-2');
 
-const Headline3 = ({ attributes = {}, children }) => (
+const Headline3 = ({ children }) => (
   <layoutConstraint.Component>
-    <h3 className="h3" {...attributes}>
+    <h3 className="h3">
       <style jsx>{styles}</style>
       {children}
     </h3>
