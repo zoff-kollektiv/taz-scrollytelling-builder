@@ -1,6 +1,6 @@
 import css from 'styled-jsx/css';
 
-import { colors, fonts } from '../../tokens';
+import { colors, fonts, mq } from '../../tokens';
 
 export default css`
   .header {
@@ -12,20 +12,35 @@ export default css`
     flex-wrap: nowrap;
     height: 40px;
     left: 0;
-    padding: 0.4rem 2rem;
+    padding: 0.4rem 0.5rem 0.4rem 1rem;
     position: absolute;
-    top: 3rem;
+    top: 1.5rem;
     width: 100%;
     z-index: 2;
   }
 
-  .logo-publisher {
-    margin-right: 1rem;
-    width: 5rem;
+  @media ${mq.tablet} {
+    .header {
+      padding-left: 2rem;
+      top: 3rem;
+    }
   }
 
-  .header--publisher-internazionale .logo-publisher {
-    width: 10rem;
+  .logo-publisher {
+    margin-right: 1rem;
+    width: 4rem;
+  }
+
+  @media ${mq.tablet} {
+    .logo-publisher {
+      width: 5rem;
+    }
+  }
+
+  @media ${mq.tablet} {
+    .header--publisher-internazionale .logo-publisher {
+      width: 10rem;
+    }
   }
 
   .header--publisher-taz .logo-publisher {
@@ -33,7 +48,27 @@ export default css`
   }
 
   .header--publisher-hvg .logo-publisher {
-    width: 3rem;
+    width: 2rem;
+  }
+
+  @media ${mq.tablet} {
+    .header--publisher-hvg .logo-publisher {
+      width: 3rem;
+    }
+  }
+
+  :global(.header .logo-publisher > svg) {
+    height: auto;
+    max-height: 1.5rem;
+    margin-top: 0.15rem;
+    width: 100%;
+  }
+
+  @media ${mq.tablet} {
+    :global(.header .logo-publisher > svg) {
+      max-height: 1.7rem;
+      margin-top: 0.15rem;
+    }
   }
 
   :global(.header--publisher-falter .logo-publisher > svg) {
@@ -43,7 +78,13 @@ export default css`
 
   :global(.header--publisher-taz .logo-publisher > svg) {
     margin-top: 0.1rem;
-    max-height: 1.35rem;
+    max-height: 1.15rem;
+  }
+
+  @media ${mq.tablet} {
+    :global(.header--publisher-taz .logo-publisher > svg) {
+      max-height: 1.35rem;
+    }
   }
 
   :global(.header:not(.header--publisher-hvg) .logo-publisher path) {
@@ -52,22 +93,22 @@ export default css`
 
   // Project logo
   :global(.header .logo-container svg) {
-    height: 3.5rem;
+    height: 3rem;
     margin-top: 0.3rem;
-    width: 3.5rem;
+    width: 3rem;
   }
 
-  :global(.header .logo-publisher > svg) {
-    height: auto;
-    max-height: 1.7rem;
-    margin-right: 2rem;
-    margin-top: 0.15rem;
-    width: 100%;
+  @media ${mq.tablet} {
+    :global(.header .logo-container svg) {
+      height: 3.5rem;
+      margin-top: 0.3rem;
+      width: 3.5rem;
+    }
   }
 
   .title {
     font-family: ${fonts.sansSerif.family};
-    font-size: 0.875rem;
+    font-size: 0.675rem;
     font-style: normal;
     font-weight: ${fonts.sansSerif.weight.bold};
     letter-spacing: 2px;
@@ -75,9 +116,24 @@ export default css`
     text-transform: uppercase;
   }
 
+  @media ${mq.tablet} {
+    .title {
+      font-size: 0.875rem;
+    }
+  }
+
   .research-network {
-    font-size: 0.825rem;
+    display: block;
+    font-size: 0.6rem;
     font-weight: ${fonts.sansSerif.weight.regular};
-    margin-left: 0.5rem;
+    line-height: 1.2;
+  }
+
+  @media ${mq.tablet} {
+    .research-network {
+      display: inline-block;
+      font-size: 0.825rem;
+      margin-left: 0.25rem;
+    }
   }
 `;
