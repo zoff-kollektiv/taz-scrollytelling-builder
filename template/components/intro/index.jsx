@@ -25,6 +25,7 @@ export default {
   name: 'intro',
   private: true,
   styles,
+  canEdit: false,
   Component: ({ node, ...rest }) => <Intro data={node.data} {...rest} />,
 
   serialize(node, children) {
