@@ -19,18 +19,21 @@ export default css`
     z-index: 2;
   }
 
-  :global(.header .logo-container svg) {
-    height: 3.5rem;
-    margin-top: 0.3rem;
-    width: 3.5rem;
+  .logo-publisher {
+    margin-right: 1rem;
+    width: 5rem;
   }
 
-  :global(.header .logo-publisher > svg) {
-    height: auto;
-    max-height: 1.7rem;
-    margin-right: 2rem;
-    margin-top: 0.15rem;
-    width: 100%;
+  .header--publisher-internazionale .logo-publisher {
+    width: 10rem;
+  }
+
+  .header--publisher-taz .logo-publisher {
+    width: 4rem;
+  }
+
+  .header--publisher-hvg .logo-publisher {
+    width: 3rem;
   }
 
   :global(.header--publisher-falter .logo-publisher > svg) {
@@ -45,6 +48,21 @@ export default css`
 
   :global(.header:not(.header--publisher-hvg) .logo-publisher path) {
     fill: currentColor;
+  }
+
+  // Project logo
+  :global(.header .logo-container svg) {
+    height: 3.5rem;
+    margin-top: 0.3rem;
+    width: 3.5rem;
+  }
+
+  :global(.header .logo-publisher > svg) {
+    height: auto;
+    max-height: 1.7rem;
+    margin-right: 2rem;
+    margin-top: 0.15rem;
+    width: 100%;
   }
 
   .title {

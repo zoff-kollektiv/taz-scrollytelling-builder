@@ -35,9 +35,8 @@ class Form extends Component {
               .then(
                 () =>
                   new Promise(resolve => {
-                    const image = new Image();
-
                     try {
+                      const image = new Image();
                       image.src = formData.get(index);
 
                       image.onload = () => {
