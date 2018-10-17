@@ -8,17 +8,20 @@ import styles from './styles';
 import TwitterCard from './twitter';
 import Tracking from './tracking';
 
+const Layout = ({ children }) => (
+  <Fragment>
+    <style jsx>{styles}</style>
+
+    {children}
+  </Fragment>
+);
+
 export default {
   name: 'layout',
   private: true,
   styles,
-  Component: ({ children }) => (
-    <Fragment>
-      <style jsx>{styles}</style>
 
-      {children}
-    </Fragment>
-  ),
+  Component: ({ node, ...rest }) => <Layout data={node.data} {...rest} />,
 
   extract(node, { metadata }) {
     const res = [];

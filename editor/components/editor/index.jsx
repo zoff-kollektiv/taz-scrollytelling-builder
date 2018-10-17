@@ -110,7 +110,7 @@ export default class Editor extends Component {
 
         // store the editor, metadata and current version-number of the project
         zip.file(
-          'story.json',
+          'data.json',
           JSON.stringify({
             version,
             editor: this.props.state,
