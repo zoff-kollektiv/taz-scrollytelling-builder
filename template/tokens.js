@@ -1,4 +1,4 @@
-const SCREEN_SIZES = [['tablet', 768]];
+const SCREEN_SIZES = [['tablet', 768], ['desktop', 1024]];
 
 const colors = {
   brand: 'rgb(0 ,0, 0)'

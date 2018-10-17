@@ -49,6 +49,12 @@ export default css`
     }
   }
 
+  @media ${mq.desktop} {
+    .content {
+      width: 750px;
+    }
+  }
+
   .publication-date {
     display: block;
     text-align: center;

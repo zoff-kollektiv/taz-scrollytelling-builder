@@ -20,7 +20,7 @@ const normalizeUrl = url => {
   return normalized;
 };
 
-const updateField = (event, callback, normalize = () => {}) => {
+const updateField = (event, callback, normalize = value => value) => {
   event.preventDefault();
 
   const { target } = event;

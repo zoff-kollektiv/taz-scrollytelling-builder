@@ -34,9 +34,20 @@ export default css`
     max-width: 780px;
   }
 
+  // Make caption same width as the image https://stackoverflow.com/questions/4979487/image-caption-width-to-same-as-image
+  .figure--dimension-portrait {
+    display: table;
+  }
+
   .image {
     height: auto;
     width: 100%;
+  }
+
+  .figure--dimension-portrait .image {
+    height: auto;
+    max-height: 80vh;
+    width: auto;
   }
 
   .caption {
@@ -54,5 +65,12 @@ export default css`
       font-size: 0.875rem;
       margin-top: 1.25rem;
     }
+  }
+
+  // Make caption same width as the image https://stackoverflow.com/questions/4979487/image-caption-width-to-same-as-image
+  .figure--dimension-portrait .caption {
+    caption-side: bottom;
+    display: table-caption;
+    width: 100%;
   }
 `;

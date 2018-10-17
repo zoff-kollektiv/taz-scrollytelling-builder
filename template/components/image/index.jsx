@@ -13,6 +13,10 @@ const Image = ({ data, attributes = {}, children, serialize = false }) => {
   const alt = data.get('alt') || '';
   const caption = data.get('caption');
   const type = data.get('type');
+  const width = data.get('image_width');
+  const height = data.get('image_height');
+  const isPortraitSize = height > width;
+
   let src;
 
   if (!serialize) {
@@ -29,7 +33,12 @@ const Image = ({ data, attributes = {}, children, serialize = false }) => {
 
   return (
     <figure
-      className={classnames('figure', { [`figure--is-${type}`]: true })}
+      className={classnames(
+        'figure',
+        { [`figure--is-${type}`]: true },
+        { [`figure--dimension-landscape`]: !isPortraitSize },
+        { [`figure--dimension-portrait`]: isPortraitSize }
+      )}
       {...attributes}
     >
       <style jsx>{styles}</style>

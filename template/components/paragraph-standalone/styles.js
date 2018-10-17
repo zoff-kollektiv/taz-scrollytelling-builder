@@ -18,11 +18,20 @@ export default css`
 
   :global(.paragraph a) {
     color: currentColor;
+    box-decoration-break: clone;
     text-decoration: underline;
+  }
+
+  :global(.paragraph a:hover),
+  :global(.paragraph a:focus) {
+    background-color: black;
+    color: white;
+    cursor: pointer;
   }
 
   :global(.paragraph em) {
     background-color: black;
+    box-decoration-break: clone;
     color: white;
     font-family: ${fonts.sansSerif.family};
     font-style: normal;
