@@ -7,6 +7,7 @@ import StoryPage from './pages/story';
 import HomePage from './pages/home';
 import MetadataPage from './pages/metadata';
 
+import ErrorBoundary from './components/error-boundary';
 import Store from './lib/store';
 
 class Application extends Component {
@@ -92,13 +93,15 @@ class Application extends Component {
 
   render() {
     return (
-      <Store.Provider value={this.state}>
-        <Router>
-          <HomePage path="/" />
-          <StoryPage path="story" />
-          <MetadataPage path="metadata" />
-        </Router>
-      </Store.Provider>
+      <ErrorBoundary>
+        <Store.Provider value={this.state}>
+          <Router>
+            <HomePage path="/" />
+            <StoryPage path="story" />
+            <MetadataPage path="metadata" />
+          </Router>
+        </Store.Provider>
+      </ErrorBoundary>
     );
   }
 }
