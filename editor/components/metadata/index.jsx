@@ -56,8 +56,9 @@ export default ({ metadata, updateMetadataField }) => (
         fields={[
           <Input
             name="url"
-            label="URL"
+            label="Url"
             defaultValue={metadata.url}
+            helpText="The address where the story will be published at."
             onChange={event =>
               updateField(event, updateMetadataField, normalizeUrl)
             }
@@ -72,6 +73,21 @@ export default ({ metadata, updateMetadataField }) => (
             name="description"
             label="Description"
             defaultValue={metadata.description}
+            helpText="
+              The description should generally inform and interest users with a
+              short, relevant summary of what a particular page is about
+              (50 - 200 characters).
+            "
+            onChange={event => updateField(event, updateMetadataField)}
+          />,
+          <Input
+            name="locale"
+            label="Locale"
+            defaultValue={metadata.locale}
+            helpText="
+              The locale these tags are marked up in. Of the format
+              language_TERRITORY.
+            "
             onChange={event => updateField(event, updateMetadataField)}
           />,
 
@@ -80,7 +96,9 @@ export default ({ metadata, updateMetadataField }) => (
           <Input
             name="og:title"
             label="Title"
-            helpText="A clear title without branding or mentioning the domain itself."
+            helpText="
+              A clear title without branding or mentioning the domain itself.
+            "
             defaultValue={metadata['og:title']}
             placeholder={metadata.title}
             onChange={event => updateField(event, updateMetadataField)}
@@ -118,7 +136,12 @@ export default ({ metadata, updateMetadataField }) => (
           <Input
             name="twitter:title"
             label="Title"
-            helpText="A concise title for the related content. Platform specific behaviors: iOS, Android: Truncated to two lines in timeline and expanded Tweet. Web: Truncated to one line in timeline and expanded Tweet."
+            helpText="
+              A concise title for the related content. Platform specific
+              behaviors: iOS, Android: Truncated to two lines in timeline and
+              expanded Tweet. Web: Truncated to one line in timeline and
+              expanded Tweet.
+            "
             defaultValue={metadata['twitter:title']}
             placeholder={metadata.title}
             onChange={event => updateField(event, updateMetadataField)}
@@ -127,7 +150,14 @@ export default ({ metadata, updateMetadataField }) => (
             name="twitter:description"
             defaultValue={metadata['twitter:description']}
             label="Description"
-            helpText="A description that concisely summarizes the content as appropriate for presentation within a Tweet. You should not re-use the title as the description or use this field to describe the general services provided by the website. Platform specific behaviors: iOS, Android: Not displayed. Web: Truncated to three lines in timeline and expanded Tweet."
+            helpText="
+              A description that concisely summarizes the content as appropriate
+              for presentation within a Tweet. You should not re-use the title
+              as the description or use this field to describe the general
+              services provided by the website. Platform specific behaviors:
+              iOS, Android: Not displayed. Web: Truncated to three lines in
+              timeline and expanded Tweet.
+            "
             placeholder={metadata.description}
             onChange={event => updateField(event, updateMetadataField)}
           />,
@@ -155,7 +185,11 @@ export default ({ metadata, updateMetadataField }) => (
           <Input
             name="twitter:image:alt"
             label="Image Alt"
-            helpText="A text description of the image conveying the essential nature of an image to users who are visually impaired. Maximum 420 characters."
+            helpText="
+              A text description of the image conveying the essential nature of
+              an image to users who are visually impaired. Maximum 420
+              characters.
+            "
             defaultValue={metadata['twitter:image:alt']}
             onChange={event => updateField(event, updateMetadataField)}
           />

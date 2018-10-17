@@ -5,7 +5,7 @@ import { fonts } from '../../../tokens';
 export default css`
   .radio-group__label {
     font-family: ${fonts.inter.family};
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     font-weight: ${fonts.inter.weight.black};
     display: block;
     margin-bottom: 0.35rem;
