@@ -21,6 +21,13 @@ export default css`
     text-decoration: underline;
   }
 
+  :global(.paragraph a:hover),
+  :global(.paragraph a:focus) {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
+
   :global(.paragraph em) {
     background-color: black;
     color: white;
