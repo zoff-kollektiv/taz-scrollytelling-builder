@@ -2,14 +2,11 @@ import React, { Fragment } from 'react';
 
 import styles from './styles';
 
-const Fonts = ({ children, serialize }) => (
+const Fonts = () => (
   <Fragment>
     <style jsx global>
       {styles}
     </style>
-
-    {/* Otherwise slate will create an empty node, to edit */}
-    {serialize && { children }}
   </Fragment>
 );
 
@@ -18,11 +15,7 @@ export default {
   private: true,
   styles,
   Component: ({ node, ...rest }) => <Fonts data={node.data} {...rest} />,
-  serialize: (node, children) => (
-    <Fonts data={node.data} serialize>
-      {children}
-    </Fonts>
-  ),
+  serialize: (node, children) => <Fonts data={node.data}>{children}</Fonts>,
 
   extract() {
     const promises = [
