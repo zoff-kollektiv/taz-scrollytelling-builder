@@ -13,7 +13,7 @@ export default {
   name: 'title',
   private: true,
   styles,
-
+  canEdit: false,
   Component: ({ node, ...rest }) => <Title data={node.data} {...rest} />,
   serialize: (node, children) => <Title data={node.data}>{children}</Title>
 };

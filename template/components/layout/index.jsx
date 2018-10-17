@@ -20,7 +20,7 @@ export default {
   name: 'layout',
   private: true,
   styles,
-
+  canEdit: false,
   Component: ({ node, ...rest }) => <Layout data={node.data} {...rest} />,
 
   extract(node, { metadata }) {

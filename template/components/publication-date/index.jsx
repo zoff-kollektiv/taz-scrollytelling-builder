@@ -13,6 +13,7 @@ export default {
   name: 'publication-date',
   private: true,
   styles,
+  canEdit: false,
   Component: ({ node, ...rest }) => (
     <PublicationDate data={node.data} {...rest} />
   ),

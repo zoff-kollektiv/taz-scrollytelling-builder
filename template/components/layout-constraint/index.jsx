@@ -13,6 +13,7 @@ export default {
   name: 'layout-constraint',
   private: true,
   styles,
+  canEdit: false,
   Component: ({ node = {}, ...rest }) => (
     <Constraint data={node.data} {...rest} />
   ),

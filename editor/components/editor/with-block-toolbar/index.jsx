@@ -8,33 +8,36 @@ const removeBlock = (editor, key) =>
 
 export default (block, props) => {
   const { isFocused, attributes, node, editor } = props;
-  const { Component } = block;
+  const { canEdit = true, Component } = block;
 
   return (
     <div
-      className={classnames('block', { 'block--is-focused': isFocused })}
+      className={classnames('block', {
+        'block--is-focused': canEdit && isFocused
+      })}
       {...attributes}
     >
       <style jsx>{editBlockStyles}</style>
       <div
         readOnly
         className={classnames('toolbar', {
-          'toolbar--is-visible': isFocused
+          'toolbar--is-visible': canEdit && isFocused
         })}
       >
         Actions:
-        {isFocused && (
-          <button
-            className="button"
-            type="button"
-            onClick={event => {
-              event.stopPropagation();
-              removeBlock(editor, node.key);
-            }}
-          >
-            Delete
-          </button>
-        )}
+        {canEdit &&
+          isFocused && (
+            <button
+              className="button"
+              type="button"
+              onClick={event => {
+                event.stopPropagation();
+                removeBlock(editor, node.key);
+              }}
+            >
+              Delete
+            </button>
+          )}
       </div>
 
       <Component {...props} />
