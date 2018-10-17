@@ -4,16 +4,16 @@ import { fonts, mq } from '../../tokens';
 
 export default css`
   .h4-container {
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.2rem;
     margin-left: -0.25rem;
     margin-top: 1.5rem;
   }
 
   @media ${mq.tablet} {
     .h4-container {
-      margin-bottom: 2rem;
+      margin-bottom: 1.3rem;
       margin-left: -0.5rem;
-      margin-top: 4.5rem;
+      margin-top: 2.8rem;
     }
   }
 
@@ -34,7 +34,7 @@ export default css`
 
   @media ${mq.tablet} {
     .h4 {
-      font-size: 1.5rem;
+      font-size: 1.45rem;
       line-height: 1.25;
       padding: 0.15rem 0.5rem;
     }

@@ -45,7 +45,7 @@ const Blockquote = ({ attributes = {}, children }) => (
 
     <LayoutConstraint.Component>
       <div className="icon-container">
-        <Icon style={{ height: '3.5rem', width: '3.5rem' }} />
+        <Icon />
       </div>
 
       {children}
