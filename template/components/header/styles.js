@@ -60,14 +60,12 @@ export default css`
   :global(.header .logo-publisher > svg) {
     height: auto;
     max-height: 1.5rem;
-    margin-top: 0.15rem;
     width: 100%;
   }
 
   @media ${mq.tablet} {
     :global(.header .logo-publisher > svg) {
       max-height: 1.7rem;
-      margin-top: 0.15rem;
     }
   }
 
@@ -77,7 +75,6 @@ export default css`
   }
 
   :global(.header--publisher-taz .logo-publisher > svg) {
-    margin-top: 0.1rem;
     max-height: 1.15rem;
   }
 
