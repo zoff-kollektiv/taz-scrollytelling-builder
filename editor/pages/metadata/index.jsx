@@ -13,7 +13,7 @@ export default () => (
       <Layout>
         <Navigation items={[['/story', 'Story'], ['/metadata', 'Metadata']]} />
         <Helmet>
-          <title>Metadata - {metadata.title}</title>
+          <title>Metadata - {metadata.title || ''}</title>
         </Helmet>
 
         <Metadata
