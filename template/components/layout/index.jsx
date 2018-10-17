@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 
 import filename from '../../../editor/lib/filename';
 
+import Google from './google';
 import OpenGraph from './facebook';
 import styles from './styles';
 import TwitterCard from './twitter';
@@ -45,7 +46,8 @@ export default {
   },
 
   serialize(node, children, data) {
-    const { locale, title, url } = data.metadata;
+    const { metadata } = data;
+    const { locale, title, url } = metadata;
     const src = `${url || '.'}/assets/images/`;
 
     return (
@@ -63,14 +65,17 @@ export default {
               content="width=device-width, initial-scale=1"
             />
 
+            <Google data={metadata} />
+
             <OpenGraph
-              data={data.metadata}
-              imageFileName={filename(data.metadata['_og:image-name'])}
+              data={metadata}
+              imageFileName={filename(metadata['_og:image-name'])}
               src={src}
             />
+
             <TwitterCard
-              data={data.metadata}
-              imageFileName={filename(data.metadata['_twitter:image-name'])}
+              data={metadata}
+              imageFileName={filename(metadata['_twitter:image-name'])}
               src={src}
             />
 
