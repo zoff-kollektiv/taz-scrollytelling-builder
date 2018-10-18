@@ -181,8 +181,6 @@ export default css`
     font-size: 0;
     line-height: 1;
     margin-left: auto;
-    position: relative;
-    top: -0.15rem;
   }
 
   @media ${mq.phone} {
