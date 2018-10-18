@@ -78,15 +78,7 @@ export default class Block extends Component {
         >
           <style jsx>{styles}</style>
           <span className="block__label">{label || name}</span>
-          {Icon && (
-            <Icon
-              style={{
-                height: '1rem',
-                verticalAlign: 'middle',
-                width: '1rem'
-              }}
-            />
-          )}
+          {Icon && <Icon />}
         </button>
       </Fragment>
     );

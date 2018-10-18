@@ -27,7 +27,14 @@ module.exports = {
           {
             loader: 'react-svg-loader',
             options: {
-              jsx: true
+              jsx: true,
+              svgo: {
+                plugins: [
+                  {
+                    cleanupIDs: false
+                  }
+                ]
+              }
             }
           }
         ]
