@@ -29,4 +29,14 @@ export default css`
     margin-right: 0.75rem;
     vertical-align: middle;
   }
+
+  :global(.block svg) {
+    height: 1rem;
+    vertical-align: middle;
+    width: 1rem;
+  }
+
+  :global(.block svg path) {
+    fill: currentColor;
+  }
 `;
