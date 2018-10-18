@@ -8,6 +8,6 @@ export default css`
   }
 
   .block--is-focused {
-    background-color: rgba(213, 213, 213, 0.2);
+    background-color: rgb(239, 239, 239);
   }
 `;

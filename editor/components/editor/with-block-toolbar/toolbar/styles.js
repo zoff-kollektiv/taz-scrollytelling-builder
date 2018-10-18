@@ -4,6 +4,7 @@ import { fonts } from '../../../../tokens';
 
 export default css`
   .toolbar {
+    background-color: rgb(239, 239, 239);
     color: black;
     display: none;
     flex-direction: row;
@@ -11,11 +12,11 @@ export default css`
     font-size: 0.75rem;
     font-weight: ${fonts.inter.weight.black};
     justify-content: flex-end;
-    left: 0;
     padding: 0.25rem 1.5rem;
     position: absolute;
+    right: 0;
     top: 0;
-    width: 100%;
+    transform: translateY(-100%);
     z-index: 100;
   }
 
@@ -24,14 +25,14 @@ export default css`
   }
 
   .block-label {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
   }
 
   .button {
     align-items: center;
     background: transparent;
     border: none;
-    color: black;
+    color: currentColor;
     cursor: pointer;
     display: flex;
     font-family: ${fonts.inter.family};
@@ -48,7 +49,7 @@ export default css`
   }
 
   :global(.toolbar .button svg path) {
-    fill: #7d7d7d;
+    fill: #9e9e9e;
   }
 
   .button:hover,
