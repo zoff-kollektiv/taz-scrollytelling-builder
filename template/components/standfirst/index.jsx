@@ -3,9 +3,9 @@ import React from 'react';
 import layoutConstraint from '../layout-constraint';
 import styles from './styles';
 
-const Standfirst = ({ attributes = {}, children }) => (
+const Standfirst = ({ children }) => (
   <layoutConstraint.Component>
-    <p className="standfirst" {...attributes}>
+    <p className="standfirst">
       <style jsx>{styles}</style>
       {children}
     </p>

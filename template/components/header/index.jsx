@@ -20,7 +20,7 @@ const LOGOS = {
   hvg: LogoHVG
 };
 
-const Header = ({ data, children, attributes = {} }) => {
+const Header = ({ data, children }) => {
   const publisher = data.get('publisher');
   const title = data.get('header-title');
   const researchType = data.get('header-research-type');
@@ -32,7 +32,6 @@ const Header = ({ data, children, attributes = {} }) => {
         [`header--publisher-${publisher}`]: true
       })}
       readOnly
-      {...attributes}
     >
       <style jsx>{styles}</style>
 

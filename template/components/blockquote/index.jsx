@@ -39,8 +39,8 @@ const BLOCK_DEFINITION = {
   ]
 };
 
-const Blockquote = ({ attributes = {}, children }) => (
-  <blockquote className="blockquote" {...attributes}>
+const Blockquote = ({ children }) => (
+  <blockquote className="blockquote">
     <style jsx>{styles}</style>
 
     <LayoutConstraint.Component>

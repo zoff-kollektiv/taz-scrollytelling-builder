@@ -14,6 +14,7 @@ export default {
   name: 'fonts',
   private: true,
   styles,
+  canEdit: false,
   Component: ({ node, ...rest }) => <Fonts data={node.data} {...rest} />,
   serialize: (node, children) => <Fonts data={node.data}>{children}</Fonts>,
 

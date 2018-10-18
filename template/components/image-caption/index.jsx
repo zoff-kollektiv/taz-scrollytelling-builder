@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './styles';
 
-const Caption = ({ attributes = {}, children }) => (
-  <figcaption className="caption" {...attributes}>
+const Caption = ({ children }) => (
+  <figcaption className="caption">
     <style jsx>{styles}</style>
     {children}
   </figcaption>
