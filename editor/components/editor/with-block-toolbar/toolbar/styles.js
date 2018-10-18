@@ -4,7 +4,6 @@ import { fonts } from '../../../../tokens';
 
 export default css`
   .toolbar {
-    background-color: rgba(213, 213, 213, 0.2);
     color: black;
     display: none;
     flex-direction: row;
@@ -25,8 +24,7 @@ export default css`
   }
 
   .block-label {
-    align-self: flex-start;
-    margin-right: auto;
+    margin-right: 1rem;
   }
 
   .button {
