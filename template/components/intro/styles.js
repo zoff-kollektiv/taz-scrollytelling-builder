@@ -30,7 +30,7 @@ export default css`
     }
   }
 
-  .image-container::after {
+  .image-container-portrait::after {
     background-image: linear-gradient(
       to top,
       rgba(0, 0, 0, 0.85),
