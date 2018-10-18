@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import Button from '../../../form/button';
+import EditIcon from './edit.svg';
 import Form from '../../../form';
 import Modal from '../../../modal';
 import styles from './styles';
@@ -61,8 +62,8 @@ export default class Toolbar extends Component {
   };
 
   render() {
-    const { editor, node, isFocused, block } = this.props;
-    const { canEdit, onSelect } = block;
+    const { editor, node, block } = this.props;
+    const { onSelect } = block;
 
     return (
       <Fragment>
@@ -70,35 +71,31 @@ export default class Toolbar extends Component {
 
         {this.state.showModal && <Modal>{this.state.modal}</Modal>}
 
-        {canEdit &&
-          isFocused && (
-            <button
-              className="button"
-              type="button"
-              onClick={event => {
-                event.stopPropagation();
-                removeBlock(editor, node.key);
-              }}
-            >
-              <TrashIcon />
-              <span>Delete</span>
-            </button>
-          )}
+        <button
+          className="button"
+          type="button"
+          onClick={event => {
+            event.stopPropagation();
+            removeBlock(editor, node.key);
+          }}
+        >
+          <TrashIcon />
+          <span>Delete</span>
+        </button>
 
-        {onSelect &&
-          isFocused && (
-            <button
-              className="button"
-              type="button"
-              onClick={event => {
-                event.stopPropagation();
-                this.onClickEdit();
-              }}
-            >
-              <TrashIcon />
-              <span>Edit</span>
-            </button>
-          )}
+        {onSelect && (
+          <button
+            className="button"
+            type="button"
+            onClick={event => {
+              event.stopPropagation();
+              this.onClickEdit();
+            }}
+          >
+            <EditIcon />
+            <span>Edit</span>
+          </button>
+        )}
       </Fragment>
     );
   }
