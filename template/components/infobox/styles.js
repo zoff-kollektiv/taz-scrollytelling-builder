@@ -31,7 +31,7 @@ export default css`
     font-family: ${fonts.sansSerif.family};
     font-size: 0.9rem;
     font-weight: ${fonts.sansSerif.weight.regular};
-    letter-spacing: 0.025rem;
+    letter-spacing: 0.015rem;
     line-height: 1.5;
   }
 
