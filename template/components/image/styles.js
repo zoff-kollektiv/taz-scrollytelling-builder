@@ -37,6 +37,8 @@ export default css`
   // Make caption same width as the image https://stackoverflow.com/questions/4979487/image-caption-width-to-same-as-image
   .figure--dimension-portrait {
     display: table;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .image {
