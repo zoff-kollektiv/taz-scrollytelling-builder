@@ -5,6 +5,13 @@ import layoutConstraint from '../layout-constraint';
 import LogoIcon from '../../assets/images/logo.svg';
 import styles from './styles';
 
+import LogoFalter from '../../assets/images/falter-logo.svg';
+import LogoGazeta from '../../assets/images/gazeta-logo.svg';
+import LogoHVG from '../../assets/images/hvg-logo.svg';
+import LogoInternazionale from '../../assets/images/internazionale-logo.svg';
+import LogoLiberation from '../../assets/images/liberation-logo.svg';
+import LogoTaz from '../../assets/images/taz-logo.svg';
+
 const BLOCK_DEFINITION = {
   object: 'block',
   type: 'infobox',
@@ -17,7 +24,7 @@ const BLOCK_DEFINITION = {
           object: 'text',
           leaves: [
             {
-              text: ''
+              text: 'Content …'
             }
           ]
         }
@@ -34,7 +41,18 @@ const InfoBox = ({ children }) => (
       <LogoIcon />
     </div>
 
-    <layoutConstraint.Component>{children}</layoutConstraint.Component>
+    <layoutConstraint.Component>
+      {children}
+
+      <div className="publishers" readOnly>
+        <LogoFalter />
+        <LogoGazeta />
+        <LogoHVG />
+        <LogoInternazionale />
+        <LogoLiberation />
+        <LogoTaz />
+      </div>
+    </layoutConstraint.Component>
   </div>
 );
 
