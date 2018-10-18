@@ -38,6 +38,7 @@ export default css`
   @media ${mq.tablet} {
     :global(.infobox p) {
       font-size: 1.125rem;
+      line-height: 1.61;
     }
   }
 
