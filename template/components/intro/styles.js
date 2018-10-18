@@ -9,7 +9,6 @@ export default css`
 
   .image-container-landscape,
   .image-container-portrait {
-    background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -27,6 +26,14 @@ export default css`
   @media screen and (orientation: portrait) {
     .image-container-landscape {
       background-image: none !important;
+    }
+  }
+
+  // only do this on larger screens, since mobile browsers are very very unreliable
+  @media ${mq.tablet} {
+    .image-container-landscape,
+    .image-container-portrait {
+      background-attachment: fixed;
     }
   }
 
