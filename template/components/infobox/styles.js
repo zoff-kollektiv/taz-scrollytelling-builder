@@ -56,8 +56,8 @@ export default css`
 
   @media ${mq.tablet} {
     :global(.infobox .logo-container svg) {
-      height: 3.5rem;
-      width: 3.5rem;
+      height: 3.75rem;
+      width: 3.75rem;
     }
   }
 
