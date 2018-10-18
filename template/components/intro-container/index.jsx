@@ -139,10 +139,20 @@ export default {
     return {
       fields: [
         <InputImage
-          name="background-image"
-          label="Background image"
+          name="background-image-wide"
+          label="Background image (Landscape)"
           helpText="
             This image should be at least 1280px x 800px. JPEG images should have
+            a quality between 80 and 85. In order to load the image fast, filesize
+            is quite important. Please make sure the image is optimized - you can
+            e.g. use a service like https://tinypng.com.
+          "
+        />,
+        <InputImage
+          name="background-image-portrait"
+          label="Background image (Portrait)"
+          helpText="
+            This image should be at least 800px x 1280px. JPEG images should have
             a quality between 80 and 85. In order to load the image fast, filesize
             is quite important. Please make sure the image is optimized - you can
             e.g. use a service like https://tinypng.com.
@@ -179,20 +189,34 @@ export default {
   },
 
   extract({ data }) {
-    const file = data.get('background-image');
-    const name = data.get('background-image_name');
+    const fileLandscape = data.get('background-image-wide');
+    const nameLandscape = data.get('background-image-wide_name');
+    const filePortrait = data.get('background-image-portrait');
+    const namePortrait = data.get('background-image-portrait_name');
 
-    if (!file || !name) {
+    const res = [];
+
+    if (!fileLandscape && !filePortrait) {
       return Promise.resolve(null);
     }
 
-    return Promise.resolve([
-      {
-        name,
-        file,
+    if (fileLandscape) {
+      res.push({
+        name: nameLandscape,
+        file: fileLandscape,
         type: 'image'
-      }
-    ]);
+      });
+    }
+
+    if (filePortrait) {
+      res.push({
+        name: namePortrait,
+        file: filePortrait,
+        type: 'image'
+      });
+    }
+
+    return Promise.resolve(res);
   },
 
   serialize: (node, children) => (
