@@ -31,9 +31,7 @@ export default css`
   }
 
   .figure--is-constraint {
-    max-width: 780px;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    max-width: 732px;
   }
 
   // Make caption same width as the image https://stackoverflow.com/questions/4979487/image-caption-width-to-same-as-image
