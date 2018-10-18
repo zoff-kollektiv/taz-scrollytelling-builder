@@ -2,13 +2,10 @@ import classnames from 'classnames';
 import React from 'react';
 
 import editBlockStyles from './styles-edit-block';
-import TrashIcon from './trash.svg';
-
-const removeBlock = (editor, key) =>
-  editor.change(change => change.removeNodeByKey(key));
+import Toolbar from './toolbar';
 
 export default (block, props) => {
-  const { isFocused, attributes, node, editor } = props;
+  const { isFocused, attributes } = props;
   const { canEdit = true, Component } = block;
 
   return (
@@ -19,28 +16,13 @@ export default (block, props) => {
       {...attributes}
     >
       <style jsx>{editBlockStyles}</style>
-      <div
-        readOnly
-        className={classnames('toolbar', {
-          'toolbar--is-visible': canEdit && isFocused
-        })}
-      >
-        {canEdit &&
-          isFocused && (
-            <button
-              className="button"
-              type="button"
-              onClick={event => {
-                event.stopPropagation();
-                removeBlock(editor, node.key);
-              }}
-            >
-              <TrashIcon />
-              <span>Delete</span>
-            </button>
-          )}
-      </div>
 
+      {canEdit &&
+        isFocused && (
+          <div readOnly className="toolbar">
+            <Toolbar block={block} {...props} />
+          </div>
+        )}
       <Component {...props} />
     </div>
   );
