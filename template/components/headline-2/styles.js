@@ -16,7 +16,7 @@ export default css`
   @media ${mq.tablet} {
     .h2 {
       font-size: 1.875rem;
-      margin-bottom: 2.875rem;
+      margin-bottom: 1.5rem;
       margin-top: 3.175rem;
     }
   }

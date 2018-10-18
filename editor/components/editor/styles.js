@@ -7,7 +7,7 @@ export default css`
 
   .editor__toolbar-marks {
     position: absolute;
-    z-index: 100;
+    z-index: 200;
   }
 
   .editor__toolbar {

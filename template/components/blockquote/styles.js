@@ -7,20 +7,32 @@ export default css`
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin: 1rem 0 4rem;
+    margin: 1.5rem 0 3rem;
     padding-top: 1rem;
     position: relative;
   }
 
   @media ${mq.tablet} {
     .blockquote {
-      margin-bottom: 5rem;
-      margin-top: 2.5rem;
+      margin-bottom: 3.5rem;
+      margin-top: 3.5rem;
     }
   }
 
   .icon-container {
     text-align: center;
+  }
+
+  :global(.icon-container svg) {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  @media ${mq.tablet} {
+    :global(.icon-container svg) {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
   }
 
   /* Blockquote text */

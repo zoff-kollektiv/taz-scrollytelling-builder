@@ -17,14 +17,14 @@ export default css`
   .image-container::after {
     background-image: linear-gradient(
       to top,
-      rgba(0, 0, 0, 0.9),
-      rgba(0, 0, 0, 0.6),
-      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.85),
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.15),
       transparent
     );
     bottom: 0;
     content: '';
-    height: 50%;
+    height: 75%;
     left: 0;
     position: absolute;
     width: 100%;

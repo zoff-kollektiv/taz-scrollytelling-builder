@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from './styles';
 
-export default ({ name, label = '', choices = [], ...rest }) => (
+export default ({ name, label = '', choices = [], defaultValue, ...rest }) => (
   <div className="radio-group">
     <style jsx>{styles}</style>
 
@@ -15,7 +15,9 @@ export default ({ name, label = '', choices = [], ...rest }) => (
             type="radio"
             name={name}
             value={inputValue}
-            defaultChecked={index === 0}
+            defaultChecked={
+              index === 0 || (defaultValue && inputValue === defaultValue)
+            }
             {...rest}
           />
 

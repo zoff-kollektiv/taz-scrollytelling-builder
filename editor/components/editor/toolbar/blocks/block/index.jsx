@@ -24,7 +24,9 @@ export default class Block extends Component {
 
     const handleSelect = () => {
       if (onSelect) {
-        const { fields } = onSelect();
+        // pass an empty object here, because it can receive defaultValues
+        // for each field
+        const { fields } = onSelect({});
         const buttons = [
           <Button name="submit" type="submit">
             Add block
@@ -76,15 +78,7 @@ export default class Block extends Component {
         >
           <style jsx>{styles}</style>
           <span className="block__label">{label || name}</span>
-          {Icon && (
-            <Icon
-              style={{
-                height: '1rem',
-                verticalAlign: 'middle',
-                width: '1rem'
-              }}
-            />
-          )}
+          {Icon && <Icon />}
         </button>
       </Fragment>
     );

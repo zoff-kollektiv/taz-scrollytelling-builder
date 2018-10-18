@@ -39,13 +39,13 @@ const BLOCK_DEFINITION = {
   ]
 };
 
-const Blockquote = ({ attributes = {}, children }) => (
-  <blockquote className="blockquote" {...attributes}>
+const Blockquote = ({ children }) => (
+  <blockquote className="blockquote">
     <style jsx>{styles}</style>
 
     <LayoutConstraint.Component>
       <div className="icon-container">
-        <Icon style={{ height: '3.5rem', width: '3.5rem' }} />
+        <Icon />
       </div>
 
       {children}

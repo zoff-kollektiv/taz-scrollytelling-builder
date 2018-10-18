@@ -33,6 +33,7 @@ export default css`
 
   @media ${mq.tablet} {
     .logo-publisher {
+      margin-top: 0.1rem;
       width: 5rem;
     }
   }
@@ -44,10 +45,12 @@ export default css`
   }
 
   .header--publisher-taz .logo-publisher {
+    margin-top: 0;
     width: 4rem;
   }
 
   .header--publisher-hvg .logo-publisher {
+    margin-top: 0.3rem;
     width: 2rem;
   }
 
@@ -57,17 +60,19 @@ export default css`
     }
   }
 
+  .header--publisher-liberation .logo-publisher {
+    margin-top: 0.2rem;
+  }
+
   :global(.header .logo-publisher > svg) {
     height: auto;
     max-height: 1.5rem;
-    margin-top: 0.15rem;
     width: 100%;
   }
 
   @media ${mq.tablet} {
     :global(.header .logo-publisher > svg) {
       max-height: 1.7rem;
-      margin-top: 0.15rem;
     }
   }
 
@@ -77,7 +82,6 @@ export default css`
   }
 
   :global(.header--publisher-taz .logo-publisher > svg) {
-    margin-top: 0.1rem;
     max-height: 1.15rem;
   }
 
@@ -87,8 +91,16 @@ export default css`
     }
   }
 
-  :global(.header:not(.header--publisher-hvg) .logo-publisher path) {
+  :global(.header:not(.header--publisher-hvg):not(.header--publisher-liberation)
+      .logo-publisher
+      path) {
     fill: currentColor;
+  }
+
+  :global(.header--publisher-liberation
+      .logo-publisher
+      #liberation-background) {
+    fill: rgb(48, 48, 48);
   }
 
   // Project logo
