@@ -35,4 +35,4 @@ const serialize = (value, data) => {
   return extractionNodes.map(node => extractAssets(node, data));
 };
 
-export { serialize };
+export default serialize;

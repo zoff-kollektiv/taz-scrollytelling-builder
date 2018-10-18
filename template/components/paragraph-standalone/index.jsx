@@ -4,9 +4,9 @@ import LayoutConstraint from '../layout-constraint';
 import Icon from './paragraph.svg';
 import styles from './styles';
 
-const Paragraph = ({ attributes = {}, children }) => (
+const Paragraph = ({ children }) => (
   <LayoutConstraint.Component>
-    <p className="paragraph" {...attributes}>
+    <p className="paragraph">
       <style jsx>{styles}</style>
       {children}
     </p>

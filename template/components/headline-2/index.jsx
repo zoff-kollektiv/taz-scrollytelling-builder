@@ -4,12 +4,10 @@ import Icon from './heading.svg';
 import layoutConstraint from '../layout-constraint';
 import styles from './styles';
 
-const Headline2 = ({ attributes = {}, children }) => (
+const Headline2 = ({ children }) => (
   <layoutConstraint.Component>
     <style jsx>{styles}</style>
-    <h2 className="h2" {...attributes}>
-      {children}
-    </h2>
+    <h2 className="h2">{children}</h2>
   </layoutConstraint.Component>
 );
 

@@ -30,7 +30,7 @@ const BLOCK_DEFINITION = {
   ]
 };
 
-const Image = ({ data, attributes = {}, children, serialize = false }) => {
+const Image = ({ data, children, serialize = false, isFocused }) => {
   const alt = data.get('alt') || '';
   const type = data.get('type');
   const width = data.get('image_width');
@@ -59,7 +59,7 @@ const Image = ({ data, attributes = {}, children, serialize = false }) => {
         { [`figure--dimension-landscape`]: !isPortraitSize },
         { [`figure--dimension-portrait`]: isPortraitSize }
       )}
-      {...attributes}
+      selected={isFocused}
     >
       <style jsx>{styles}</style>
 
@@ -99,7 +99,7 @@ export default {
     ]);
   },
 
-  onSelect() {
+  onSelect({ alt, type }) {
     return {
       fields: [
         <InputImage
@@ -117,10 +117,11 @@ export default {
           e.g. use a service like https://tinypng.com.
         `}
         />,
-        <Input name="alt" label="Alt" />,
+        <Input name="alt" label="Alt" defaultValue={alt} />,
         <Radio
           name="type"
           label="Size"
+          defaultValue={type}
           choices={[
             ['constraint', 'Same as content'],
             ['wide', 'Wider as content'],

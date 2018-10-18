@@ -26,8 +26,8 @@ const BLOCK_DEFINITION = {
   ]
 };
 
-const InfoBox = ({ attributes = {}, children }) => (
-  <div className="infobox" {...attributes}>
+const InfoBox = ({ children }) => (
+  <div className="infobox">
     <style jsx>{styles}</style>
 
     <div className="logo-container">

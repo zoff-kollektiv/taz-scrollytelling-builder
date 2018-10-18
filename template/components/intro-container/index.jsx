@@ -115,8 +115,8 @@ const BLOCK_DEFINITION = {
   ]
 };
 
-const IntroContainer = ({ attributes = {}, children }) => (
-  <section className="intro" {...attributes}>
+const IntroContainer = ({ children }) => (
+  <section className="intro">
     <style jsx>{styles}</style>
     {children}
   </section>

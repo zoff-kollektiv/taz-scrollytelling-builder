@@ -10,4 +10,6 @@ const fonts = {
   }
 };
 
-export { fonts };
+const mq = {};
+
+export { fonts, mq };

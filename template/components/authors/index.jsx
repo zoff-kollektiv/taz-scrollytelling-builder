@@ -2,8 +2,8 @@ import React from 'react';
 
 import styles from './styles';
 
-const Authors = ({ attributes = {}, children }) => (
-  <p className="authors" {...attributes}>
+const Authors = ({ children }) => (
+  <p className="authors">
     <style jsx>{styles}</style>
 
     {children}
