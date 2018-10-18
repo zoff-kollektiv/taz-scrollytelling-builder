@@ -19,6 +19,7 @@ export default class Toolbar extends Component {
 
   onClickEdit = () => {
     const { editor, node, block } = this.props;
+    const { type } = node;
 
     const { data } = node.toJSON();
     const { fields } = block.onSelect(data);
@@ -32,12 +33,18 @@ export default class Toolbar extends Component {
         {}
       );
 
-      editor.change(change =>
-        change.setNodeByKey(node.key, {
-          type: 'image',
-          data: { updatedData }
-        })
-      );
+      editor.change(change => {
+        change.removeNodeByKey(node.key);
+
+        if (block.insert) {
+          block.insert(change, updatedData);
+        } else {
+          change.insertBlock({
+            type,
+            data: updatedData
+          });
+        }
+      });
 
       this.hideModal();
     };
