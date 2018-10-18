@@ -17,12 +17,7 @@ export default (block, props) => {
     >
       <style jsx>{editBlockStyles}</style>
 
-      {canEdit &&
-        isFocused && (
-          <div readOnly className="toolbar">
-            <Toolbar block={block} {...props} />
-          </div>
-        )}
+      {canEdit && isFocused && <Toolbar block={block} {...props} />}
       <Component {...props} />
     </div>
   );

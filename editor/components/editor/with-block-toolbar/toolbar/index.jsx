@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import Button from '../../../form/button';
 import EditIcon from './edit.svg';
@@ -36,6 +36,8 @@ export default class Toolbar extends Component {
           data: { updatedData }
         })
       );
+
+      this.hideModal();
     };
     const buttons = [
       <Button name="submit" type="submit">
@@ -66,7 +68,7 @@ export default class Toolbar extends Component {
     const { onSelect } = block;
 
     return (
-      <Fragment>
+      <div readOnly className="toolbar">
         <style jsx>{styles}</style>
 
         {this.state.showModal && <Modal>{this.state.modal}</Modal>}
@@ -96,7 +98,7 @@ export default class Toolbar extends Component {
             <span>Edit</span>
           </button>
         )}
-      </Fragment>
+      </div>
     );
   }
 }
