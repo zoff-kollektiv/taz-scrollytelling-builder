@@ -10,7 +10,7 @@ export default css`
 
   @media ${mq.tablet} {
     .intro {
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
     }
   }
 `;
