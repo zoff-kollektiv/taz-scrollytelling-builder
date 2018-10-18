@@ -181,7 +181,7 @@ export default class Editor extends Component {
     const block = findBlockByName(type);
 
     // Maybe the mark is an inline and therefore falls under renderNode (e.g. links)
-    if (!block) {
+    if (!block || !block.Component) {
       const { Mark } = findMarkByName(type);
 
       if (Mark) {

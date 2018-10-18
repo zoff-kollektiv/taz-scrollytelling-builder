@@ -3,15 +3,31 @@ import css from 'styled-jsx/css';
 import { mq } from '../../tokens';
 
 export default css`
-  .image-container {
-    background-attachment: fixed;
+  .image-container-landscape {
     background-color: #0e0e0e;
+  }
+
+  .image-container-landscape,
+  .image-container-portrait {
+    background-attachment: fixed;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 90vh;
     overflow: hidden;
     position: relative;
+  }
+
+  @media (orientation: landscape) {
+    .image-container-portrait {
+      background-image: none !important;
+    }
+  }
+
+  @media (orientation: portrait) {
+    .image-container-landscape {
+      background-image: none !important;
+    }
   }
 
   .image-container::after {

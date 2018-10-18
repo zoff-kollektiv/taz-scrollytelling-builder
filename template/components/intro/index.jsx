@@ -5,18 +5,26 @@ import filename from '../../../editor/lib/filename';
 import styles from './styles';
 
 const Intro = ({ data, children, serialize = false }) => {
-  const backgroundUrl = !serialize
-    ? data.get('background-image')
-    : `./assets/images/${filename(data.get('background-image_name'))}`;
+  const backgroundLandscape = !serialize
+    ? data.get('background-image-wide')
+    : `./assets/images/${filename(data.get('background-image-wide_name'))}`;
+
+  const backgroundPortrait = !serialize
+    ? data.get('background-image-portrait')
+    : `./assets/images/${filename(data.get('background-image-portrait_name'))}`;
 
   return (
     <div
-      className="image-container"
-      style={{ backgroundImage: `url(${backgroundUrl})` }}
+      className="image-container-landscape"
+      style={{ backgroundImage: `url(${backgroundLandscape})` }}
     >
       <style jsx>{styles}</style>
-
-      <div className="content">{children}</div>
+      <div
+        className="image-container-portrait"
+        style={{ backgroundImage: `url(${backgroundPortrait})` }}
+      >
+        <div className="content">{children}</div>
+      </div>
     </div>
   );
 };
