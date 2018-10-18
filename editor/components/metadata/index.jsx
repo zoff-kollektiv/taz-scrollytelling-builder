@@ -121,7 +121,7 @@ export default ({ metadata, updateMetadataField }) => (
               display link page posts with larger images. Images can be up to
               8MB in size.
             `}
-            onDropAccepted={files => {
+            onDrop={files => {
               const file = files[0];
 
               fileToDataURL(file).then(data => {
@@ -173,7 +173,7 @@ export default ({ metadata, updateMetadataField }) => (
               GIF formats are supported. Only the first frame of an animated
               GIF will be used. SVG is not supported.
             "
-            onDropAccepted={files => {
+            onDrop={files => {
               const file = files[0];
 
               fileToDataURL(file).then(data => {

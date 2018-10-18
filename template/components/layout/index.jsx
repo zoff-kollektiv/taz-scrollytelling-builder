@@ -87,9 +87,9 @@ export default {
 
           <body>
             <article className="app">{children}</article>
-          </body>
 
-          <Tracking />
+            <Tracking />
+          </body>
         </html>
       </Fragment>
     );
