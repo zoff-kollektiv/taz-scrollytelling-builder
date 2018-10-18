@@ -17,7 +17,8 @@ export default (block, props) => {
     >
       <style jsx>{editBlockStyles}</style>
 
-      {canEdit && isFocused && <Toolbar block={block} {...props} />}
+      <Toolbar block={block} {...props} visible={canEdit && isFocused} />
+
       <Component {...props} />
     </div>
   );

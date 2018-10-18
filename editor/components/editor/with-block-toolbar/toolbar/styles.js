@@ -3,6 +3,32 @@ import css from 'styled-jsx/css';
 import { fonts } from '../../../../tokens';
 
 export default css`
+  .toolbar {
+    background-color: rgba(213, 213, 213, 0.2);
+    color: black;
+    display: none;
+    flex-direction: row;
+    font-family: ${fonts.inter.family};
+    font-size: 0.75rem;
+    font-weight: ${fonts.inter.weight.black};
+    justify-content: flex-end;
+    left: 0;
+    padding: 0.25rem 1.5rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .toolbar--is-visible {
+    display: flex;
+  }
+
+  .block-label {
+    align-self: flex-start;
+    margin-right: auto;
+  }
+
   .button {
     align-items: center;
     background: transparent;

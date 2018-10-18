@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React, { Component } from 'react';
 
 import Button from '../../../form/button';
@@ -21,6 +22,7 @@ export default class Toolbar extends Component {
 
     const { data } = node.toJSON();
     const { fields } = block.onSelect(data);
+
     const onSubmit = formData => {
       const updatedData = [...formData.entries()].reduce(
         (acc, [key, value]) => {
@@ -39,6 +41,7 @@ export default class Toolbar extends Component {
 
       this.hideModal();
     };
+
     const buttons = [
       <Button name="submit" type="submit">
         Update block
@@ -64,14 +67,23 @@ export default class Toolbar extends Component {
   };
 
   render() {
-    const { editor, node, block } = this.props;
-    const { onSelect } = block;
+    const { editor, node, block, visible = false } = this.props;
+    const { label, name, onSelect } = block;
 
     return (
-      <div readOnly className="toolbar">
+      <div
+        readOnly
+        className={classnames('toolbar', { 'toolbar--is-visible': visible })}
+      >
         <style jsx>{styles}</style>
 
-        {this.state.showModal && <Modal>{this.state.modal}</Modal>}
+        {!block.private && (
+          <strong className="block-label">{label || name}</strong>
+        )}
+
+        {this.state.showModal && (
+          <Modal onClose={() => this.hideModal()}>{this.state.modal}</Modal>
+        )}
 
         <button
           className="button"
