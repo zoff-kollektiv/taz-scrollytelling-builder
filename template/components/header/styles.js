@@ -181,11 +181,14 @@ export default css`
     font-size: 0;
     line-height: 1;
     margin-left: auto;
+    position: relative;
+    top: -0.3rem;
   }
 
   @media ${mq.phone} {
     .share {
       margin-right: 1rem;
+      top: 0;
     }
   }
 
