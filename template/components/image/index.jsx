@@ -66,9 +66,13 @@ const Image = ({ data, children, serialize = false, isFocused }) => {
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
       <img {...attrs} />
 
-      <layoutConstraint.Component>
+      {isPortraitSize === true ? (
         <div className="caption-container">{children}</div>
-      </layoutConstraint.Component>
+      ) : (
+        <layoutConstraint.Component>
+          <div className="caption-container">{children}</div>
+        </layoutConstraint.Component>
+      )}
     </figure>
   );
 };

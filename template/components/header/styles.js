@@ -178,21 +178,20 @@ export default css`
   .share {
     align-self: flex-end;
     color: currentColor;
+    font-size: 0;
+    line-height: 1;
     margin-left: auto;
-    position: relative;
   }
 
   @media ${mq.phone} {
     .share {
       margin-right: 1rem;
-      top: 0.15rem;
     }
   }
 
   @media ${mq.tablet} {
     .share {
       margin-right: 1.5rem;
-      top: 0.25rem;
     }
   }
 
@@ -215,6 +214,7 @@ export default css`
   .share-button {
     color: currentColor;
     cursor: pointer;
+    line-height: 1;
   }
 
   .share-button:hover,
