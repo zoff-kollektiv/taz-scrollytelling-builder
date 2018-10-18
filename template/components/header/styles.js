@@ -84,8 +84,16 @@ export default css`
     }
   }
 
-  :global(.header:not(.header--publisher-hvg) .logo-publisher path) {
+  :global(.header:not(.header--publisher-hvg, .header--publisher-liberation)
+      .logo-publisher
+      path) {
     fill: currentColor;
+  }
+
+  :global(.header--publisher-liberation
+      .logo-publisher
+      #liberation-background) {
+    fill: rgb(48, 48, 48);
   }
 
   // Project logo
