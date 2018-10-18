@@ -45,6 +45,7 @@ export default css`
   }
 
   .header--publisher-taz .logo-publisher {
+    margin-top: 0;
     width: 4rem;
   }
 
@@ -60,7 +61,7 @@ export default css`
   }
 
   .header--publisher-liberation .logo-publisher {
-    margin-top: 0.3rem;
+    margin-top: 0.2rem;
   }
 
   :global(.header .logo-publisher > svg) {
