@@ -48,7 +48,7 @@ export default css`
 
   .figure--dimension-portrait .image {
     height: auto;
-    max-height: 80vh;
+    max-width: 100%;
     width: auto;
   }
 
