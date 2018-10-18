@@ -18,13 +18,13 @@ export default css`
     position: relative;
   }
 
-  @media (orientation: landscape) {
+  @media screen and (orientation: landscape) {
     .image-container-portrait {
       background-image: none !important;
     }
   }
 
-  @media (orientation: portrait) {
+  @media screen and (orientation: portrait) {
     .image-container-landscape {
       background-image: none !important;
     }
