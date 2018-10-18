@@ -56,6 +56,5 @@ export default css`
   .figure--dimension-portrait .caption-container {
     caption-side: bottom;
     display: table-caption;
-    width: 100%;
   }
 `;
