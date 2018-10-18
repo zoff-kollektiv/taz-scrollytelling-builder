@@ -7,7 +7,7 @@ export default css`
     background-color: rgb(242, 242, 242);
     margin-bottom: 3rem;
     margin-top: 3rem;
-    padding: 1.5rem 0;
+    padding: 1rem 0 2rem 0;
     position: relative;
   }
 
@@ -46,10 +46,42 @@ export default css`
     width: 2.5rem;
   }
 
-  @media ${mq.tablet} {
+  @media ${mq.phone} {
     :global(.infobox .logo-container svg) {
       height: 3rem;
       width: 3rem;
+    }
+  }
+
+  @media ${mq.tablet} {
+    :global(.infobox .logo-container svg) {
+      height: 3.5rem;
+      width: 3.5rem;
+    }
+  }
+
+  .publishers {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: 3rem;
+  }
+
+  :global(.infobox svg) {
+    height: 0.65rem;
+  }
+
+  @media ${mq.phone} {
+    :global(.infobox svg) {
+      height: 1rem;
+    }
+  }
+
+  @media ${mq.tablet} {
+    :global(.infobox svg) {
+      height: 1.3rem;
     }
   }
 `;
