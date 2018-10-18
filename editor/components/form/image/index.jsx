@@ -10,7 +10,13 @@ export default class Field extends Component {
   };
 
   onDrop = files => {
+    const { onDrop } = this.props;
+
     this.setState({ files });
+
+    if (onDrop) {
+      onDrop(files);
+    }
   };
 
   render() {
