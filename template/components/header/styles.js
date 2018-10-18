@@ -33,6 +33,7 @@ export default css`
 
   @media ${mq.tablet} {
     .logo-publisher {
+      margin-top: 0.1rem;
       width: 5rem;
     }
   }
@@ -48,6 +49,7 @@ export default css`
   }
 
   .header--publisher-hvg .logo-publisher {
+    margin-top: 0.3rem;
     width: 2rem;
   }
 
@@ -55,6 +57,10 @@ export default css`
     .header--publisher-hvg .logo-publisher {
       width: 3rem;
     }
+  }
+
+  .header--publisher-liberation .logo-publisher {
+    margin-top: 0.3rem;
   }
 
   :global(.header .logo-publisher > svg) {
@@ -84,7 +90,7 @@ export default css`
     }
   }
 
-  :global(.header:not(.header--publisher-hvg, .header--publisher-liberation)
+  :global(.header:not(.header--publisher-hvg):not(.header--publisher-liberation)
       .logo-publisher
       path) {
     fill: currentColor;
