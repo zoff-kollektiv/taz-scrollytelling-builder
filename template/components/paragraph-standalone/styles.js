@@ -5,7 +5,7 @@ import { fonts, mq } from '../../tokens';
 export default css`
   .paragraph {
     font-family: ${fonts.serif.family};
-    font-size: 1.125rem;
+    font-size: 1.2rem;
     line-height: 1.4;
   }
 
@@ -13,10 +13,16 @@ export default css`
     display: none;
   }
 
+  @media ${mq.phone} {
+    .paragraph {
+      font-size: 1.3rem;
+      line-height: 1.5;
+    }
+  }
+
   @media ${mq.tablet} {
     .paragraph {
       font-size: 1.5rem;
-      line-height: 1.5;
     }
   }
 
