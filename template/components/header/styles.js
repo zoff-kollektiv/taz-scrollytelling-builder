@@ -28,7 +28,7 @@ export default css`
   @media ${mq.tablet} {
     .header {
       padding-left: 2rem;
-      top: 3rem;
+      top: 2.5rem;
     }
   }
 

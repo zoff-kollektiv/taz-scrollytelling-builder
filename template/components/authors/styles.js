@@ -9,7 +9,7 @@ export default css`
     font-style: italic;
     letter-spacing: 0.06rem;
     line-height: 1.2;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     text-align: center;
   }
 
@@ -17,7 +17,7 @@ export default css`
     .authors {
       font-size: 1.125rem;
       letter-spacing: 1px;
-      margin-top: 2rem;
+      margin-top: 3rem;
     }
   }
 

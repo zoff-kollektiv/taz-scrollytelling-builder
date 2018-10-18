@@ -31,13 +31,14 @@ export default css`
     font-family: ${fonts.sansSerif.family};
     font-size: 0.9rem;
     font-weight: ${fonts.sansSerif.weight.regular};
-    letter-spacing: 0.025rem;
+    letter-spacing: 0.015rem;
     line-height: 1.5;
   }
 
   @media ${mq.tablet} {
     :global(.infobox p) {
       font-size: 1.125rem;
+      line-height: 1.61;
     }
   }
 
@@ -55,8 +56,8 @@ export default css`
 
   @media ${mq.tablet} {
     :global(.infobox .logo-container svg) {
-      height: 3.5rem;
-      width: 3.5rem;
+      height: 3.75rem;
+      width: 3.75rem;
     }
   }
 
