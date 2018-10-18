@@ -22,12 +22,13 @@ const LOGOS = {
   hvg: LogoHVG
 };
 
-const Header = ({ url = '', data, children }) => {
+const Header = ({ url = '', data, children, twitterTitle = '' }) => {
   const publisher = data.get('publisher');
   const title = data.get('header-title');
   const researchType = data.get('header-research-type');
   const Logo = LOGOS[publisher];
   const encodedUrl = encodeURIComponent(url);
+  const encodedTwitterTitle = encodeURIComponent(twitterTitle);
 
   return (
     <header
@@ -54,11 +55,17 @@ const Header = ({ url = '', data, children }) => {
       <div className="share">
         <span className="share-label">Share on</span>
 
-        <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`} className="share-button">
+        <a
+          href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
+          className="share-button"
+        >
           <FacebookIcon />
           <span className="share-button-label">Share on facebook</span>
         </a>
-        <a href={`https://twitter.com/intent/tweet?url=${encodedUrl}`} className="share-button">
+        <a
+          href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTwitterTitle}`}
+          className="share-button"
+        >
           <TwitterIcon />
           <span className="share-button-label">Share on twitter</span>
         </a>
@@ -76,9 +83,11 @@ export default {
   serialize(node, children, data = {}) {
     const { metadata } = data;
     const url = metadata && metadata.url;
+    const twitterTitle =
+      metadata && (metadata['twitter:title'] || metadata.title);
 
     return (
-      <Header data={node.data} url={url}>
+      <Header data={node.data} url={url} twitterTitle={twitterTitle}>
         {children}
       </Header>
     );
