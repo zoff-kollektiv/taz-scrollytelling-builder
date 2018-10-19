@@ -41,11 +41,14 @@ export default css`
     font-size: 1.5rem;
     font-weight: ${fonts.sansSerif.weight.bold};
     font-weight: bold;
+    hyphens: auto;
     letter-spacing: 0.05rem;
     line-height: 1.25;
     margin-bottom: 0;
     margin-top: 1rem;
+    overflow-wrap: break-word;
     text-align: center;
+    word-wrap: break-word;
   }
 
   @media ${mq.tablet} {
