@@ -49,7 +49,7 @@ class Application extends Component {
                       ]
                     }
                   ]
-                },
+                }
               ]
             }
           ]
