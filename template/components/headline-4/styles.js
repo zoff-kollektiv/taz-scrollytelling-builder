@@ -25,11 +25,14 @@ export default css`
     font-family: ${fonts.sansSerif.family};
     font-size: 1.25rem;
     font-weight: ${fonts.sansSerif.weight.bold};
+    hyphens: auto;
     letter-spacing: 1px;
     line-height: 1.4;
     margin-bottom: 0;
     margin-top: 0;
+    overflow-wrap: break-word;
     padding: 0.1rem 0.25rem;
+    word-wrap: break-word;
   }
 
   @media ${mq.tablet} {
