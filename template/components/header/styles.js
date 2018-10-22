@@ -33,6 +33,9 @@ export default css`
   }
 
   .logo-publisher {
+    color: currentColor;
+    cursor: pointer;
+    display: block;
     width: 4rem;
   }
 
