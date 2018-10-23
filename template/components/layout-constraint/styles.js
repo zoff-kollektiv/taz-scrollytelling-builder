@@ -7,5 +7,6 @@ export default css`
     max-width: 780px;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+    width: 100%;
   }
 `;
