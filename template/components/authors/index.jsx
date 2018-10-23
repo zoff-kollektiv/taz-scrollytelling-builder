@@ -1,13 +1,16 @@
 import React from 'react';
 
+import LayoutConstraint from '../layout-constraint';
 import styles from './styles';
 
 const Authors = ({ children }) => (
-  <p className="authors">
-    <style jsx>{styles}</style>
+  <LayoutConstraint.Component>
+    <p className="authors">
+      <style jsx>{styles}</style>
 
-    {children}
-  </p>
+      {children}
+    </p>
+  </LayoutConstraint.Component>
 );
 
 export default {
