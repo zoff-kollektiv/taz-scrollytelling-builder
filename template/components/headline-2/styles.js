@@ -7,10 +7,13 @@ export default css`
     font-family: ${fonts.sansSerif.family};
     font-size: 1.5rem;
     font-weight: ${fonts.sansSerif.weight.bold};
+    hyphens: auto;
     letter-spacing: 1px;
     line-height: ${36 / 30};
     margin-bottom: 1.25rem;
     margin-top: 2.5rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
   }
 
   @media ${mq.tablet} {
