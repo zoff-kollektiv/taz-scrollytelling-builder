@@ -2,11 +2,13 @@ import React, { Fragment } from 'react';
 
 import styles from './styles';
 
-const Fonts = () => (
+const Fonts = ({ children }) => (
   <Fragment>
     <style jsx global>
       {styles}
     </style>
+
+    {children}
   </Fragment>
 );
 

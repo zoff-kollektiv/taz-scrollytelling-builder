@@ -32,18 +32,19 @@ class Application extends Component {
               nodes: [
                 {
                   object: 'block',
-                  type: 'fonts'
-                },
-
-                {
-                  object: 'block',
-                  type: 'paragraph-standalone',
+                  type: 'fonts',
                   nodes: [
                     {
-                      object: 'text',
-                      leaves: [
+                      object: 'block',
+                      type: 'paragraph-standalone',
+                      nodes: [
                         {
-                          text: 'Start typing …'
+                          object: 'text',
+                          leaves: [
+                            {
+                              text: 'Start typing …'
+                            }
+                          ]
                         }
                       ]
                     }
