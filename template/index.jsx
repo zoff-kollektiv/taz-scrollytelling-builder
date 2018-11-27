@@ -20,6 +20,7 @@ import paragraphStandalone from './components/paragraph-standalone';
 import publicationDate from './components/publication-date';
 import standfirst from './components/standfirst';
 import title from './components/title';
+import tweet from './components/tweet';
 
 const blocks = [
   authors,
@@ -41,7 +42,8 @@ const blocks = [
   paragraphStandalone,
   publicationDate,
   standfirst,
-  title
+  title,
+  tweet
 ];
 
 export { blocks };
