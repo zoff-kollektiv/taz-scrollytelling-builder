@@ -1,6 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
+import LayoutConstraint from '../layout-constraint';
 import Textarea from '../../../editor/components/form/textarea';
+
+import styles from './styles';
 
 class Tweet extends Component {
   // inject twitters script tag, which then takes care of the tweet rendering
@@ -11,7 +14,7 @@ class Tweet extends Component {
     script.async = true;
 
     if (document && document.body) {
-      document.body.appendChild(script);
+      //document.body.appendChild(script);
     }
   }
 
@@ -20,10 +23,11 @@ class Tweet extends Component {
     const embedCode = data.get('embedCode');
 
     return (
-      <Fragment>
-        <div dangerouslySetInnerHTML={{ __html: embedCode }} />
+      <LayoutConstraint.Component>
+        <style jsx>{styles}</style>
+        <div className="tweet-container" dangerouslySetInnerHTML={{ __html: embedCode }} />
         {children}
-      </Fragment>
+      </LayoutConstraint.Component>
     );
   }
 }
@@ -32,7 +36,7 @@ export default {
   name: 'tweet',
   label: 'Tweet',
   Component: ({ node, ...rest }) => <Tweet data={node.data} {...rest} />,
-
+  styles,
   onSelect({ embedCode }) {
     return {
       fields: [
