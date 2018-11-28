@@ -24,6 +24,7 @@ const LOGOS = {
 
 const Header = ({ url = '', data, children, twitterTitle = '' }) => {
   const publisher = data.get('publisher');
+  const link = data.get('publisher-home-link');
   const title = data.get('header-title');
   const researchType = data.get('header-research-type');
   const Logo = LOGOS[publisher];
@@ -39,7 +40,9 @@ const Header = ({ url = '', data, children, twitterTitle = '' }) => {
     >
       <style jsx>{styles}</style>
 
-      <div className="logo-publisher">{<Logo />}</div>
+      <a href={link} className="logo-publisher">
+        {<Logo />}
+      </a>
 
       <div className="logo-container">
         <LogoIcon />

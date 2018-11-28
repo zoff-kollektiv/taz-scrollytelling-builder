@@ -171,6 +171,11 @@ export default {
           ]}
         />,
         <Input
+          name="publisher-home-link"
+          helpText="A link to the homepage of the publisher (e.g. https://taz.de/)"
+          label="Home link"
+        />,
+        <Input
           type="hidden"
           name="header-title"
           label="Main title"
