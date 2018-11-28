@@ -14,7 +14,7 @@ class Tweet extends Component {
     script.async = true;
 
     if (document && document.body) {
-      //document.body.appendChild(script);
+      document.body.appendChild(script);
     }
   }
 
