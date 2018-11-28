@@ -8,10 +8,9 @@ export default ({ label = '', type = 'text', helpText, ...rest }) => (
 
     {type !== 'hidden' && <span className="input__label">{label}</span>}
 
-    {type !== 'hidden' &&
-      helpText && (
-        <p className="help" dangerouslySetInnerHTML={{ __html: helpText }} />
-      )}
+    {type !== 'hidden' && helpText && (
+      <p className="help" dangerouslySetInnerHTML={{ __html: helpText }} />
+    )}
 
     <input type={type} {...rest} />
   </label>
