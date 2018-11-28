@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Icon from './twitter.svg';
 import LayoutConstraint from '../layout-constraint';
 import Textarea from '../../../editor/components/form/textarea';
 
@@ -23,14 +24,17 @@ class Tweet extends Component {
     const embedCode = data.get('embedCode');
 
     return (
-      <LayoutConstraint.Component>
+      <div className="tweet-container" readOnly>
         <style jsx>{styles}</style>
-        <div
-          className="tweet-container"
-          dangerouslySetInnerHTML={{ __html: embedCode }}
-        />
-        {children}
-      </LayoutConstraint.Component>
+
+        <LayoutConstraint.Component>
+          <div
+            className="tweet-inner-container"
+            dangerouslySetInnerHTML={{ __html: embedCode }}
+          />
+          {children}
+        </LayoutConstraint.Component>
+      </div>
     );
   }
 }
@@ -40,6 +44,7 @@ export default {
   label: 'Tweet',
   Component: ({ node, ...rest }) => <Tweet data={node.data} {...rest} />,
   styles,
+  Icon,
   onSelect({ embedCode }) {
     return {
       fields: [
