@@ -25,7 +25,10 @@ class Tweet extends Component {
     return (
       <LayoutConstraint.Component>
         <style jsx>{styles}</style>
-        <div className="tweet-container" dangerouslySetInnerHTML={{ __html: embedCode }} />
+        <div
+          className="tweet-container"
+          dangerouslySetInnerHTML={{ __html: embedCode }}
+        />
         {children}
       </LayoutConstraint.Component>
     );
