@@ -27,7 +27,7 @@ const collectAndInlineStyles = (placeholder, html) => {
 };
 
 const replaceDoctype = (placeholder, html) =>
-  html.replace(placeholder, '<!doctype html />');
+  html.replace(placeholder, '<!doctype html>');
 
 const downloadFile = (title, zip) => {
   const fileName = slugify(title, {
