@@ -135,7 +135,7 @@ export default {
     <IntroContainer data={node.data} {...rest} />
   ),
 
-  onSelect() {
+  onSelect(data = {}) {
     return {
       fields: [
         <InputImage
@@ -161,6 +161,7 @@ export default {
         <Radio
           name="publisher"
           label="Publisher"
+          defaultValue={data.publisher}
           choices={[
             ['taz', 'taz'],
             ['gazeta', 'Gazeta'],
@@ -174,6 +175,7 @@ export default {
           name="publisher-home-link"
           helpText="A link to the homepage of the publisher (e.g. https://taz.de/)"
           label="Home link"
+          defaultValue={data['publisher-home-link']}
         />,
         <Input
           type="hidden"
