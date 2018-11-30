@@ -33,8 +33,8 @@ const BLOCK_DEFINITION = {
 const Image = ({ data, children, serialize = false, isFocused }) => {
   const alt = data.get('alt') || '';
   const type = data.get('type');
-  const width = data.get('image_width');
-  const height = data.get('image_height');
+  const width = parseInt(data.get('image_width'), 10);
+  const height = parseInt(data.get('image_height'), 10);
   const isPortraitSize = height > width;
 
   let src;
