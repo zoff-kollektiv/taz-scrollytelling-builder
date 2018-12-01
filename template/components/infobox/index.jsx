@@ -65,7 +65,7 @@ export default {
 
   serialize: (node, children) => <InfoBox data={node.data}>{children}</InfoBox>,
 
-  insert(change) {
-    change.insertBlock(BLOCK_DEFINITION);
+  insert(editor) {
+    editor.insertBlock(BLOCK_DEFINITION);
   }
 };

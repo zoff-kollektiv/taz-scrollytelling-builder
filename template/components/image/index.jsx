@@ -136,10 +136,10 @@ export default {
     };
   },
 
-  insert(change, data) {
+  insert(editor, data) {
     // pass data to block
     BLOCK_DEFINITION.data = data;
 
-    change.insertBlock(BLOCK_DEFINITION);
+    editor.insertBlock(BLOCK_DEFINITION);
   }
 };

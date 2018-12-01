@@ -33,18 +33,16 @@ export default class Toolbar extends Component {
         {}
       );
 
-      editor.change(change => {
-        change.removeNodeByKey(node.key);
+      editor.removeNodeByKey(node.key);
 
-        if (block.insert) {
-          block.insert(change, updatedData);
-        } else {
-          change.insertBlock({
-            type,
-            data: updatedData
-          });
-        }
-      });
+      if (block.insert) {
+        block.insert(editor, updatedData);
+      } else {
+        editor.insertBlock({
+          type,
+          data: updatedData
+        });
+      }
 
       this.hideModal();
     };

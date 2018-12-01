@@ -135,7 +135,7 @@ export default {
     <IntroContainer data={node.data} {...rest} />
   ),
 
-  onSelect() {
+  onSelect(data = {}) {
     return {
       fields: [
         <InputImage
@@ -161,6 +161,7 @@ export default {
         <Radio
           name="publisher"
           label="Publisher"
+          defaultValue={data.publisher}
           choices={[
             ['taz', 'taz'],
             ['gazeta', 'Gazeta'],
@@ -174,6 +175,7 @@ export default {
           name="publisher-home-link"
           helpText="A link to the homepage of the publisher (e.g. https://taz.de/)"
           label="Home link"
+          defaultValue={data['publisher-home-link']}
         />,
         <Input
           type="hidden"
@@ -228,7 +230,7 @@ export default {
     <IntroContainer data={node.data}>{children}</IntroContainer>
   ),
 
-  insert(change, data) {
+  insert(editor, data) {
     BLOCK_DEFINITION.data = data;
 
     // pass data to all nodes
@@ -247,8 +249,8 @@ export default {
     }
 
     // Always add the intro of the beginning of the document
-    change.moveStartToStartOfDocument();
-    change.insertBlock(BLOCK_DEFINITION);
+    editor.moveStartToStartOfDocument();
+    editor.insertBlock(BLOCK_DEFINITION);
   },
 
   disabled(ast) {
