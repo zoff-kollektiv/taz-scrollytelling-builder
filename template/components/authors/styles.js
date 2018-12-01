@@ -8,7 +8,7 @@ export default css`
     font-size: 0.95rem;
     font-style: italic;
     letter-spacing: 0.06rem;
-    line-height: 1.2;
+    line-height: 1.3;
     margin-top: 1.5rem;
     text-align: center;
   }
