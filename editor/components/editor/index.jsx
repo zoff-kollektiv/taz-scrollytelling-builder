@@ -159,19 +159,17 @@ export default class Editor extends Component {
     const editor = this.editor.current;
     const block = findBlockByName(type);
 
-    editor.change(change => {
-      if (block && block.insert) {
-        block.insert(change, data);
-      } else {
-        change.insertBlock({
-          type,
-          data
-        });
+    if (block && block.insert) {
+      block.insert(editor, data);
+    } else {
+      editor.insertBlock({
+        type,
+        data
+      });
 
-        change.focus();
-        change.moveFocusToStartOfText();
-      }
-    });
+      editor.focus();
+      editor.moveFocusToStartOfText();
+    }
   };
 
   renderNode = (props, next) => {

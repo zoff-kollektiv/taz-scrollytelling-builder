@@ -64,7 +64,7 @@ export default {
     <Blockquote data={node.data}>{children}</Blockquote>
   ),
 
-  insert(change) {
-    change.insertBlock(BLOCK_DEFINITION);
+  insert(editor) {
+    editor.insertBlock(BLOCK_DEFINITION);
   }
 };
